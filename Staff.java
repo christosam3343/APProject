@@ -1,5 +1,5 @@
 package generalinfo;
-
+import Date;
 import java.util.Date;
 
 public class Staff 
@@ -205,6 +205,15 @@ public class Staff
 	                "\nstaffStatus: " + staffStatus;   
 	    }
 	public void calculateSalary(){
+		String Pay_ID;
+		int Staff_ID;
+		Date Start_Date;
+		Date End_Date;
+		double Salary;
+		String preparedBy; 
+
+		
+		
 		
 	}
 }
