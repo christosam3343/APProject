@@ -105,8 +105,7 @@ public class TripOrder
 	                "\ndestinationAddress: " + destinationAddress + 
 	                "\nrate: " + rate +
 	                "\ndriver: " + driver +
-	                "\nbilledBy: " + billedBy +
-	                "";
+	                "\nbilledBy: " + billedBy;
 	    }
 	    
 }
