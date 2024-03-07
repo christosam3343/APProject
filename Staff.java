@@ -4,180 +4,204 @@ import java.util.Date;
 
 public class Staff 
 {
-	 	private int staffID;
-	    private String firstName;
-	    private String lastName;
-	    private Date dob; 
-	    private Address address1;
-	    private Address address2;
-	    private String postOffice;
-	    private String parish;
-	    private String telephone;
-	    private String email;
-	    private String position;
-	    private boolean status;
+	 private int staffID;
+	 private String staffFirstName;
+	 private String staffLastName;
+	 private Date staffDob; 
+	 private Address staffAddress1;
+	 private Address staffAddress2;
+	 private String staffPostOffice;
+	 private String staffParish;
+	 private String staffTelephone;
+	 private String staffEmail;
+	 private String staffPosition;
+	 private boolean staffStatus;
 
-	    // Constructor
-	    public Staff(int staffID, String firstName, String lastName, Date dob, Address address1, Address address2, String postOffice, String parish, String telephone, String email, String position, boolean status) 
-	    {
-	        this.staffID = staffID;
-	        this.firstName = firstName;
-	        this.lastName = lastName;
-	        this.dob = dob;
-	        this.address1 = address1;
-	        this.address2 = address2;
-	        this.postOffice = postOffice;
-	        this.parish = parish;
-	        this.telephone = telephone;
-	        this.email = email;
-	        this.position = position;
-	        this.status = status;
-	    }
+
+	 public Staff(int staffID, String staffFirstName, String staffLastName, Date staffDob, Address staffAddress1, Address staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail, String staffPosition, boolean staffStatus) 
+	 {
+	   this.staffID = staffID;
+	   this.staffFirstName = staffFirstName;
+	   this.staffLastName = staffLastName;
+	   this.staffDob = staffDob;
+	   this.staffAddress1 = staffAddress1;
+	   this.staffAddress2 = staffAddress2;
+	   this.staffPostOffice = staffPostOffice;
+	   this.staffParish = staffParish;
+	   this.staffTelephone = staffTelephone;
+	   this.staffEmail = staffEmail;
+	   this.staffPosition = staffPosition;
+	   this.staffStatus = staffStatus;
+	  }
 	    
-	    public Staff() 
-	    {
-	        this.staffID = 0;
-	        this.firstName = "";
-	        this.lastName = "";
-	        this.dob = new Date();
-	        this.address1 = new Address();
-	        this.address2 = new Address();
-	        this.postOffice = "";
-	        this.parish = "";
-	        this.telephone = "000-000-0000";
-	        this.email = "";
-	        this.position = "";
-	        this.status = false;
+	  public Staff() 
+	  {
+	    this.staffID = 0;
+	    this.staffFirstName = "";
+	    this.staffLastName = "";
+	    this.staffDob = new Date();
+	    this.staffAddress1 = new Address();
+	    this.staffAddress2 = new Address();
+	    this.staffPostOffice = "";
+	    this.staffParish = "";
+	    this.staffTelephone = "000-000-0000";
+	    this.staffEmail = "";
+	    this.staffPosition = "";
+	    this.staffStatus = false;
 	    	
 	    }
 	    
-	    public Staff(Staff staff) {
+	    public Staff(Staff staff) 
+	    {
 	    	 this.staffID = staff.staffID;
-	         this.firstName = staff.firstName;
-	         this.lastName = staff.lastName;
-	         this.dob = staff.dob;
-	         this.address1 = staff.address1;
-	         this.address2 = staff.address2;
-	         this.postOffice = staff.postOffice;
-	         this.parish = staff.parish;
-	         this.telephone = staff.telephone;
-	         this.email = staff.email;
-	         this.position = staff.position;
-	         this.status = staff.status;
+	         this.staffFirstName = staff.staffFirstName;
+	         this.staffLastName = staff.staffLastName;
+	         this.staffDob = staff.staffDob;
+	         this.staffAddress1 = staff.staffAddress1;
+	         this.staffAddress2 = staff.staffAddress2;
+	         this.staffPostOffice = staff.staffPostOffice;
+	         this.staffParish = staff.staffParish;
+	         this.staffTelephone = staff.staffTelephone;
+	         this.staffEmail = staff.staffEmail;
+	         this.staffPosition = staff.staffPosition;
+	         this.staffStatus = staff.staffStatus;
 	    }
 	    
-	    // Getters and setters
-	    public int getStaffID() {
+	    public int getStaffID() 
+	    {
 	        return staffID;
 	    }
 
-	    public void setStaffID(int staffID) {
+	    public void setStaffID(int staffID) 
+	    {
 	        this.staffID = staffID;
 	    }
 
-	    public String getFirstName() {
-	        return firstName;
+	    public String getstaffFirstName() 
+	    {
+	        return staffFirstName;
 	    }
 
-	    public void setFirstName(String firstName) {
-	        this.firstName = firstName;
+	    public void setstaffFirstName(String staffFirstName) 
+	    {
+	        this.staffFirstName = staffFirstName;
 	    }
 
-	    public String getLastName() {
-	        return lastName;
+	    public String getstaffLastName() 
+	    {
+	        return staffLastName;
 	    }
 
-	    public void setLastName(String lastName) {
-	        this.lastName = lastName;
+	    public void setstaffLastName(String staffLastName) 
+	    {
+	        this.staffLastName = staffLastName;
 	    }
 
-	    public Date getDob() {
-	        return dob;
+	    public Date getstaffDob() 
+	    {
+	        return staffDob;
 	    }
 
-	    public void setDob(Date dob) {
-	        this.dob = dob;
+	    public void setstaffDob(Date staffDob) 
+	    {
+	        this.staffDob = staffDob;
 	    }
 
-	    public Address getAddress1() {
-	        return address1;
+	    public Address getstaffAddress1() 
+	    {
+	        return staffAddress1;
 	    }
 
-	    public void setAddress1(Address address1) {
-	        this.address1 = address1;
+	    public void setstaffAddress1(Address staffAddress1) 
+	    {
+	        this.staffAddress1 = staffAddress1;
 	    }
 
-	    public Address getAddress2() {
-	        return address2;
+	    public Address getstaffAddress2() 
+	    {
+	        return staffAddress2;
 	    }
 
-	    public void setAddress2(Address address2) {
-	        this.address2 = address2;
+	    public void setstaffAddress2(Address staffAddress2) 
+	    {
+	        this.staffAddress2 = staffAddress2;
 	    }
 
-	    public String getPostOffice() {
-	        return postOffice;
+	    public String getstaffPostOffice() {
+	        return staffPostOffice;
 	    }
 
-	    public void setPostOffice(String postOffice) {
-	        this.postOffice = postOffice;
+	    public void setstaffPostOffice(String staffPostOffice) 
+	    {
+	        this.staffPostOffice = staffPostOffice;
 	    }
 
-	    public String getParish() {
-	        return parish;
+	    public String getstaffParish() 
+	    {
+	        return staffParish;
 	    }
 
-	    public void setParish(String parish) {
-	        this.parish = parish;
+	    public void setstaffParish(String staffParish) 
+	    {
+	        this.staffParish = staffParish;
 	    }
 
-	    public String getTelephone() {
-	        return telephone;
+	    public String getstaffTelephone() 
+	    {
+	        return staffTelephone;
 	    }
 
-	    public void setTelephone(String telephone) {
-	        this.telephone = telephone;
+	    public void setstaffTelephone(String staffTelephone) 
+	    {
+	        this.staffTelephone = staffTelephone;
 	    }
 
-	    public String getEmail() {
-	        return email;
+	    public String getstaffEmail() 
+	    {
+	        return staffEmail;
 	    }
 
-	    public void setEmail(String email) {
-	        this.email = email;
+	    public void setstaffEmail(String staffEmail) 
+	    {
+	        this.staffEmail = staffEmail;
 	    }
 
-	    public String getPosition() {
-	        return position;
+	    public String getstaffPosition() 
+	    {
+	        return staffPosition;
 	    }
 
-	    public void setPosition(String position) {
-	        this.position = position;
+	    public void setstaffPosition(String staffPosition) 
+	    {
+	        this.staffPosition = staffPosition;
 	    }
 
-	    public boolean getStatus() {
-	        return status;
+	    public boolean getstaffStatus() 
+	    {
+	        return staffStatus;
 	    }
 
-	    public void setStatus(boolean status) {
-	        this.status = status;
+	    public void setstaffStatus(boolean staffStatus) 
+	    {
+	        this.staffStatus = staffStatus;
 	    }
 
 	    
 	    @Override
-	    public String toString() {
-	        return "Staff:" +
-	                "\nStaffID=" + staffID +
-	                "\nFirstName='" + firstName  +
-	                "\nLastName='" + lastName  +
-	                "\nDob=" + dob +
-	                "\nAddress1='" + address1  +
-	                "\nAddress2='" + address2  +
-	                "\nPostOffice='" + postOffice  +
-	                "\nParish='" + parish  +
-	                "\nTelephone='" + telephone  +
-	                "\nEmail='" + email  +
-	                "\nPosition='" + position  +
-	                "\nStatus='" + status;   
+	    public String toString() 
+	    {
+	        return "Staff: " +
+	                "\nStaffID: " + staffID +
+	                "\nstaffFirstName: " + staffFirstName  +
+	                "\nstaffLastName: " + staffLastName  +
+	                "\nstaffDob: " + staffDob +
+	                "\nstaffAddress1: " + staffAddress1  +
+	                "\nstaffAddress2: " + staffAddress2  +
+	                "\nstaffPostOffice: " + staffPostOffice  +
+	                "\nstaffParish: " + staffParish  +
+	                "\nstaffTelephone: " + staffTelephone  +
+	                "\nstaffEmail: " + staffEmail  +
+	                "\nstaffPosition: " + staffPosition  +
+	                "\nstaffStatus: " + staffStatus;   
 	    }
 }
