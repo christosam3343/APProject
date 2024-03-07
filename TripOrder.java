@@ -7,14 +7,14 @@ public class TripOrder
 	private String sourceAddress;
 	private String destinationAddress;
 	private double rate;
-    private Driver driver;
+    	private Driver driver;
 	private Admin billedBy;
 
 	    
 	public TripOrder(String invoiceNo, String company, String sourceAddress, String destinationAddress, double rate, Driver driver, Admin billedBy) 
 	{
-		this.invoiceNo = invoiceNo;
-		this.company = company;
+	    this.invoiceNo = invoiceNo;
+	    this.company = company;
 	    this.sourceAddress = sourceAddress;
 	    this.destinationAddress = destinationAddress;
 	    this.rate = rate;
@@ -22,7 +22,7 @@ public class TripOrder
 	    this.billedBy = billedBy;
 	 }
 
-		//Getters
+	    //Getters
 	    public String getInvoiceNo() 
 	    {
 	        return invoiceNo;
@@ -93,6 +93,7 @@ public class TripOrder
 	    {
 	        this.billedBy = billedBy;
 	    }
+	
 
 	    @Override
 	    public String toString() 
