@@ -204,4 +204,7 @@ public class Staff
 	                "\nstaffPosition: " + staffPosition  +
 	                "\nstaffStatus: " + staffStatus;   
 	    }
+	public void calculateSalary(){
+		
+	}
 }
