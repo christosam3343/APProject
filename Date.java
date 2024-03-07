@@ -2,74 +2,74 @@ package generalinfo;
 
 public class Date 
 {
-	private int dobDay;
-	private int dobMonth;
-	private int dobYear;
+	private int staffDobDay;
+	private int staffDobMonth;
+	private int staffDobYear;
 		
 		
 	public Date() 
 	{	
-		dobDay=0;
-		dobMonth = 0;
-		dobYear = 0;
+		staffDobDay=0;
+		staffDobMonth = 0;
+		staffDobYear = 0;
 	}
 
 
-	public Date(int dobDay, int dobMonth, int dobYear) 
+	public Date(int staffDobDay, int staffDobMonth, int staffDobYear) 
 	{
-		this.dobDay = dobDay;
-		this.dobMonth = dobMonth;
-		this.dobYear = dobYear;
+		this.staffDobDay = staffDobDay;
+		this.staffDobMonth = staffDobMonth;
+		this.staffDobYear = staffDobYear;
 	}
 		
 	public Date(Date date) 
 	{
-		dobDay= date.dobDay;
-		dobMonth = date.dobMonth;
-		dobYear = date.dobYear;
+		staffDobDay= date.staffDobDay;
+		staffDobMonth = date.staffDobMonth;
+		staffDobYear = date.staffDobYear;
 	}
 
 
-	public int getDobDay() 
+	public int getstaffDobDay() 
 	{
-		return dobDay;
+		return staffDobDay;
 	}
 
 
-	public void setDobDay(int dobDay) 
+	public void setstaffDobDay(int staffDobDay) 
 	{
-		this.dobDay = dobDay;
+		this.staffDobDay = staffDobDay;
 	}
 
 
-	public int getDobMonth() 
+	public int getstaffDobMonth() 
 	{
-		return dobMonth;
+		return staffDobMonth;
 	}
 
 
-	public void setDobMonth(int dobMonth) 
+	public void setstaffDobMonth(int staffDobMonth) 
 	{
-		this.dobMonth = dobMonth;
+		this.staffDobMonth = staffDobMonth;
 	}
 
 
-	public int getDobYear() 
+	public int getstaffDobYear() 
 	{
-		return dobYear;
+		return staffDobYear;
 	}
 
 
-	public void setDobYear(int dobYear) 
+	public void setstaffDobYear(int staffDobYear) 
 	{
-		this.dobYear = dobYear;
+		this.staffDobYear = staffDobYear;
 	}
 
 
 	@Override
 	public String toString() 
 	{
-		return  dobDay + "/" + dobMonth + "/" + dobYear;
+		return  staffDobDay + "/" + staffDobMonth + "/" + staffDobYear;
 	}
 		
 }
