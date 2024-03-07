@@ -204,16 +204,14 @@ public class Staff
 	                "\nstaffPosition: " + staffPosition  +
 	                "\nstaffStatus: " + staffStatus;   
 	    }
-	public void calculateSalary(){
+	
+	    public void calculateSalary()
+	    {
 		String Pay_ID;
 		int Staff_ID;
 		Date Start_Date;
 		Date End_Date;
 		double Salary;
-		String preparedBy; 
-
-		
-		
-		
-	}
+		String preparedBy; 	
+	   }
 }
