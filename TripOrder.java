@@ -7,7 +7,7 @@ public class TripOrder
 	private String sourceAddress;
 	private String destinationAddress;
 	private double rate;
-    	private Driver driver;
+    	private Contractor driver;
 	private Admin billedBy;
 
 	    
