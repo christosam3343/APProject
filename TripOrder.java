@@ -1,4 +1,4 @@
-package generalinfo;
+package domain;
 
 public class TripOrder 
 {
@@ -7,11 +7,15 @@ public class TripOrder
 	private String sourceAddress;
 	private String destinationAddress;
 	private double rate;
-    	private Contractor driver;
-	private Admin billedBy;
+    private String driver;
+	private String billedBy;
+	
+	public TripOrder() {
+		
+	}
 
 	    
-	public TripOrder(String invoiceNo, String company, String sourceAddress, String destinationAddress, double rate, Driver driver, Admin billedBy) 
+	public TripOrder(String invoiceNo, String company, String sourceAddress, String destinationAddress, double rate, String driver, String billedBy) 
 	{
 	    this.invoiceNo = invoiceNo;
 	    this.company = company;
@@ -48,12 +52,12 @@ public class TripOrder
 	        return rate;
 	    }
 
-	    public Driver getDriver() 
+	    public String getDriver() 
 	    {
 	        return driver;
 	    }
 
-	    public Admin getBilledBy() 
+	    public String getBilledBy() 
 	    {
 	        return billedBy;
 	    }
@@ -84,28 +88,24 @@ public class TripOrder
 	        this.rate = rate;
 	    }
 
-	    public void setDriver(Driver driver) 
+	    public void setDriver(String driver) 
 	    {
 	        this.driver = driver;
 	    }
 
-	    public void setBilledBy(Admin billedBy) 
+	    public void setBilledBy(String billedBy) 
 	    {
 	        this.billedBy = billedBy;
 	    }
 	
 
-	    @Override
-	    public String toString() 
+	    
+	    public void Display() 
 	    {
-	        return "TripOrder: " +
-	                "\ninvoiceNo: " + invoiceNo +
-	                "\ncompany: " + company +
-	                "\n sourceAddress: " + sourceAddress +
-	                "\ndestinationAddress: " + destinationAddress + 
-	                "\nrate: " + rate +
-	                "\ndriver: " + driver +
-	                "\nbilledBy: " + billedBy;
+	    	System.out.print("TripOrder: InvoiceNo: " + getInvoiceNo()+"\nCompany: " +
+	    					getCompany()+"\nSource Address: "+ getSourceAddress()+""
+	    					+ "\nDestination Address: "+ getDestinationAddress()+ 
+	    					"\nRate: "+ getRate()+"\nDriver: " + getDriver() +"\nBilled By: " + getBilledBy());
 	    }
 	    
 }
