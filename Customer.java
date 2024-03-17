@@ -1,4 +1,4 @@
-package generalinfo;
+package domain;
 
 public class Customer 
 {
@@ -11,6 +11,7 @@ public class Customer
 	private String custParish;
 	private String custTelephone;
 	private String custEmail;
+	private float custBalance;
 	private boolean custStatus;
 		
 		public Customer() 
@@ -25,10 +26,11 @@ public class Customer
 			this.custParish = "";
 			this.custTelephone = "";
 			this.custEmail = "";
+			this.custBalance = 0.00f;
 			this.custStatus = false;
 		}
 		
-		public Customer(int custId, String company, String contactPerson, String custAddress1, String custAddress2, String custPostOffice, String custParish, String custTelephone, String custEmail, boolean custStatus) 
+		public Customer(int custId, String company, String contactPerson, String custAddress1, String custAddress2, String custPostOffice, String custParish, String custTelephone, String custEmail,float custBalance, boolean custStatus) 
 		{
 			super();
 			CustId = custId;
@@ -40,10 +42,19 @@ public class Customer
 			this.custParish = custParish;
 			this.custTelephone = custTelephone;
 			this.custEmail = custEmail;
+			this.custBalance = custBalance;
 			this.custStatus = custStatus;
 		}
 		
 		
+		public float getCustBalance() {
+			return custBalance;
+		}
+
+		public void setCustBalance(float custBalance) {
+			this.custBalance = custBalance;
+		}
+
 		public int getCustId() 
 		{
 			return CustId;
@@ -154,7 +165,8 @@ public class Customer
 					", Customer Parish: " + custParish + 
 					", Customer Telephone: " + custTelephone + 
 					", Customer Email: " + custEmail + 
-					", Customer Status: " + custStatus;
+					", Customer Status: " + custStatus +
+					", Customer Balnce: " + custBalance;
 		}
 		
 }
