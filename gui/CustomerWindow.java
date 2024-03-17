@@ -1,5 +1,6 @@
 package gui;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,17 @@ public class CustomerWindow extends JFrame {
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
         setLayout(new GridLayout(11, 2)); // Adjust grid layout for buttons
+        
+        // Define custom colors
+        Color skyBlue = new Color(135, 206, 235);
+        Color steelBlue = new Color(70, 130, 180);
+        Color inputFieldBorderColor = new Color(0, 0, 128); // A contrasting border color
+        Color royalBlue = new Color(65, 105, 225);
+        Color navyBlue = new Color(0, 0, 128);
+        
+
+        // Set background color to a light blue - skyBlue
+        getContentPane().setBackground(skyBlue);
 
         // Initialize text fields
         custIdField = new JTextField(10);
@@ -59,6 +71,9 @@ public class CustomerWindow extends JFrame {
 
         // Create submit button
         JButton submitButton = new JButton("Submit");
+        submitButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+        submitButton.setForeground(Color.WHITE); // Set text color to white
+        submitButton.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,6 +84,9 @@ public class CustomerWindow extends JFrame {
 
         // Create clear button
         JButton clearButton = new JButton("Clear");
+        clearButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+        clearButton.setForeground(Color.WHITE); // Set text color to white
+        clearButton.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

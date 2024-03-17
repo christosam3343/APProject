@@ -12,6 +12,18 @@ public class MainAppFrame extends JFrame {
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+     // Define custom colors
+        Color skyBlue = new Color(135, 206, 235);
+        Color steelBlue = new Color(70, 130, 180);
+        Color inputFieldBorderColor = new Color(30, 144, 255); // A contrasting border color
+        Color royalBlue = new Color(65, 105, 225);
+        Color navyBlue = new Color(0, 0, 128);
+        
+     // Set background color to a light blue - skyBlue
+        getContentPane().setBackground(skyBlue);
+        JPanel panel = new JPanel();
+        panel.setOpaque(false); // Make panel transparent
+        
         JLabel titleLabel = new JLabel("Welcome to JAVA Haulage and Trucking!!");
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(new Font("Sans Serif", Font.BOLD, 16));
@@ -23,6 +35,10 @@ public class MainAppFrame extends JFrame {
         buttonPanel.setLayout(new FlowLayout());
         // Create the "Staff" button
         JButton staffButton = new JButton("Staff");
+        staffButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+        staffButton.setForeground(Color.WHITE); // Set text color to white
+        
+        
         staffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -32,6 +48,8 @@ public class MainAppFrame extends JFrame {
         buttonPanel.add(staffButton);
         // Create the "Customer" button
         JButton customerButton = new JButton("Customer");
+        customerButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+        customerButton.setForeground(Color.WHITE); // Set text color to white
         customerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,6 +58,8 @@ public class MainAppFrame extends JFrame {
         });
         buttonPanel.add(customerButton);
         JButton tripOrderButton = new JButton("Trip/Order");
+        tripOrderButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+        tripOrderButton.setForeground(Color.WHITE); // Set text color to white
         tripOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -13,6 +13,17 @@ public class TripOrderWindow extends JFrame {
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
         setLayout(new GridLayout(7, 2)); // Adjust grid layout for buttons
+        
+        // Define custom colors
+        Color skyBlue = new Color(135, 206, 235);
+        Color steelBlue = new Color(70, 130, 180);
+        Color inputFieldBorderColor = new Color(0, 0, 128); // A contrasting border color
+        Color royalBlue = new Color(65, 105, 225);
+        Color navyBlue = new Color(0, 0, 128);
+        
+
+        // Set background color to a light blue - skyBlue
+        getContentPane().setBackground(skyBlue);
 
         // Initialize text fields
         invoiceNoField = new JTextField(10);

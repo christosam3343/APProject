@@ -5,15 +5,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.LineBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LoginFrame extends JFrame implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
+    private JButton loginButton;
 
     public LoginFrame() {
         setTitle("Login Form");
-        setSize(300, 150);
+        setSize(320, 180);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridBagLayout());
+        
+        
+        
         // Define custom colors
         Color skyBlue = new Color(135, 206, 235);
         Color steelBlue = new Color(70, 130, 180);
@@ -51,6 +58,19 @@ public class LoginFrame extends JFrame implements ActionListener {
         loginButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         loginButton.setForeground(Color.WHITE); // Set text color to white
         loginButton.addActionListener(this);
+        
+     // Add a hover effect to change the button's color when the mouse is over it
+        loginButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                loginButton.setBackground(new Color(0, 0, 128)); // Darker shade when hovered
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                loginButton.setBackground(steelBlue); // Original color
+            }
+        });
 
      // Add components to the panel with GridBagConstraints
         gbc.gridx = 0;
