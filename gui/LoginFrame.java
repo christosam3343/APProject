@@ -105,17 +105,36 @@ public class LoginFrame extends JFrame implements ActionListener {
         char[] enteredPassword = passwordField.getPassword();
 
         // Hardcoded valid credentials
-        String validUsername = "1234";
-        String validPassword = "abcd";
-
-        if (enteredUsername.equals(validUsername) && new String(enteredPassword).equals(validPassword)) {
-            JOptionPane.showMessageDialog(this, "Login successful!");
+        String validAdminUsername = "1234";
+        String validAdminPassword = "abcd";
+        
+        String validContractorUsername = "4321";
+        String validContractorPassword = "dcba";
+        
+        String validSuperAdminUsername = "super";
+        String validSuperAdminPassword = "0000";
+        
+        if (enteredUsername.equals(validAdminUsername) && new String(enteredPassword).equals(validAdminPassword)) {
+            JOptionPane.showMessageDialog(this, "Admin Login successful!");
          // Open the new window (MainAppFrame) on successful login
-            MainAppFrame mainAppFrame = new MainAppFrame();
+            MainAppFrame mainAppFrame = new MainAppFrame(1);
             mainAppFrame.setVisible(true);
             dispose(); // Close the login window
-        } else {
-            JOptionPane.showMessageDialog(this, "Incorrect username or password");
+        } else if (enteredUsername.equals(validContractorUsername) && new String(enteredPassword).equals(validContractorPassword)){
+        	JOptionPane.showMessageDialog(this, "Contractor Login successful!");
+            // Open the new window (MainAppFrame) on successful login
+               MainAppFrame mainAppFrame = new MainAppFrame(2);
+               mainAppFrame.setVisible(true);
+               dispose(); // Close the login window
+        } else if (enteredUsername.equals(validSuperAdminUsername) && new String(enteredPassword).equals(validSuperAdminPassword)){
+        	JOptionPane.showMessageDialog(this, "SuperAdmin Login successful!");
+            // Open the new window (MainAppFrame) on successful login
+               MainAppFrame mainAppFrame = new MainAppFrame(3);
+               mainAppFrame.setVisible(true);
+               dispose(); // Close the login window
+        } 
+        else {
+            
         }
     }
 

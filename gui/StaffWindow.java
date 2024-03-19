@@ -1,7 +1,6 @@
 package gui;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,11 +13,12 @@ public class StaffWindow extends JFrame {
         super("Staff Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
-        setLayout(new GridLayout(13, 2)); // Adjust grid layout for buttons
+        setLayout(new GridLayout(15, 2)); // Adjust grid layout for buttons
         
      // Define custom colors
         Color skyBlue = new Color(135, 206, 235);
         Color steelBlue = new Color(70, 130, 180);
+        Color Red = new Color(255, 0, 0);
         Color inputFieldBorderColor = new Color(0, 0, 128); // A contrasting border color
         Color royalBlue = new Color(65, 105, 225);
         Color navyBlue = new Color(0, 0, 128);
@@ -28,7 +28,7 @@ public class StaffWindow extends JFrame {
         getContentPane().setBackground(skyBlue);
 
         // Initialize text fields
-        staffIdField = new JTextField(10);
+        staffIdField = new JTextField(10);       
         firstNameField = new JTextField(10);
         lastNameField = new JTextField(10);
         dobField = new JTextField(10);
@@ -78,15 +78,35 @@ public class StaffWindow extends JFrame {
         add(new JLabel("Status"));
         add(statusField);
 
+        //Create
         // Create submit button
-        JButton submitButton = new JButton("Submit");
-        submitButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
-        submitButton.setForeground(Color.WHITE); // Set text color to white
-        submitButton.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
-        submitButton.addActionListener(new ActionListener() {
+        JButton addButton = new JButton("Add");
+        addButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+        addButton.setForeground(Color.WHITE); // Set text color to white
+        addButton.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
+        addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Handle submission logic here
+            	
+            	//Send to server
+            	// Added
+            	
+            	// Fields:
+            	
+            	// staffIdField.setText("");
+            	// firstNameField.setText("");
+            	// lastNameField.setText("");
+            	// dobField.setText("");
+				// address1Field.setText("");
+				// address2Field.setText("");
+				// postOfficeField.setText("");
+				// parishField.setText("");
+				// telephoneField.setText("");
+				// emailField.setText("");
+				// positionField.setText("");
+				// statusField.setText("");
+
                 JOptionPane.showMessageDialog(null, "Submission Successful!");
             }
         });
@@ -114,9 +134,91 @@ public class StaffWindow extends JFrame {
                 statusField.setText("");
             }
         });
+        //Update
+        //Retrieve 1
+        JButton getByID = new JButton("Retrieve");
+        getByID.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+        getByID.setForeground(Color.WHITE); // Set text color to white
+        getByID.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
+        getByID.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear all text fields
+               
+            	String[] person = {"7777", "JOhn", "Wick", "12/25/0000", "Pound Town","USA", "USA223", "Florida", "18007774463", "email.com", "Admin","active" };
+                String id  =  staffIdField.getText() ;
+              
+                try {
+                	int num_id= Integer.parseInt(id);
+                	int check_id = Integer.parseInt(person[0]);
+                	if(num_id == check_id ) {
+                		staffIdField.setText(person[0]);
+                        firstNameField.setText(person[1]);
+                        lastNameField.setText(person[2]);
+                        dobField.setText(person[3]);
+                        address1Field.setText(person[4]);
+                        address2Field.setText(person[5]);
+                        postOfficeField.setText(person[6]);
+                        parishField.setText(person[7]);
+                        telephoneField.setText(person[8]);
+                        emailField.setText(person[9]);
+                        positionField.setText(person[10]);
+                        statusField.setText(person[11]);
+                	}
+                	System.out.println("Get user #"+num_id);
+                }catch (NumberFormatException err) {
+                	JOptionPane.showMessageDialog(staffIdField, "Please Enter a vaild Id", "Number Format Error", getDefaultCloseOperation());
+                	System.out.println("Number Format ERROR");
+                	staffIdField.setText("");
+                }catch(Exception err) {
+            		err.getMessage();
+            	}
+            	
+            	//Send to server
+            	// ID
+            	// Deleted
+            	
+            	// clearButton.action(null, deleteButton)
+            }
+        });
+
+        //Retrieve all
+        //Delete
+        JButton deleteButton = new JButton("Delete");
+        deleteButton.setBackground(Red); // Set button color to a darker blue - steelBlue
+        deleteButton.setForeground(Color.WHITE); // Set text color to white
+        deleteButton.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear all text fields
+               
+                String id  =  staffIdField.getText() ;
+              
+                try {
+                	int num_id= Integer.parseInt(id);
+                	System.out.println("Deleted user #"+num_id);
+                	staffIdField.setText("");
+                }catch (NumberFormatException err) {
+                	JOptionPane.showMessageDialog(staffIdField, this, "Please Enter a vaild Id", getDefaultCloseOperation());
+                	System.out.println("Number Format ERROR");
+                	staffIdField.setText("");
+                }catch(Exception err) {
+            		err.getMessage();
+            	}
+            	
+            	//Send to server
+            	// ID
+            	// Deleted
+            	
+            	// clearButton.action(null, deleteButton)
+            }
+        });
 
         // Add buttons to the form
-        add(submitButton);
+        add(addButton);
+        add(getByID);
+        add(deleteButton);
         add(clearButton);
 
         pack(); // Adjusts window size to fit all components

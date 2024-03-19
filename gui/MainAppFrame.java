@@ -11,7 +11,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainAppFrame extends JFrame {
-    public MainAppFrame() {
+    public MainAppFrame(int admin_check) {
+    	
+    	if (admin_check==1) {
+    		System.out.println("Admin");   	
+		}else if (admin_check==2) {
+			System.out.println("Contractor");   	
+		}else if (admin_check==3) {
+			System.out.println("SuperAdmin");   
+		}	
+		else {
+			JOptionPane.showMessageDialog(this, "No Vaild User ROLE WAS FOUND");
+			return;
+		}
+    	
+    	
         setTitle("Main Application");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,19 +51,22 @@ public class MainAppFrame extends JFrame {
         // Create a panel to hold the buttons
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
         buttonPanel.setLayout(new FlowLayout());
-        // Create the "Staff" button
-        JButton staffButton = new JButton("Add Staff");
-        staffButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
-        staffButton.setForeground(Color.WHITE); // Set text color to white
+        if(admin_check ==3) {
+	        // Create the "Staff" button
+	        JButton staffButton = new JButton("Staff Panel");
+	        staffButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+	        staffButton.setForeground(Color.WHITE); // Set text color to white
+	        
+	        
+	        staffButton.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                openStaffWindow(); // Open the staff window
+	            }
+	        });
         
-        
-        staffButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                openStaffWindow(); // Open the staff window
-            }
-        });
-        buttonPanel.add(staffButton);
+        	buttonPanel.add(staffButton);
+        }
         
      // Create the "Customer" button
         JButton calculatePayroll = new JButton("Calculate Payroll");
@@ -63,8 +80,9 @@ public class MainAppFrame extends JFrame {
         });
         buttonPanel.add(calculatePayroll);
         
+        if(admin_check == 3) {
         // Create the "Customer" button
-        JButton customerButton = new JButton("Add Customer");
+        JButton customerButton = new JButton("Customer Panel");
         customerButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         customerButton.setForeground(Color.WHITE); // Set text color to white
         customerButton.addActionListener(new ActionListener() {
@@ -74,30 +92,30 @@ public class MainAppFrame extends JFrame {
             }
         });
         buttonPanel.add(customerButton);
-        
-        // Create the "Customer" button
-        JButton editCustomerButton = new JButton("Edit Customer");
-        editCustomerButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
-        editCustomerButton.setForeground(Color.WHITE); // Set text color to white
-        editCustomerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                editCustomerWindow(); // Open the customer window
-            }
-        });
-        buttonPanel.add(editCustomerButton);
-        
-        // Create the "Customer" button
-        JButton deleteCustomerButton = new JButton("Delete Customer");
-        deleteCustomerButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
-        deleteCustomerButton.setForeground(Color.WHITE); // Set text color to white
-        deleteCustomerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                deleteCustomerWindow(); // Open the customer window
-            }
-        });
-        buttonPanel.add(deleteCustomerButton);
+        }
+//        // Create the "Customer" button
+//        JButton editCustomerButton = new JButton("Edit Customer");
+//        editCustomerButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+//        editCustomerButton.setForeground(Color.WHITE); // Set text color to white
+//        editCustomerButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                editCustomerWindow(); // Open the customer window
+//            }
+//        });
+//        buttonPanel.add(editCustomerButton);
+//        
+//        // Create the "Customer" button
+//        JButton deleteCustomerButton = new JButton("Delete Customer");
+//        deleteCustomerButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+//        deleteCustomerButton.setForeground(Color.WHITE); // Set text color to white
+//        deleteCustomerButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                deleteCustomerWindow(); // Open the customer window
+//            }
+//        });
+//        buttonPanel.add(deleteCustomerButton);
         
      
         
@@ -196,7 +214,7 @@ public class MainAppFrame extends JFrame {
     
     
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new MainAppFrame().setVisible(true));
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> new MainAppFrame().setVisible(true));
+//    }
 }
