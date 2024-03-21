@@ -134,7 +134,7 @@ public class LoginFrame extends JFrame implements ActionListener {
                dispose(); // Close the login window
         } 
         else {
-            
+        	JOptionPane.showMessageDialog(this, "Incorrect username or password");
         }
     }
 

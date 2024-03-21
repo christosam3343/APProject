@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GenerateReportWindow extends JFrame {
-    // Declare text fields for access by the clear button action
+    // Declare text Fields for access by the clear button action
     private JTextField invoiceNoField, companyField, sourceAddressField, destinationAddressField, rateField, driverField, billedByField;
 
     public GenerateReportWindow() {
@@ -25,16 +25,16 @@ public class GenerateReportWindow extends JFrame {
         // Set background color to a light blue - skyBlue
         getContentPane().setBackground(skyBlue);
 
-        // Initialize text fields
-        invoiceNoField = new JTextField(10);
-        companyField = new JTextField(10);
-        sourceAddressField = new JTextField(10);
-        destinationAddressField = new JTextField(10);
-        rateField = new JTextField(10);
-        driverField = new JTextField(10);
-        billedByField = new JTextField(10);
+        // Initialize text Fields
+        invoiceNoField = new JTextField();
+        companyField = new JTextField();
+        sourceAddressField = new JTextField();
+        destinationAddressField = new JTextField();
+        rateField = new JTextField();
+        driverField = new JTextField();
+        billedByField = new JTextField();
 
-        // Add labels and text fields to the form
+        // Add labels and text Fields to the form
         add(new JLabel("Invoice No"));
         add(invoiceNoField);
 

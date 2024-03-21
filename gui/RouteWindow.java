@@ -124,6 +124,6 @@ public class RouteWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        new StaffWindow();
+        new RouteWindow();
     }
 }

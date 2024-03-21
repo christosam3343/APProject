@@ -46,10 +46,11 @@ public class MainAppFrame extends JFrame {
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(new Font("Sans Serif", Font.BOLD, 16));
         titleLabel.setPreferredSize(new Dimension(400, 30));
-        add(titleLabel, BorderLayout.NORTH);
+        getContentPane().add(titleLabel, BorderLayout.NORTH);
         
         // Create a panel to hold the buttons
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
+        JPanel buttonPanel = new JPanel(); 
+        buttonPanel.setLayout(null);
         buttonPanel.setLayout(new FlowLayout());
         if(admin_check ==3) {
 	        // Create the "Staff" button
@@ -70,6 +71,7 @@ public class MainAppFrame extends JFrame {
         
      // Create the "Customer" button
         JButton calculatePayroll = new JButton("Calculate Payroll");
+        calculatePayroll.setBounds(41, 115, 107, 21);
         calculatePayroll.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         calculatePayroll.setForeground(Color.WHITE); // Set text color to white
         calculatePayroll.addActionListener(new ActionListener() {
@@ -80,7 +82,7 @@ public class MainAppFrame extends JFrame {
         });
         buttonPanel.add(calculatePayroll);
         
-        if(admin_check == 3) {
+        if(admin_check == 3 || admin_check == 1) {
         // Create the "Customer" button
         JButton customerButton = new JButton("Customer Panel");
         customerButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
@@ -134,6 +136,7 @@ public class MainAppFrame extends JFrame {
         
         // Create the "Route" button
         JButton routeButton = new JButton("Add Route");
+        routeButton.setBounds(153, 115, 79, 21);
         routeButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         routeButton.setForeground(Color.WHITE); // Set text color to white
         routeButton.addActionListener(new ActionListener() {
@@ -146,6 +149,7 @@ public class MainAppFrame extends JFrame {
         
         // Create the "Customer" button
         JButton generateReportButton = new JButton("Generate Report");
+        generateReportButton.setBounds(233, 116, 107, 21);
         generateReportButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         generateReportButton.setForeground(Color.WHITE); // Set text color to white
         generateReportButton.addActionListener(new ActionListener() {
@@ -160,7 +164,7 @@ public class MainAppFrame extends JFrame {
         
         
         // Add the button panel to the main frame
-        add(buttonPanel, BorderLayout.CENTER);
+        getContentPane().add(buttonPanel, BorderLayout.CENTER);
 
         setLocationRelativeTo(null); // Center the frame
     }
