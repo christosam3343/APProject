@@ -1,14 +1,13 @@
-package generalinfo;
-import java.util.Date;
-
+package domain;
+import java.util.*;
 public class Staff 
 {
 	 private int staffID;
 	 private String staffFirstName;
 	 private String staffLastName;
 	 private Date staffDob; 
-	 private Address staffAddress1;
-	 private Address staffAddress2;
+	 private String staffAddress1;
+	 private String staffAddress2;
 	 private String staffPostOffice;
 	 private String staffParish;
 	 private String staffTelephone;
@@ -17,7 +16,7 @@ public class Staff
 	 private boolean staffStatus;
 
 
-	 public Staff(int staffID, String staffFirstName, String staffLastName, Date staffDob, Address staffAddress1, Address staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail, String staffPosition, boolean staffStatus) 
+	 public Staff(int staffID, String staffFirstName, String staffLastName, Date staffDob, String staffAddress1, String staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail, String staffPosition, boolean staffStatus) 
 	 {
 	   this.staffID = staffID;
 	   this.staffFirstName = staffFirstName;
@@ -39,8 +38,8 @@ public class Staff
 	    this.staffFirstName = "";
 	    this.staffLastName = "";
 	    this.staffDob = new Date();
-	    this.staffAddress1 = new Address();
-	    this.staffAddress2 = new Address();
+	    this.staffAddress1 = "";
+	    this.staffAddress2 = "";
 	    this.staffPostOffice = "";
 	    this.staffParish = "";
 	    this.staffTelephone = "000-000-0000";
@@ -106,22 +105,22 @@ public class Staff
 	        this.staffDob = staffDob;
 	    }
 
-	    public Address getstaffAddress1() 
+	    public String getstaffAddress1() 
 	    {
 	        return staffAddress1;
 	    }
 
-	    public void setstaffAddress1(Address staffAddress1) 
+	    public void setstaffAddress1(String staffAddress1) 
 	    {
 	        this.staffAddress1 = staffAddress1;
 	    }
 
-	    public Address getstaffAddress2() 
+	    public String getstaffAddress2() 
 	    {
 	        return staffAddress2;
 	    }
 
-	    public void setstaffAddress2(Address staffAddress2) 
+	    public void setstaffAddress2(String staffAddress2) 
 	    {
 	        this.staffAddress2 = staffAddress2;
 	    }
