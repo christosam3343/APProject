@@ -1,4 +1,4 @@
-package generalinfo;
+package domain;
 
 public class Customer 
 {
@@ -153,20 +153,19 @@ public class Customer
 		}
 		
 		
-		@Override
-		public String toString() 
+		public void Display() 
 		{
-			return "Customer ID: " + CustId + 
-					", Company Name: " + company + 
-					", Contact Person: " + contactPerson + 
-					", Customer Address 1: " + custAddress1 + 
-					", Customer Address 2: " + custAddress2 + 
-					", Customer Post Office: " + custPostOffice + 
-					", Customer Parish: " + custParish + 
-					", Customer Telephone: " + custTelephone + 
-					", Customer Email: " + custEmail + 
-					", Customer Status: " + custStatus +
-					", Customer Balnce: " + custBalance;
+			System.out.println("Customer ID: " + CustId + 
+					" \nCompany Name: " + company + 
+					" \nContact Person: " + contactPerson + 
+					" \nCustomer Address 1: " + custAddress1 + 
+					" \nCustomer Address 2: " + custAddress2 + 
+					" \nCustomer Post Office: " + custPostOffice + 
+					" \nCustomer Parish: " + custParish + 
+					" \nCustomer Telephone: " + custTelephone + 
+					" \nCustomer Email: " + custEmail + 
+					" \nCustomer Status: " + custStatus +
+					" \nCustomer Balnce: " + custBalance);
 		}
 		
 }
