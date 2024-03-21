@@ -1,32 +1,32 @@
-package generalinfo;
+package domain;
 
 public class routeRates {
-	private int routeNumber;
+	private String routeName;
 	private String source;
 	private String destination;
 	private double rate;
 	
 	public routeRates() {
-		routeNumber = 343;
+		routeName = "";
 		source = "";
 		destination = "";
 		rate = 465.00;
 	}
 	
-	public routeRates(int routeNumber, String source, String destination, double rate) {
+	public routeRates(String routeName, String source, String destination, double rate) {
 		super();
-		this.routeNumber = routeNumber;
+		this.routeName = routeName;
 		this.source = source;
 		this.destination = destination;
 		this.rate = rate;
 	}
 
-	public int getRouteNumber() {
-		return routeNumber;
+	public String getRouteName() {
+		return routeName;
 	}
 
-	public void setRouteNumber(int routeNumber) {
-		this.routeNumber = routeNumber;
+	public void setRouteName(String routeName) {
+		this.routeName = routeName;
 	}
 
 	public String getSource() {
@@ -55,7 +55,7 @@ public class routeRates {
 
 	@Override
 	public String toString() {
-		return "routeRates [routeNumber=" + routeNumber + ", source=" + source + ", destination=" + destination
+		return "routeRates [routeName=" + routeName + ", source=" + source + ", destination=" + destination
 				+ ", rate=" + rate + "]";
 	}
 	
