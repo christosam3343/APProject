@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import generalinfo.Staff;
 
 
-public class StaffCrud extends Server implements Serializable{
+public class StaffCrud extends Server {
 	
 	
 //	public static Connection getDatabaseConnection() {
@@ -138,18 +138,19 @@ public class StaffCrud extends Server implements Serializable{
 	
 	
 	
-	public void deleteStaff(int StaffID)  {
-		String sql = "DELETE from staff"+" WHERE StaffID="+"'"+StaffID+"'";
-		Statement ex = null;
-		try {
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase");
-			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.executeUpdate(sql);
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
+	 public void deleteStaff(int StaffID)  {
+			String sql = "DELETE from staff"+" WHERE StaffID="+"'"+StaffID+"'";
+			Statement ex = null;
+			try {
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+				PreparedStatement statement = connection.prepareStatement(sql);
+				statement.executeUpdate(sql);
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
 		}
-	}
+
 	
 
 }

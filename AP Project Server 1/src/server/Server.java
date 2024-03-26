@@ -182,7 +182,40 @@ public class Server {
 		
 		return staffObj;	
 	}
-
+    
+    public void deleteStaff(int StaffID)  {
+		String sql = "DELETE from staff"+" WHERE StaffID="+"'"+StaffID+"'";
+		Statement ex = null;
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+    
+    public void updateStaff(Staff staff) {
+		
+		String sql = "UPDATE staff SET staffFirstName = '"+ staff.getstaffFirstName()+"',staffLastName = '"+staff.getstaffLastName()+"',"
+					+ "staffDob ='"+staff.getstaffDob()+"', staffAddress1 = '"+staff.getstaffAddress1()+"', staffAddress2 = '"
+					+ staff.getstaffAddress2()+"',staffPostOffice = '"+ staff.getstaffPostOffice()+"', staffParish = '"+staff.getstaffParish()
+					+"',staffTelephone = '"+ staff.getstaffTelephone()+"', staffEmail = '"+staff.getstaffEmail()+"', staffPosition = '"
+					+staff.getstaffPosition()+"' ,staffStatus = "+staff.getstaffStatus()+" WHERE staffID = '"+ staff.getStaffID()+"'";
+		
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+			PreparedStatement statement = connection.prepareStatement(sql);
+		
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+    
+   
   //Class for handling client requests
   class ClientHandler implements Runnable {
 
@@ -206,6 +239,15 @@ public class Server {
                   int id = (int) objIs.readObject();
                   staff = findStaffById(id);
                   objOs.writeObject(staff);
+              }
+              if (action.equals("Delete Staff")) {
+                  int id = (int) objIs.readObject();
+                   deleteStaff(id);
+                 // objOs.writeObject(staff);
+              }
+              if (action.equals("Update Staff")) {
+                  staff = (Staff) objIs.readObject();
+                  updateStaff(staff);
               }
           } catch (EOFException e) {
 //              logger.error("EOFException: " + e.getMessage());
