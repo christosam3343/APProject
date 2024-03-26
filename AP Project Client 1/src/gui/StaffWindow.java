@@ -272,48 +272,64 @@ public class StaffWindow extends JFrame {
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Clear all text fields
+            	Staff obj1 = new Staff();//Imported from generalinfo
+           	 	Client client = new Client();
+           	 
+           	int staffID = Integer.parseInt(staffIdField.getText());//convert string to an integer
+           	obj1.setStaffID(staffID);
+           	
+           	obj1.setstaffFirstName(firstNameField.getText());
+           	obj1.setstaffLastName(lastNameField.getText());
+               SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+      
+           	
+           	String dateOfBirth = dobField.getText();
+           	try{
+
+           		obj1.setstaffDob(inputFormat.parse(dateOfBirth));
+           		
+           	}
+           	catch(Exception e1 ) {
+           		e1.printStackTrace();
+           	}
+           	
+      
+           	obj1.setstaffAddress1(address1Field.getText());
+           	obj1.setstaffAddress2(address2Field.getText());
+           	obj1.setstaffPostOffice(postOfficeField.getText());
+           	obj1.setstaffParish(parishField.getText());
+           	obj1.setstaffTelephone(telephoneField.getText());
+           	obj1.setstaffEmail(emailField.getText());
+           	obj1.setstaffPosition(positionField.getText());
+           	
+           	boolean status = parseBoolean(statusField.getText()); // convert text to boolean
+           	obj1.setstaffStatus(status);
+         
+           	
+           	client.sendAction("Update Staff");
+           	client.sendStaff(obj1);
+           	
+           	boolean added = client.addedSuccessful();
+           	
+           	if(added) {
+           		JOptionPane.showMessageDialog(null, "Staff added Updated Successful", "Message", JOptionPane.INFORMATION_MESSAGE);
+           	}
+           	else {
+           		JOptionPane.showMessageDialog(null, "Staff was not added Successful", "Error", JOptionPane.ERROR_MESSAGE);
+           	}
                
-                String id  =  staffIdField.getText() ;
-                Client client = new Client();
-                client.sendAction("Update Staff");
-                client.sendStaffId(Integer.parseInt(id));
+
+//               JOptionPane.showMessageDialog(null, "Submission Successful!");
+               client.closeConnection();
+           }
+
+			private boolean parseBoolean(String text) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+       });
                 
-                staffIdField.setText("");
-                firstNameField.setText("");
-                lastNameField.setText("");
-                dobField.setText("");
-                address1Field.setText("");
-                address2Field.setText("");
-                postOfficeField.setText("");
-                parishField.setText("");
-                telephoneField.setText("");
-                emailField.setText("");
-                positionField.setText("");
-                statusField.setText("");
-            
                 
-                JOptionPane.showMessageDialog(staffIdField, this, "Staff member updated successfully!", getDefaultCloseOperation());
-              /*
-                try {
-                	int num_id= Integer.parseInt(id);
-                	System.out.println("Deleted user #"+num_id);
-                	staffIdField.setText("");
-                }catch (NumberFormatException err) {
-                	JOptionPane.showMessageDialog(staffIdField, this, "Please Enter a vaild Id", getDefaultCloseOperation());
-                	System.out.println("Number Format ERROR");
-                	staffIdField.setText("");
-                }catch(Exception err) {
-            		err.getMessage();
-            	}
-            	
-            	//Send to server
-            	// ID
-            	// Deleted */
-            	
-            	// clearButton.action(null, deleteButton)
-            }
-        });
 
         // Add buttons to the form
         add(addButton);
