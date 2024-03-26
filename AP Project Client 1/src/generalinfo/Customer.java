@@ -2,7 +2,7 @@ package generalinfo;
 
 public class Customer 
 {
-	private int CustId;
+	private int custId;
 	private String company;
 	private String contactPerson;
 	private String custAddress1;
@@ -33,7 +33,7 @@ public class Customer
 		public Customer(int custId, String company, String contactPerson, String custAddress1, String custAddress2, String custPostOffice, String custParish, String custTelephone, String custEmail,float custBalance, boolean custStatus) 
 		{
 			super();
-			CustId = custId;
+			custId = custId;
 			this.company = company;
 			this.contactPerson = contactPerson;
 			this.custAddress1 = custAddress1;
@@ -47,11 +47,13 @@ public class Customer
 		}
 		
 		
-		public float getCustBalance() {
+		public float getCustBalance() 
+		{
 			return custBalance;
 		}
 
-		public void setCustBalance(float custBalance) {
+		public void setCustBalance(float custBalance) 
+		{
 			this.custBalance = custBalance;
 		}
 
