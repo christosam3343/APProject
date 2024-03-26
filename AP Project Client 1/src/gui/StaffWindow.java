@@ -8,9 +8,15 @@ import generalinfo.Staff;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class StaffWindow extends JFrame {
-    // Declare text fields for access by the clear button action
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// Declare text fields for access by the clear button action
     private JTextField staffIdField, firstNameField, lastNameField, dobField, address1Field, address2Field, postOfficeField, parishField, telephoneField, emailField, positionField, statusField;
 
     public StaffWindow() {
@@ -100,7 +106,20 @@ public class StaffWindow extends JFrame {
             	
             	obj1.setstaffFirstName(firstNameField.getText());
             	obj1.setstaffLastName(lastNameField.getText());
-            	obj1.setstaffDob(dobField.getText());
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+       
+            	
+            	String dateOfBirth = dobField.getText();
+            	try{
+ 
+            		obj1.setstaffDob(inputFormat.parse(dateOfBirth));
+            		
+            	}
+            	catch(Exception e1 ) {
+            		e1.printStackTrace();
+            	}
+            	
+       
             	obj1.setstaffAddress1(address1Field.getText());
             	obj1.setstaffAddress2(address2Field.getText());
             	obj1.setstaffPostOffice(postOfficeField.getText());
@@ -168,63 +187,27 @@ public class StaffWindow extends JFrame {
         getByID.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	Staff obj3 = new Staff();
+            	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            	Staff obj1 = new Staff();
             	
             	int staffID = Integer.parseInt(staffIdField.getText());
             	Client client = new Client();
             	client.sendAction("Find Staff");
             	client.sendStaffId(staffID);
-            	obj3 = client.receiveResponse();
+            	obj1 = client.receiveResponse();
             	
-            	staffIdField.setText(String.valueOf(obj3.getStaffID()));
-                firstNameField.setText(obj3.getstaffFirstName());
-                lastNameField.setText(obj3.getstaffLastName());
-                dobField.setText(obj3.getstaffDob());
-                address1Field.setText(obj3.getstaffAddress1());
-                address2Field.setText(obj3.getstaffAddress2());
-                postOfficeField.setText(obj3.getstaffPostOffice());
-                parishField.setText(obj3.getstaffParish());
-                telephoneField.setText(obj3.getstaffTelephone());
-                emailField.setText(obj3.getstaffEmail());
-                positionField.setText(obj3.getstaffPosition());
-                statusField.setText(String.valueOf(obj3.getstaffStatus()));
-            	
-            	
-               
-            /*	String[] person = {"7777", "JOhn", "Wick", "12/25/0000", "Pound Town","USA", "USA223", "Florida", "18007774463", "email.com", "Admin","active" };
-                String id = staffIdField.getText() ;
-              
-                try {
-                	int num_id = Integer.parseInt(id);
-                	int check_id = Integer.parseInt(person[0]);
-                	if(num_id == check_id ) {
-                		staffIdField.setText(person[0]);
-                        firstNameField.setText(person[1]);
-                        lastNameField.setText(person[2]);
-                        dobField.setText(person[3]);
-                        address1Field.setText(person[4]);
-                        address2Field.setText(person[5]);
-                        postOfficeField.setText(person[6]);
-                        parishField.setText(person[7]);
-                        telephoneField.setText(person[8]);
-                        emailField.setText(person[9]);
-                        positionField.setText(person[10]);
-                        statusField.setText(person[11]);
-                	}
-                	System.out.println("Get user #"+num_id);
-                }catch (NumberFormatException err) {
-                	JOptionPane.showMessageDialog(staffIdField, "Please Enter a vaild Id", "Number Format Error", getDefaultCloseOperation());
-                	System.out.println("Number Format ERROR");
-                	staffIdField.setText("");
-                }catch(Exception err) {
-            		err.getMessage();
-            	}
-            	*/
-            	//Send to server
-            	// ID
-            	// Deleted
-            	
-            	// clearButton.action(null, deleteButton)
+            	staffIdField.setText(String.valueOf(obj1.getStaffID()));
+                firstNameField.setText(obj1.getstaffFirstName());
+                lastNameField.setText(obj1.getstaffLastName());
+            	dobField.setText(inputFormat.format(obj1.getstaffDob()));
+                address1Field.setText(obj1.getstaffAddress1());
+                address2Field.setText(obj1.getstaffAddress2());
+                postOfficeField.setText(obj1.getstaffPostOffice());
+                parishField.setText(obj1.getstaffParish());
+                telephoneField.setText(obj1.getstaffTelephone());
+                emailField.setText(obj1.getstaffEmail());
+                positionField.setText(obj1.getstaffPosition());
+                statusField.setText(String.valueOf(obj1.getstaffStatus()));
             }
         });
 
@@ -279,12 +262,65 @@ public class StaffWindow extends JFrame {
             	// clearButton.action(null, deleteButton)
             }
         });
+        
+        
+      //Update
+        JButton updateButton = new JButton("Update");
+        updateButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+        updateButton.setForeground(Color.WHITE); // Set text color to white
+        updateButton.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear all text fields
+               
+                String id  =  staffIdField.getText() ;
+                Client client = new Client();
+                client.sendAction("Update Staff");
+                client.sendStaffId(Integer.parseInt(id));
+                
+                staffIdField.setText("");
+                firstNameField.setText("");
+                lastNameField.setText("");
+                dobField.setText("");
+                address1Field.setText("");
+                address2Field.setText("");
+                postOfficeField.setText("");
+                parishField.setText("");
+                telephoneField.setText("");
+                emailField.setText("");
+                positionField.setText("");
+                statusField.setText("");
+            
+                
+                JOptionPane.showMessageDialog(staffIdField, this, "Staff member updated successfully!", getDefaultCloseOperation());
+              /*
+                try {
+                	int num_id= Integer.parseInt(id);
+                	System.out.println("Deleted user #"+num_id);
+                	staffIdField.setText("");
+                }catch (NumberFormatException err) {
+                	JOptionPane.showMessageDialog(staffIdField, this, "Please Enter a vaild Id", getDefaultCloseOperation());
+                	System.out.println("Number Format ERROR");
+                	staffIdField.setText("");
+                }catch(Exception err) {
+            		err.getMessage();
+            	}
+            	
+            	//Send to server
+            	// ID
+            	// Deleted */
+            	
+            	// clearButton.action(null, deleteButton)
+            }
+        });
 
         // Add buttons to the form
         add(addButton);
+        add(updateButton);
         add(getByID);
-        add(deleteButton);
         add(clearButton);
+        add(deleteButton);
 
         pack(); // Adjusts window size to fit all components
         setVisible(true);

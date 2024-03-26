@@ -4,10 +4,15 @@ import java.util.Date;
 
 public class Staff implements Serializable
 {
-	 private int staffID;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int staffID;
 	 private String staffFirstName;
 	 private String staffLastName;
-	 private String staffDob; 
+	 //private Date staffDob;
+	 private Date staffDob; 
 	 private String staffAddress1;
 	 private String staffAddress2;
 	 private String staffPostOffice;
@@ -15,10 +20,11 @@ public class Staff implements Serializable
 	 private String staffTelephone;
 	 private String staffEmail;
 	 private String staffPosition;
+	 //private int staffStatus;
 	 private boolean staffStatus;
 
 
-	 public Staff(int staffID, String staffFirstName, String staffLastName, String staffDob, String staffAddress1, String staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail, String staffPosition, boolean staffStatus) 
+	 public Staff(int staffID, String staffFirstName, String staffLastName, Date staffDob, String staffAddress1, String staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail, String staffPosition, boolean staffStatus) 
 	 {
 	   this.staffID = staffID;
 	   this.staffFirstName = staffFirstName;
@@ -39,7 +45,7 @@ public class Staff implements Serializable
 	    this.staffID = 0;
 	    this.staffFirstName = "";
 	    this.staffLastName = "";
-	    this.staffDob = "";
+	    this.staffDob = new Date();
 	    this.staffAddress1 = "";
 	    this.staffAddress2 = "";
 	    this.staffPostOffice = "";
@@ -97,12 +103,12 @@ public class Staff implements Serializable
 	        this.staffLastName = staffLastName;
 	    }
 
-	    public String getstaffDob() 
+	    public Date getstaffDob() 
 	    {
 	        return staffDob;
 	    }
 
-	    public void setstaffDob(String staffDob) 
+	    public void setstaffDob(Date staffDob) 
 	    {
 	        this.staffDob = staffDob;
 	    }
