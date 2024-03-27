@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 
 import generalinfo.Customer;
 import generalinfo.Staff;
+import generalinfo.TripOrder;
 import models.DBConnectorFactory;
 
 public class Server {
@@ -245,7 +246,7 @@ public class Server {
 			
 			if ((statement.executeUpdate() == 1)) {
 					saved = true; 
-					System.out.print("SAVED STAFF");
+					System.out.print("SAVED CUSTOMER");
 			}
 				
 		} catch (SQLException e) {
@@ -316,6 +317,101 @@ public class Server {
 		}
 	}
     
+    public boolean addTripOrder(TripOrder tripOrder) {
+
+		boolean saved = false;
+		
+		String sql = "INSERT INTO orders (`invoiceNo`, `routeName`, `company`, `sourceAddress`, `destinationAddress`,"
+				+ "`rate`, `driver`, `billedBy`)"
+				+ "VALUES (? , ?, ?, ?, ?, ?, ?, ?)";
+				
+		try {		
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+			
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, tripOrder.getInvoiceNo());
+			statement.setString(2, tripOrder.getRouteName());
+			statement.setString(3, tripOrder.getCompany());
+			statement.setString(4, tripOrder.getSourceAddress());
+			statement.setString(5, tripOrder.getDestinationAddress());
+			statement.setFloat(6, tripOrder.getRate());
+			statement.setString(7, tripOrder.getDriver());
+			statement.setString(8, tripOrder.getBilledBy());
+			
+			
+		
+			
+			
+			if ((statement.executeUpdate() == 1)) {
+					saved = true; 
+					System.out.print("SAVED STAFF");
+			}
+				
+		} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		return saved; //Return true to client if successful
+	}
+    
+    public TripOrder findTripOrder(String invoiceNo) {
+		TripOrder tripOrder = new TripOrder();
+		String sql = "Select * from orders WHERE invoiceNo ='" + invoiceNo + "'";
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+			PreparedStatement statement = connection.prepareStatement(sql);
+			
+			result = statement.executeQuery(sql); 
+			if (result.next()) {
+				tripOrder.setInvoiceNo(result.getString(1));
+				tripOrder.setRouteName(result.getString(2));
+				tripOrder.setCompany(result.getString(3)); 
+				tripOrder.setSourceAddress(result.getString(4));
+				tripOrder.setDestinationAddress(result.getString(5));
+				tripOrder.setRate(result.getFloat(6));
+				tripOrder.setDriver(result.getString(7));
+				tripOrder.setBilledBy(result.getString(8));
+			
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return tripOrder;	
+	}
+    
+    public void deleteTripOrder(String invoiceNo)  {
+		String sql = "DELETE from orders"+" WHERE invoiceNo="+"'"+invoiceNo+"'";
+		Statement ex = null;
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+    
+ public void updateTripOrder(TripOrder tripOrder) {
+		
+		String sql = "UPDATE orders SET invoiceNo = '"+ tripOrder.getInvoiceNo()+"',routeName = '"+tripOrder.getRouteName()+"',"
+					+ "company ='"+tripOrder.getCompany()+"', sourceAddress = '"+tripOrder.getSourceAddress()+"', destinationAddress = '"
+					+ tripOrder.getDestinationAddress()+"',rate = '"+ tripOrder.getRate()+"', driver = '"+tripOrder.getDriver()
+					+"',billedBy = '"+ tripOrder.getBilledBy()+"'"+" WHERE invoiceNo = '"+ tripOrder.getInvoiceNo()+"'";
+		
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+			PreparedStatement statement = connection.prepareStatement(sql);
+		
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+    
   //Class for handling client requests
   class ClientHandler implements Runnable {
 
@@ -324,6 +420,7 @@ public class Server {
           String action;
           Staff staff;
           Customer customer;
+          TripOrder tripOrder;
           configureStreams();
           
           try {
@@ -367,6 +464,24 @@ public class Server {
               if (action.equals("Update Customer")) {
             	  customer = (Customer) objIs.readObject();
                   updateCustomer(customer);
+              }
+              if (action.equals("Add Trip Order")) {
+            	  tripOrder = (TripOrder) objIs.readObject();
+                  addTripOrder(tripOrder);
+              }
+              if (action.equals("Find Trip Order")) {
+                  String invoiceNumber = (String) objIs.readObject();
+                  tripOrder = findTripOrder(invoiceNumber);
+                  objOs.writeObject(tripOrder);
+              }
+              if (action.equals("Delete Trip Order")) {
+                  String invoiceNo = (String) objIs.readObject();
+                   deleteTripOrder(invoiceNo);
+                 // objOs.writeObject(staff);
+              }
+              if (action.equals("Update Trip Order")) {
+            	  tripOrder = (TripOrder) objIs.readObject();
+                  updateTripOrder(tripOrder);
               }
           } catch (EOFException e) {
 //              logger.error("EOFException: " + e.getMessage());

@@ -13,7 +13,7 @@ public class TripOrder  implements Serializable
 	private String company;
 	private String sourceAddress;
 	private String destinationAddress;
-	private double rate;
+	private Float rate;
     private String driver;
 	private String billedBy;
 	
@@ -22,7 +22,7 @@ public class TripOrder  implements Serializable
 	}
 
 	    
-	public TripOrder(String invoiceNo, String routeName, String company, String sourceAddress, String destinationAddress, double rate, String driver, String billedBy) 
+	public TripOrder(String invoiceNo, String routeName, String company, String sourceAddress, String destinationAddress, Float rate, String driver, String billedBy) 
 	{
 	    this.invoiceNo = invoiceNo;
 	    this.routeName = routeName;
@@ -61,7 +61,7 @@ public class TripOrder  implements Serializable
 	        return destinationAddress;
 	    }
 
-	    public double getRate() 
+	    public Float getRate() 
 	    {
 	        return rate;
 	    }
@@ -102,7 +102,7 @@ public class TripOrder  implements Serializable
 	        this.destinationAddress = destinationAddress;
 	    }
 
-	    public void setRate(double rate) 
+	    public void setRate(Float rate) 
 	    {
 	        this.rate = rate;
 	    }

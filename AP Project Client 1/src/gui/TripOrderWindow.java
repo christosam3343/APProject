@@ -149,10 +149,10 @@ public class TripOrderWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
             	TripOrder obj1 = new TripOrder();
             	
-            	String routeName = routeNamefield.getText();
+            	String invoiceNo = invoiceNoField.getText();
             	Client client = new Client();
             	client.sendAction("Find Trip Order");
-            	client.sendRouteName(routeName);
+            	client.sendRouteName(invoiceNo);
             	obj1 = client.receiveResponse2();
               
             	invoiceNoField.setText(obj1.getInvoiceNo());
@@ -176,10 +176,10 @@ public class TripOrderWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // Clear all text fields
                
-                String id  =  routeNamefield.getText() ;
+                String invoiceNo  =  invoiceNoField.getText() ;
                 Client client = new Client();
-                client.sendAction("Delete Customer");
-                client.sendRouteName(id);
+                client.sendAction("Delete Trip Order");
+                client.sendRouteName(invoiceNo);
                 
                 invoiceNoField.setText("");
                 routeNamefield.setText("");
