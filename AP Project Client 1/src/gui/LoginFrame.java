@@ -107,10 +107,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         // Hardcoded valid credentials
         String validAdminUsername = "admin";
         String validAdminPassword = "admin";
-        
-        String validContractorUsername = "contractor";
-        String validContractorPassword = "contractor";
-        
+                
         String validSuperAdminUsername = "superadmin";
         String validSuperAdminPassword = "superadmin";
         
@@ -120,12 +117,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             MainAppFrame mainAppFrame = new MainAppFrame(1);
             mainAppFrame.setVisible(true);
             dispose(); // Close the login window
-        } else if (enteredUsername.equals(validContractorUsername) && new String(enteredPassword).equals(validContractorPassword)){
-        	JOptionPane.showMessageDialog(this, "Contractor Login successful!");
-            // Open the new window (MainAppFrame) on successful login
-               MainAppFrame mainAppFrame = new MainAppFrame(2);
-               mainAppFrame.setVisible(true);
-               dispose(); // Close the login window
+
         } else if (enteredUsername.equals(validSuperAdminUsername) && new String(enteredPassword).equals(validSuperAdminPassword)){
         	JOptionPane.showMessageDialog(this, "SuperAdmin Login successful!");
             // Open the new window (MainAppFrame) on successful login

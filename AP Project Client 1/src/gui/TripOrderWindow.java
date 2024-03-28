@@ -4,6 +4,7 @@ import javax.swing.border.LineBorder;
 
 import client.Client;
 import generalinfo.Customer;
+import generalinfo.RouteRates;
 import generalinfo.TripOrder;
 
 import java.awt.*;
@@ -17,13 +18,15 @@ public class TripOrderWindow extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	// Declare text fields for access by the clear button action
-    private JTextField invoiceNoField, routeNamefield, companyField, sourceAddressField, destinationAddressField, rateField, driverField, billedByField;
+    private JTextField invoiceNoField, companyField, sourceAddressField, destinationAddressField, rateField, driverField, billedByField;
+    private JComboBox<String> routeNameDropdown;
+    private RouteRates[] routeList = {};
 
     public TripOrderWindow() {
         super("Trip Order Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
-        setLayout(new GridLayout(12, 2)); // Adjust grid layout for buttons
+        setLayout(new GridLayout(11, 2)); // Adjust grid layout for buttons
         
         // Define custom colors
         Color skyBlue = new Color(135, 206, 235);
@@ -33,26 +36,70 @@ public class TripOrderWindow extends JFrame{
         Color royalBlue = new Color(65, 105, 225);
         Color navyBlue = new Color(0, 0, 128);
         
-
+        String[] routeStrings = {};
+        // get the routes
+        try {
+        	getRouteRates();
+        	String tmp = "";
+        	
+        	for(RouteRates route : routeList) {
+        		tmp += route.getrouteName() + "\n";
+        	}
+        	
+        	routeStrings = tmp.split("\n");
+        }
+        catch(Exception e) {
+        	e.printStackTrace();
+        }
+        
         // Set background color to a light blue - skyBlue
         getContentPane().setBackground(skyBlue);
 
         // Initialize text fields
         invoiceNoField = new JTextField(10);
-        routeNamefield = new JTextField(10);
         companyField = new JTextField(10);
         sourceAddressField = new JTextField(10);
+        sourceAddressField.setEditable(false);
         destinationAddressField = new JTextField(10);
+        destinationAddressField.setEditable(false);
         rateField = new JTextField(10);
+        rateField.setEditable(false);
         driverField = new JTextField(10);
         billedByField = new JTextField(10);
+        routeNameDropdown = new JComboBox<String>(routeStrings);
+        routeNameDropdown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	// Handle submission logic here
+//            	JComboBox<String> cb = (JComboBox<String>)e.getSource();
+                String rName = (String) routeNameDropdown.getSelectedItem();
+                
+                for(RouteRates r: routeList) {
+                	if(r.getrouteName().equals(rName)) {
+                		// populate the fields
+                		sourceAddressField.setText(r.getSource());
+                		destinationAddressField.setText(r.getDestination());
+                		rateField.setText("" + r.getRate());
+                		break;
+                	}
+                }
+            }
+        });
+        
+        // populate default dropdown options
+//        if(routeList.length > 0) {
+//        	sourceAddressField.setText(routeList[0].getSource());
+//    		destinationAddressField.setText(routeList[0].getDestination());
+//    		rateField.setText("" + routeList[0].getRate());
+//        }
 
         // Add labels and text fields to the form
         add(new JLabel("Invoice No"));
         add(invoiceNoField);
         
         add(new JLabel("Route Name"));
-        add(routeNamefield);
+//        add(routeNamefield);
+        add(routeNameDropdown);
 
         add(new JLabel("Company"));
         add(companyField);
@@ -89,7 +136,7 @@ public class TripOrderWindow extends JFrame{
             	// Added
             
             	obj1.setInvoiceNo(invoiceNoField.getText());
-            	obj1.setRouteName(routeNamefield.getText());
+            	obj1.setRouteName((String) routeNameDropdown.getSelectedItem());
             	obj1.setCompany(companyField.getText());
             	obj1.setSourceAddress(sourceAddressField.getText());
             	obj1.setDestinationAddress(destinationAddressField.getText());
@@ -128,7 +175,6 @@ public class TripOrderWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // Clear all text fields
             	invoiceNoField.setText("");
-            	routeNamefield.setText("");
             	companyField.setText("");
             	sourceAddressField.setText("");
             	destinationAddressField.setText("");
@@ -156,7 +202,7 @@ public class TripOrderWindow extends JFrame{
             	obj1 = client.receiveResponse2();
               
             	invoiceNoField.setText(obj1.getInvoiceNo());
-            	routeNamefield.setText(obj1.getRouteName());
+            	routeNameDropdown.setSelectedItem(obj1.getRouteName());
             	companyField.setText(obj1.getCompany());
             	sourceAddressField.setText(obj1.getSourceAddress());
             	destinationAddressField.setText(obj1.getDestinationAddress());
@@ -182,7 +228,6 @@ public class TripOrderWindow extends JFrame{
                 client.sendRouteName(invoiceNo);
                 
                 invoiceNoField.setText("");
-                routeNamefield.setText("");
                 companyField.setText("");
                 sourceAddressField.setText("");
                 destinationAddressField.setText("");
@@ -190,7 +235,7 @@ public class TripOrderWindow extends JFrame{
                 driverField.setText("");
                 billedByField.setText("");
                 
-                JOptionPane.showMessageDialog(routeNamefield, this, "Trip Order deleted successfully!", getDefaultCloseOperation());
+                JOptionPane.showMessageDialog(null, this, "Trip Order deleted successfully!", getDefaultCloseOperation());
               
             }
         });
@@ -208,7 +253,7 @@ public class TripOrderWindow extends JFrame{
            	           	
            	
             obj1.setInvoiceNo(invoiceNoField.getText());       
-            obj1.setRouteName(routeNamefield.getText());
+            obj1.setRouteName((String) routeNameDropdown.getSelectedItem());
             obj1.setCompany(companyField.getText());
             obj1.setSourceAddress(sourceAddressField.getText());
             obj1.setDestinationAddress(destinationAddressField.getText());
@@ -253,6 +298,12 @@ public class TripOrderWindow extends JFrame{
         
         pack(); // Adjusts window size to fit all components
         setVisible(true);
+    }
+    
+    void getRouteRates() {
+    	Client client = new Client();
+    	client.sendAction("Get Routes");
+    	routeList = (RouteRates[])client.receiveResponse();
     }
 
     public static void main(String[] args) {

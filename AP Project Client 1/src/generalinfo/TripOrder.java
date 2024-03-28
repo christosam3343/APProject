@@ -2,7 +2,7 @@ package generalinfo;
 
 import java.io.Serializable;
 
-public class TripOrder  implements Serializable
+public class TripOrder implements Serializable
 {
 	/**
 	 * 

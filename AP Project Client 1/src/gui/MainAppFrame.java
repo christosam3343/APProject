@@ -123,7 +123,7 @@ public class MainAppFrame extends JFrame {
         
         
         
-        JButton tripOrderButton = new JButton("Add Trip/Order");
+        JButton tripOrderButton = new JButton("Trip/Order Panel");
         tripOrderButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         tripOrderButton.setForeground(Color.WHITE); // Set text color to white
         tripOrderButton.addActionListener(new ActionListener() {
@@ -135,7 +135,7 @@ public class MainAppFrame extends JFrame {
         buttonPanel.add(tripOrderButton);
         
         // Create the "Route" button
-        JButton routeButton = new JButton("Add Route");
+        JButton routeButton = new JButton("Route Panel");
         routeButton.setBounds(153, 115, 79, 21);
         routeButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         routeButton.setForeground(Color.WHITE); // Set text color to white

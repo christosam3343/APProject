@@ -20,11 +20,11 @@ public class Staff implements Serializable
 	 private String staffTelephone;
 	 private String staffEmail;
 	 private String staffPosition;
-	 //private int staffStatus;
-	 private boolean staffStatus;
+	 private int staffStatus;
+//	 private boolean staffStatus;
 
 
-	 public Staff(int staffID, String staffFirstName, String staffLastName, Date staffDob, String staffAddress1, String staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail, String staffPosition, boolean staffStatus) 
+	 public Staff(int staffID, String staffFirstName, String staffLastName, Date staffDob, String staffAddress1, String staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail, String staffPosition, int staffStatus) 
 	 {
 	   this.staffID = staffID;
 	   this.staffFirstName = staffFirstName;
@@ -53,7 +53,7 @@ public class Staff implements Serializable
 	    this.staffTelephone = "000-000-0000";
 	    this.staffEmail = "";
 	    this.staffPosition = "";
-	    this.staffStatus = false;
+	    this.staffStatus = 0;
 	    	
 	    }
 	    
@@ -182,12 +182,12 @@ public class Staff implements Serializable
 	        this.staffPosition = staffPosition;
 	    }
 
-	    public boolean getstaffStatus() 
+	    public int getstaffStatus() 
 	    {
 	        return staffStatus;
 	    }
 
-	    public void setstaffStatus(boolean staffStatus) 
+	    public void setstaffStatus(int staffStatus) 
 	    {
 	        this.staffStatus = staffStatus;
 	    }

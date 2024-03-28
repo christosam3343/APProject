@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CustomerWindow extends JFrame {
+	
     /**
 	 * 
 	 */
@@ -216,24 +217,7 @@ public class CustomerWindow extends JFrame {
                 statusField.setText("");
                 
                 JOptionPane.showMessageDialog(custIdField, this, "Customer deleted successfully!", getDefaultCloseOperation());
-              
-//                try {
-//                	int num_id= Integer.parseInt(id);
-//                	System.out.println("Deleted cust #"+num_id);
-//                	custIdField.setText("");
-//                }catch (NumberFormatException err) {
-//                	JOptionPane.showMessageDialog(custIdField, this, "Please Enter a vaild Id", getDefaultCloseOperation());
-//                	System.out.println("Number Format ERROR");
-//                	custIdField.setText("");
-//                }catch(Exception err) {
-//            		err.getMessage();
-//            	}
-            	
-            	//Send to server
-            	// ID
-            	// Deleted
-            	
-            	// clearButton.action(null, deleteButton)
+
             }
         });
         

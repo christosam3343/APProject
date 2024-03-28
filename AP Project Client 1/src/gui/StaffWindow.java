@@ -1,6 +1,10 @@
 package gui;
 import javax.swing.*;
+import java.util.regex.*;
 import javax.swing.border.LineBorder;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import client.Client;
 import generalinfo.Staff;
@@ -18,7 +22,8 @@ public class StaffWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// Declare text fields for access by the clear button action
     private JTextField staffIdField, firstNameField, lastNameField, dobField, address1Field, address2Field, postOfficeField, parishField, telephoneField, emailField, positionField, statusField;
-
+    private final Logger logger = LogManager.getLogger(StaffWindow.class);
+    
     public StaffWindow() {
         super("Staff Window");
         setSize(1000, 500);
@@ -42,6 +47,7 @@ public class StaffWindow extends JFrame {
         firstNameField = new JTextField(10);
         lastNameField = new JTextField(10);
         dobField = new JTextField(10);
+        dobField.setText("yyyy-MM-dd");
         address1Field = new JTextField(10);
         address2Field = new JTextField(10);
         postOfficeField = new JTextField(10);
@@ -49,6 +55,7 @@ public class StaffWindow extends JFrame {
         telephoneField = new JTextField(10);
         emailField = new JTextField(10);
         positionField = new JTextField(10);
+        
         statusField = new JTextField(10);
 
         // Add labels and text fields to the form
@@ -98,28 +105,161 @@ public class StaffWindow extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	// Check the Inputs
             	Staff obj1 = new Staff();//Imported from generalinfo
-            	 Client client = new Client();
-            	 
-            	int staffID = Integer.parseInt(staffIdField.getText());//convert string to an integer
-            	obj1.setStaffID(staffID);
+            	Client client = new Client();
+            	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            	// Regular expression pattern for the date format yyyy-MM-dd
+                String pattern = "\\d{4}-\\d{2}-\\d{2}";
+
+                // Compile the pattern into a regular expression
+                Pattern regex = Pattern.compile(pattern);
+
+                String[] parishes = {
+                        "Kingston", "St. Andrew", "St. Thomas", "Portland", "St. Mary",
+                        "St. Ann", "Trelawny", "St. James", "Hanover", "Westmoreland",
+                        "St. Elizabeth", "Manchester", "Clarendon", "St. Catherine"
+                };
+                
             	
+            	int staffID;
+                String fname = firstNameField.getText();
+                String lname = lastNameField.getText(); 
+            	String dateOfBirth = dobField.getText();
+            	
+                String address1 =address1Field.getText(); 
+                String address2 =address2Field.getText(); 
+                String post =postOfficeField.getText(); 
+                String parish = parishField.getText(); 
+                String telephone = telephoneField.getText(); 
+                String email = emailField.getText(); 
+                String position = positionField.getText();
+                String status =  statusField.getText();
+                int booleanCheck;
+               
+                try {
+                	
+                	staffID = Integer.parseInt(staffIdField.getText());
+                	
+                }
+                catch(NumberFormatException err){
+                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Id", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.error("User entered the invalid id: " + err.getMessage());
+                	return;
+                }
+                
+                if(!(fname.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A First name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid id");
+                	return;
+                }
+                if(!(lname.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Last name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+                // Create a Matcher object to match the pattern against the input string
+                Matcher matcher = regex.matcher(dateOfBirth);
+            	if(!(matcher.matches())) {
+        			JOptionPane.showMessageDialog(null, "Please Enter in format yyyy-MM-dd", "Message", JOptionPane.INFORMATION_MESSAGE);
+        			return;
+        		}
+               if(address1.isEmpty()) {
+            	   JOptionPane.showMessageDialog(null, "Please Enter an Address1", "Message", JOptionPane.INFORMATION_MESSAGE);
+               	return;
+               }
+               if(address2.isEmpty()) {
+            	   JOptionPane.showMessageDialog(null, "Please Enter an Address2", "Message", JOptionPane.INFORMATION_MESSAGE);
+               	return;
+               }
+                if(!(post.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Postoffice", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+                // Flag to track if the string is found
+                boolean found = false;
+                
+                // Iterate through the array to search for the string
+                for (String parish_ : parishes) {
+                    if (parish_.equals(parish)) {
+                        found = true;
+                        break; // Exit the loop once the string is found
+                    }
+                }
+                if (!found) {
+                	JOptionPane.showMessageDialog(null, "Please Enter a Vaild Parish", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                } 
+                if(!(parish.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Parish", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+//                try {
+//           
+//                	int tele = Integer.parseInt(telephone);          
+//                	System.out.print(tele);
+//                }
+//                catch(NumberFormatException err){
+//                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Phone Number", "Message", JOptionPane.INFORMATION_MESSAGE);
+//                	err.printStackTrace();
+//                	return;
+//                }catch(Exception e1 ) {
+//            		JOptionPane.showMessageDialog(null, "Universal", "Message", JOptionPane.INFORMATION_MESSAGE);
+//            		e1.printStackTrace();
+//            		return;
+//            	}
+//                int length = telephone.length();
+            	// Check if the length is either 10 or 7 digits
+//                if(!telephone.matches("\\\\d+")) {
+//                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Phone Number", "Message", JOptionPane.INFORMATION_MESSAGE);
+//                }
+////                if (!(telephone.length() == 7 || telephone.length() == 10)) {
+////            		JOptionPane.showMessageDialog(null, "Please Enter A Vaild Phone Number", "Message", JOptionPane.INFORMATION_MESSAGE);
+////                } 
+//                if (!(telephone.length() == 7) || !(telephone.length() == 10)) {
+//                	JOptionPane.showMessageDialog(null, "Please Enter 10 or 7 Digits", "Message", JOptionPane.INFORMATION_MESSAGE);
+//                	return;
+//                }
+                
+                String emailPattern = "^[A-Za-z][A-Za-z0-9_]*@[A-Za-z]+\\.com$";
+                if(!(email.matches(emailPattern))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Email", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+                if(!(position.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Position", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+                           
+                       
+                try {
+                	booleanCheck  = Integer.parseInt(statusField.getText());
+                	
+                	if (booleanCheck != 1 || booleanCheck != 0 ) {
+                     	JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
+                     	return;
+                     }
+                	
+                }
+                catch(NumberFormatException err){
+                	logger.error("Error: " + err.getMessage());
+                	err.printStackTrace();
+                	return;
+                }
+                
+                
+                
+                
+            	obj1.setStaffID(Integer.parseInt(staffIdField.getText()));
             	obj1.setstaffFirstName(firstNameField.getText());
             	obj1.setstaffLastName(lastNameField.getText());
-                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-       
-            	
-            	String dateOfBirth = dobField.getText();
-            	try{
- 
+            	try{            		
             		obj1.setstaffDob(inputFormat.parse(dateOfBirth));
-            		
             	}
             	catch(Exception e1 ) {
+            		logger.error("Error: " + e1.getMessage());
             		e1.printStackTrace();
+            		return;
             	}
-            	
-       
             	obj1.setstaffAddress1(address1Field.getText());
             	obj1.setstaffAddress2(address2Field.getText());
             	obj1.setstaffPostOffice(postOfficeField.getText());
@@ -128,8 +268,9 @@ public class StaffWindow extends JFrame {
             	obj1.setstaffEmail(emailField.getText());
             	obj1.setstaffPosition(positionField.getText());
             	
-            	boolean status = parseBoolean(statusField.getText()); // convert text to boolean
-            	obj1.setstaffStatus(status);
+//            	boolean status = parseBoolean(statusField.getText()); // convert text to boolean
+//            	if(sta)
+            	obj1.setstaffStatus(Integer.parseInt(statusField.getText()));
           
             	
             	client.sendAction("Add Staff");
@@ -148,11 +289,6 @@ public class StaffWindow extends JFrame {
 //                JOptionPane.showMessageDialog(null, "Submission Successful!");
                 client.closeConnection();
             }
-
-			private boolean parseBoolean(String text) {
-				// TODO Auto-generated method stub
-				return false;
-			}
         });
 
         // Create clear button
@@ -194,7 +330,7 @@ public class StaffWindow extends JFrame {
             	Client client = new Client();
             	client.sendAction("Find Staff");
             	client.sendStaffId(staffID);
-            	obj1 = client.receiveResponse();
+            	obj1 = (Staff) client.receiveResponse();
             	
             	staffIdField.setText(String.valueOf(obj1.getStaffID()));
                 firstNameField.setText(obj1.getstaffFirstName());
@@ -303,7 +439,7 @@ public class StaffWindow extends JFrame {
            	obj1.setstaffPosition(positionField.getText());
            	
            	boolean status = parseBoolean(statusField.getText()); // convert text to boolean
-           	obj1.setstaffStatus(status);
+           	obj1.setstaffStatus(Integer.parseInt(statusField.getText()));
          
            	
            	client.sendAction("Update Staff");
