@@ -16,8 +16,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+//import client.Client;
 import generalinfo.Customer;
+import generalinfo.RouteRates;
 import generalinfo.Staff;
 import generalinfo.TripOrder;
 import models.DBConnectorFactory;
@@ -30,6 +36,7 @@ public class Server {
 	protected ResultSet result;
 	private ObjectOutputStream objOs;
     private ObjectInputStream objIs;
+    private final Logger logger = LogManager.getLogger(Server.class);
 	
 	
     public Server() {
@@ -42,7 +49,7 @@ public class Server {
             serverSocket = new ServerSocket(8888);
             serverSocket.setReuseAddress(true);
         } catch (IOException e) {
-            System.out.println("IOException: " + e.getMessage());
+            logger.error("IOException: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -52,7 +59,7 @@ public class Server {
             objOs = new ObjectOutputStream(connectedClient.getOutputStream());
             objIs = new ObjectInputStream(connectedClient.getInputStream());
         } catch (IOException e) {
-        	System.out.println("IOException: " + e.getMessage());
+        	logger.error("IOException: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -63,7 +70,7 @@ public class Server {
             objIs.close();
             connectedClient.close();
         } catch (IOException e) {
-            System.out.println("IOException: " + e.getMessage());
+        	logger.error("IOException: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -72,7 +79,7 @@ public class Server {
 //        mainScreen = new MainScreen(serverSocket);
 //        splashScreen.dispose();
 //        mainScreen.setVisible(true);
-        System.out.println("Sever is running");
+    	logger.info("Sever is running");
         try {
             // running infinite loop for getting client request
             while (true) {
@@ -84,6 +91,8 @@ public class Server {
 
                 String clientConnected = "Client connected: " + connectedClient.getInetAddress().getHostAddress() +
                         " @ " + localDateTime.format(dateTimeFormatter);
+                
+                logger.info(clientConnected);
 
                 // Displaying that new client is connected to server
                 System.out.println(clientConnected);
@@ -141,7 +150,7 @@ public class Server {
 			
 			statement.setString(11, staff.getstaffPosition());
 			//int
-			statement.setBoolean(12, staff.getstaffStatus());
+			statement.setInt(12, staff.getstaffStatus());
 					
 			if ((statement.executeUpdate() == 1)) {
 				saved = true; 
@@ -175,7 +184,7 @@ public class Server {
 				staffObj.setstaffTelephone(result.getString(9));
 				staffObj.setstaffEmail(result.getString(10));
 				staffObj.setstaffPosition(result.getString(11));
-				staffObj.setstaffStatus(result.getBoolean(12));
+				staffObj.setstaffStatus(result.getInt(12));
 			}
 		} catch (SQLException e) {
 			
@@ -411,6 +420,40 @@ public class Server {
 			e.printStackTrace();
 		}
 	}
+ 
+ 	public RouteRates[] getRoutes() {
+	 	ArrayList<RouteRates> routes =  new ArrayList<RouteRates>();
+	 
+		String sql = "Select * from routerates";
+		
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+			PreparedStatement statement = connection.prepareStatement(sql);
+			
+			result = statement.executeQuery(sql);
+			
+			while (result.next()) {
+				RouteRates route = new RouteRates();
+				
+				System.out.println(route.toString());
+				System.out.println(result.getString(1));
+				System.out.println(result.getString(2));
+				System.out.println(result.getString(3));
+				
+				route.setrouteName(result.getString(1));
+				route.setSource(result.getString(2));
+				route.setDestination(result.getString(3));
+				route.setRate(result.getDouble(4));
+				
+				routes.add(route);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return routes.toArray(new RouteRates[routes.size()]);	
+	}
     
   //Class for handling client requests
   class ClientHandler implements Runnable {
@@ -482,6 +525,10 @@ public class Server {
               if (action.equals("Update Trip Order")) {
             	  tripOrder = (TripOrder) objIs.readObject();
                   updateTripOrder(tripOrder);
+              }
+              if (action.equals("Get Routes")) {
+            	  RouteRates[] routes = getRoutes();
+                  objOs.writeObject(routes);
               }
           } catch (EOFException e) {
 //              logger.error("EOFException: " + e.getMessage());

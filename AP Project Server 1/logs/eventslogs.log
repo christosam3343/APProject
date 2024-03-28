@@ -1,0 +1,21 @@
+[INFO ] 2024-03-28 01:17:24.218 [main] LoggingExample - Test Info
+[TRACE] 2024-03-28 01:17:24.221 [main] LoggingExample - Test Trace
+[WARN ] 2024-03-28 01:17:24.221 [main] LoggingExample - Test warn
+[ERROR] 2024-03-28 01:17:24.222 [main] LoggingExample - Test Error
+[FATAL] 2024-03-28 01:17:24.222 [main] LoggingExample - Test Fatal
+[DEBUG] 2024-03-28 01:17:24.222 [main] LoggingExample - Test Debug
+[INFO ] 2024-03-28 01:18:54.237 [main] Server - Sever is running
+[INFO ] 2024-03-28 01:19:18.006 [main] Server - Client connected: 127.0.0.1 @ 2024-18-28
+[ERROR] 2024-03-28 01:23:04.299 [main] Server - IOException: Address already in use: bind
+[INFO ] 2024-03-28 01:23:04.476 [main] Server - Sever is running
+[INFO ] 2024-03-28 01:23:14.215 [main] Server - Sever is running
+[INFO ] 2024-03-28 01:23:37.232 [main] Server - Client connected: 127.0.0.1 @ 2024-23-28
+[INFO ] 2024-03-28 01:52:43.221 [main] Server - Sever is running
+[INFO ] 2024-03-28 01:53:44.602 [main] Server - Client connected: 127.0.0.1 @ 2024-52-28
+[ERROR] 2024-03-28 01:57:12.098 [main] Server - IOException: Address already in use: bind
+[INFO ] 2024-03-28 01:57:12.273 [main] Server - Sever is running
+[INFO ] 2024-03-28 01:57:34.288 [main] Server - Sever is running
+[ERROR] 2024-03-28 01:57:50.265 [main] Server - IOException: Address already in use: bind
+[INFO ] 2024-03-28 01:57:50.430 [main] Server - Sever is running
+[INFO ] 2024-03-28 01:57:59.755 [main] Server - Sever is running
+[INFO ] 2024-03-28 02:16:32.958 [main] Server - Client connected: 127.0.0.1 @ 2024-57-28

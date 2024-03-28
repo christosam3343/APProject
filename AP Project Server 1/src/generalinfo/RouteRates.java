@@ -1,6 +1,12 @@
 package generalinfo;
 
-public class RouteRates {
+import java.io.Serializable;
+
+public class RouteRates implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String routeName;
 	private String source;
 	private String destination;
@@ -10,7 +16,7 @@ public class RouteRates {
 		routeName = "";
 		source = "";
 		destination = "";
-		rate = 465.00;
+		rate = 0.00;
 	}
 	
 	public RouteRates(String routeName, String source, String destination, double rate) {
@@ -21,11 +27,11 @@ public class RouteRates {
 		this.rate = rate;
 	}
 
-	public String getRouteName() {
+	public String getrouteName() {
 		return routeName;
 	}
 
-	public void setRouteName(String routeName) {
+	public void setrouteName(String routeName) {
 		this.routeName = routeName;
 	}
 
@@ -53,10 +59,12 @@ public class RouteRates {
 		this.rate = rate;
 	}
 
-	@Override
-	public String toString() {
-		return "routeRates [routeName=" + routeName + ", source=" + source + ", destination=" + destination
-				+ ", rate=" + rate + "]";
+	public void Display() 
+	{
+		System.out.println("Route Name: " + routeName + 
+				" \nSource: " + source + 
+				" \nDestination: " + destination + 
+				" \nRate: " + rate);
 	}
 	
 

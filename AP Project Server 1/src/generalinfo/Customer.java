@@ -2,22 +2,49 @@ package generalinfo;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "customer")
 public class Customer implements Serializable 
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Id
 	private int CustId;
+	
+	@Column(name = "company")
 	private String company;
+	
+	@Column(name = "contactPerson")
 	private String contactPerson;
+	
+	@Column(name = "custAddress1")
 	private String custAddress1;
+	
+	@Column(name = "custAddress2")
 	private String custAddress2;
+	
+	@Column(name = "custPostOffice")
 	private String custPostOffice;
+	
+	@Column(name = "custParish")
 	private String custParish;
+	
+	@Column(name = "custTelephone")
 	private String custTelephone;
+	
+	@Column(name = "custEmail")
 	private String custEmail;
+	
+	@Column(name = "custBalance")
 	private float custBalance;
+	
+	@Column(name = "custStatus")
 	private boolean custStatus;
 		
 		public Customer() 
