@@ -1,6 +1,8 @@
 package generalinfo;
 
-public class FinalReport {
+public class FinalReport 
+{
+	// Declaration of Variables
 	int payId;
 	int staffId;
 	Date startDate;
@@ -9,20 +11,9 @@ public class FinalReport {
 	float driverSalary;
 	String preparedBy;
 	
-	
-	public FinalReport(int payId, int staffId, Date startDate, Date endDate, float contractorSalary, float driverSalary,
-			String preparedBy) {
-		super();
-		this.payId = payId;
-		this.staffId = staffId;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.contractorSalary = contractorSalary;
-		this.driverSalary = driverSalary;
-		this.preparedBy = preparedBy;
-	}
-	
-	public FinalReport() {
+	// Default Consturcotr for FinalReport class
+	public FinalReport()
+	{
 		super();
 		this.payId = 0;
 		this.staffId = 0;
@@ -32,68 +23,99 @@ public class FinalReport {
 		this.driverSalary = 0.0f;
 		this.preparedBy = "";
 	}
-
-	@Override
-	public String toString() {
-		return "FinalReport [payId=" + payId + ", staffId=" + staffId + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", contractorSalary=" + contractorSalary + ", driverSalary=" + driverSalary
-				+ ", preparedBy=" + preparedBy + "]";
+	
+	// Primary Constructor for FinalReport class
+	public FinalReport(int payId, int staffId, Date startDate, Date endDate, float contractorSalary, float driverSalary,
+			String preparedBy) 
+	{
+		super();
+		this.payId = payId;
+		this.staffId = staffId;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.contractorSalary = contractorSalary;
+		this.driverSalary = driverSalary;
+		this.preparedBy = preparedBy;
 	}
 
-	public int getPayId() {
+        // Setters and getting for FinalReport class
+	public int getPayId() 
+	{
 		return payId;
 	}
 
-	public void setPayId(int payId) {
+	public void setPayId(int payId) 
+	{
 		this.payId = payId;
 	}
 
-	public int getStaffId() {
+	public int getStaffId() 
+	{
 		return staffId;
 	}
 
-	public void setStaffId(int staffId) {
+	public void setStaffId(int staffId) 
+	{
 		this.staffId = staffId;
 	}
 
-	public Date getStartDate() {
+	public Date getStartDate() 
+	{
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(Date startDate) 
+	{
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public Date getEndDate() 
+	{
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(Date endDate) 
+	{
 		this.endDate = endDate;
 	}
 
-	public float getContractorSalary() {
+	public float getContractorSalary() 
+	{
 		return contractorSalary;
 	}
 
-	public void setContractorSalary(float contractorSalary) {
+	public void setContractorSalary(float contractorSalary) 
+	{
 		this.contractorSalary = contractorSalary;
 	}
 
-	public float getDriverSalary() {
+	public float getDriverSalary() 
+	{
 		return driverSalary;
 	}
 
-	public void setDriverSalary(float driverSalary) {
+	public void setDriverSalary(float driverSalary) 
+	{
 		this.driverSalary = driverSalary;
 	}
 
-	public String getPreparedBy() {
+	public String getPreparedBy() 
+	{
 		return preparedBy;
 	}
 
-	public void setPreparedBy(String preparedBy) {
+	public void setPreparedBy(String preparedBy) 
+	{
 		this.preparedBy = preparedBy;
+	}
+
+        // toString method to convert FinalReport object to string
+	@Override
+	public String toString() 
+	{
+		return "FinalReport [payId=" + payId + ", staffId=" + staffId + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", contractorSalary=" + contractorSalary + ", driverSalary=" + driverSalary
+				+ ", preparedBy=" + preparedBy + "]";
 	}
 	
 }
