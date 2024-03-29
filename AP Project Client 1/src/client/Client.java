@@ -15,10 +15,10 @@ import generalinfo.TripOrder;
 
 
 public class Client {
-	private final Logger logger = LogManager.getLogger(Client.class);
-	private Socket connectionSockett;
-	protected ObjectOutputStream objOss;
-	protected ObjectInputStream objIss;
+	private final Logger logger = LogManager.getLogger(Client.class); // Logger for logging messages
+	private Socket connectionSockett; // Socket for connection
+	protected ObjectOutputStream objOss; // ObjectOutputStream for sending objects over the network
+	protected ObjectInputStream objIss; // ObjectInputStream for receiving objects over the network
 	private String action;
 
 	
