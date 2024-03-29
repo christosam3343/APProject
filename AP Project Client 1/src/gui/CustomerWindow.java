@@ -13,17 +13,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Pattern;
 
-public class CustomerWindow extends JFrame {
-	
-    /**
-	 * 
-	 */
+// CustomerWindow class for GUI
+public class CustomerWindow extends JFrame 
+{
 	private static final long serialVersionUID = 1L;
 	// Declare text fields for access by the clear button action
     private JTextField custIdField, companyField, contactPersonField, address1Field, address2Field, postOfficeField, parishField, telephoneField, emailField, balanceField, statusField;
     private final Logger logger = LogManager.getLogger(CustomerWindow.class);
 
-    public CustomerWindow() {
+    // Constructor for CustomerWindow
+    public CustomerWindow() 
+	{
         super("Customer Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
@@ -88,17 +88,17 @@ public class CustomerWindow extends JFrame {
         add(new JLabel("Status"));
         add(statusField);
 
-        // Create submit button
+        // Creating submit button
         JButton addButton = new JButton("Add");
         addButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         addButton.setForeground(Color.WHITE); // Set text color to white
         addButton.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
         addButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-// Handle submission logic here
-            	
-            	Customer obj1 = new Customer();//Imported from generalinfo 	
+            public void actionPerformed(ActionEvent e) 
+		{
+		// Handle submission logic here
+            	Customer obj1 = new Customer(); // Imported from generalinfo 	
             	Client client = new Client();
             
             	
@@ -122,7 +122,6 @@ public class CustomerWindow extends JFrame {
                 String telephone = telephoneField.getText();
                 String email = emailField.getText();
                 String balance1 = balanceField.getText();
-//                int booleanCheck;
                 
                 try {
                 	
@@ -268,8 +267,8 @@ public class CustomerWindow extends JFrame {
                 statusField.setText("");
             }
         });
-      //Update
-        //Retrieve 1
+      
+        // Retrieve by ID button
         JButton getByID = new JButton("Retrieve");
         getByID.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         getByID.setForeground(Color.WHITE); // Set text color to white
@@ -285,7 +284,7 @@ public class CustomerWindow extends JFrame {
             	client.sendCustomerId(custId);
             	obj1 = (Customer) client.receiveResponse();
               
-        		custIdField.setText(String.valueOf(obj1.getCustId()));
+        	custIdField.setText(String.valueOf(obj1.getCustId()));
                 companyField.setText(obj1.getCompany());
                 contactPersonField.setText(obj1.getContactPerson());
                 address1Field.setText(obj1.getCustAddress1());
@@ -298,8 +297,8 @@ public class CustomerWindow extends JFrame {
                 statusField.setText(String.valueOf(obj1.getCustStatus()));
             }
         });
-      //Retrieve all
-        //Delete
+
+	// Delete button
         JButton deleteButton = new JButton("Delete");
         deleteButton.setBackground(Red); // Set button color to a darker blue - steelBlue
         deleteButton.setForeground(Color.WHITE); // Set text color to white
@@ -330,7 +329,7 @@ public class CustomerWindow extends JFrame {
             }
         });
         
-      //Update
+        // Update button
         JButton updateButton = new JButton("Update");
         updateButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         updateButton.setForeground(Color.WHITE); // Set text color to white
@@ -341,7 +340,7 @@ public class CustomerWindow extends JFrame {
             	Customer obj1 = new Customer();//Imported from generalinfo
            	 	Client client = new Client();
            	 
-           	int custID = Integer.parseInt(custIdField.getText());//convert string to an integer
+           	int custID = Integer.parseInt(custIdField.getText()); //convert string to an integer
            	obj1.setCustId(custID);
            	
             obj1.setCompany(companyField.getText());            
@@ -373,7 +372,7 @@ public class CustomerWindow extends JFrame {
            	}
                
 
-//               JOptionPane.showMessageDialog(null, "Submission Successful!");
+	       // JOptionPane.showMessageDialog(null, "Submission Successful!");
                client.closeConnection();
            }
 
@@ -395,10 +394,11 @@ public class CustomerWindow extends JFrame {
         add(deleteButton);
 
         pack(); // Adjusts window size to fit all components
-        setVisible(true);
+        setVisible(true); // Make window visible
     }
 
+    // Main method
     public static void main(String[] args) {
-        new CustomerWindow();
+        new CustomerWindow(); // Create an instance of CustomerWindow
     }
 }
