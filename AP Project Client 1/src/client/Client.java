@@ -88,7 +88,8 @@ public class Client {
 			logger.error("Error: " + e.getMessage());
 		}
 	}
-
+	
+        // Method to send staff ID to the server
 	public void sendStaffId(int staffId) {
 		try {
 			objOss.writeObject(staffId);
@@ -98,6 +99,7 @@ public class Client {
 		}
 	}
 
+	// Method to check if the staff was successfull
 	public boolean addedSuccessful() {
 
 		try {
@@ -112,6 +114,7 @@ public class Client {
 		return false;
 	}
 
+	// Method to recieve response from the server
 	public Object receiveResponse() {
 		Staff staff = null;
 		RouteRates[] routes;
@@ -240,6 +243,7 @@ public class Client {
 		return null;
 	}
 
+	// Method to send the customer's information to the server
 	public void sendCustomer(Customer custObj) {
 		try {
 			objOss.writeObject(custObj);
@@ -249,6 +253,7 @@ public class Client {
 		}
 	}
 
+	// Method to send the customer's ID to the server
 	public void sendCustomerId(int custId) {
 		try {
 			objOss.writeObject(custId);
@@ -258,6 +263,7 @@ public class Client {
 		}
 	}
 
+	// Method to send the trip order information to the server
 	public void sendTripOrder(TripOrder tripObj) {
 		try {
 			objOss.writeObject(tripObj);
@@ -266,6 +272,7 @@ public class Client {
 		}
 	}
 
+	// Method to send route name to the server
 	public void sendRouteName(String routeName) {
 		try {
 			objOss.writeObject(routeName);
@@ -274,6 +281,8 @@ public class Client {
 		}
 	}
 
+	
+	// Method to send the route rates to the server
 	public void sendRouteRates(RouteRates routeObj) {
 		try {
 			objOss.writeObject(routeObj);
@@ -282,6 +291,7 @@ public class Client {
 		}
 	}
 
+	// Additional method for sending route name
 	public void sendRouteName1(String routeName) {
 		try {
 			objOss.writeObject(routeName);
