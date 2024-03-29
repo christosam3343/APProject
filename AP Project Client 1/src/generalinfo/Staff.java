@@ -3,15 +3,15 @@ package generalinfo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Staff implements Serializable {
-	/**
-	* 
-	*/
+// Staff class inheriting the Serializable class
+public class Staff implements Serializable 
+{
+        // Unique identifier for serialization
 	private static final long serialVersionUID = 1L;
+	// Declaration of variables
 	private int staffID;
 	private String staffFirstName;
 	private String staffLastName;
-	// private Date staffDob;
 	private Date staffDob;
 	private String staffAddress1;
 	private String staffAddress2;
@@ -22,11 +22,12 @@ public class Staff implements Serializable {
 	private String staffPosition;
 	private int staffStatus;
 	private float staffSalary;
-	// private boolean staffStatus;
-
+	
+	// Primary Constructor for Staff class
 	public Staff(int staffID, String staffFirstName, String staffLastName, Date staffDob, String staffAddress1,
 			String staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail,
-			String staffPosition, int staffStatus, float staffSalary) {
+			String staffPosition, int staffStatus, float staffSalary) 
+	{
 		this.staffID = staffID;
 		this.staffFirstName = staffFirstName;
 		this.staffLastName = staffLastName;
@@ -42,7 +43,9 @@ public class Staff implements Serializable {
 		this.staffSalary = staffSalary;
 	}
 
-	public Staff() {
+	// Default Constructor for Staff class
+	public Staff() 
+	{
 		this.staffID = 0;
 		this.staffFirstName = "";
 		this.staffLastName = "";
@@ -59,7 +62,9 @@ public class Staff implements Serializable {
 
 	}
 
-	public Staff(Staff staff) {
+	// Copy Constructor for Staff class
+	public Staff(Staff staff) 
+	{
 		this.staffID = staff.staffID;
 		this.staffFirstName = staff.staffFirstName;
 		this.staffLastName = staff.staffLastName;
@@ -75,111 +80,141 @@ public class Staff implements Serializable {
 		this.staffSalary = staff.staffSalary;
 	}
 
-	public int getStaffID() {
+	// Setters and Gettters for Staff class
+	public int getStaffID() 
+	{
 		return staffID;
 	}
 
-	public void setStaffID(int staffID) {
+	public void setStaffID(int staffID) 
+	{
 		this.staffID = staffID;
 	}
 
-	public String getstaffFirstName() {
+	public String getstaffFirstName() 
+	{
 		return staffFirstName;
 	}
 
-	public void setstaffFirstName(String staffFirstName) {
+	public void setstaffFirstName(String staffFirstName) 
+	{
 		this.staffFirstName = staffFirstName;
 	}
 
-	public String getstaffLastName() {
+	public String getstaffLastName() 
+	{
 		return staffLastName;
 	}
 
-	public void setstaffLastName(String staffLastName) {
+	public void setstaffLastName(String staffLastName) 
+	{
 		this.staffLastName = staffLastName;
 	}
 
-	public Date getstaffDob() {
+	public Date getstaffDob() 
+	{
 		return staffDob;
 	}
 
-	public void setstaffDob(Date staffDob) {
+	public void setstaffDob(Date staffDob) 
+	{
 		this.staffDob = staffDob;
 	}
 
-	public String getstaffAddress1() {
+	public String getstaffAddress1() 
+	{
 		return staffAddress1;
 	}
 
-	public void setstaffAddress1(String staffAddress1) {
+	public void setstaffAddress1(String staffAddress1) 
+	{
 		this.staffAddress1 = staffAddress1;
 	}
 
-	public String getstaffAddress2() {
+	public String getstaffAddress2() 
+	{
 		return staffAddress2;
 	}
 
-	public void setstaffAddress2(String staffAddress2) {
+	public void setstaffAddress2(String staffAddress2) 
+	{
 		this.staffAddress2 = staffAddress2;
 	}
 
-	public String getstaffPostOffice() {
+	public String getstaffPostOffice() 
+	{
 		return staffPostOffice;
 	}
 
-	public void setstaffPostOffice(String staffPostOffice) {
+	public void setstaffPostOffice(String staffPostOffice) 
+	{
 		this.staffPostOffice = staffPostOffice;
 	}
 
-	public String getstaffParish() {
+	public String getstaffParish() 
+	{
 		return staffParish;
 	}
 
-	public void setstaffParish(String staffParish) {
+	public void setstaffParish(String staffParish) 
+	{
 		this.staffParish = staffParish;
 	}
 
-	public String getstaffTelephone() {
+	public String getstaffTelephone() 
+	{
 		return staffTelephone;
 	}
 
-	public void setstaffTelephone(String staffTelephone) {
+	public void setstaffTelephone(String staffTelephone) 
+	{
 		this.staffTelephone = staffTelephone;
 	}
 
-	public String getstaffEmail() {
+	public String getstaffEmail() 
+	{
 		return staffEmail;
 	}
 
-	public void setstaffEmail(String staffEmail) {
+	public void setstaffEmail(String staffEmail) 
+	{
 		this.staffEmail = staffEmail;
 	}
 
-	public String getstaffPosition() {
+	public String getstaffPosition() 
+	{
 		return staffPosition;
 	}
 
-	public void setstaffPosition(String staffPosition) {
+	public void setstaffPosition(String staffPosition) 
+	{
 		this.staffPosition = staffPosition;
 	}
 
-	public int getstaffStatus() {
+	public int getstaffStatus() 
+	{
 		return staffStatus;
 	}
 
-	public void setstaffStatus(int staffStatus) {
+	public void setstaffStatus(int staffStatus) 
+	{
 		this.staffStatus = staffStatus;
 	}
 
-	public float getstaffSalary() {
+	public float getstaffSalary() 
+	{
 		return staffSalary;
 	}
 
-	public void setstaffSalary(float staffSalary) {
+	public void setstaffSalary(float staffSalary) 
+	{
 		this.staffSalary = staffSalary;
 	}
 
-	public void Display() {
+	
+	// Method to display all information about the staff member
+	public void Display() 
+	{
 		System.out.println("Staff: " +
 				"\nStaffID: " + staffID +
 				"\nstaffFirstName: " + staffFirstName +
