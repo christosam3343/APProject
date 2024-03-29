@@ -2,12 +2,13 @@ package generalinfo;
 
 public class Address 
 {
+	// Declaration of Variables
 	private String address1;
 	private String address2;
 	private String city;
 	private String postalCode;
 		
-		
+	// Default Constructor for the Address class
 	public Address() 
 	{	
 		address1 = "";
@@ -16,7 +17,7 @@ public class Address
 		postalCode = "";
 	}
 
-
+	// Primary constructor for the Address class
 	public Address(String address1, String address2, String city, String postalCode) 
 	{
 		this.address1 = address1;
@@ -24,7 +25,8 @@ public class Address
 		this.city = city;
 		this.postalCode = postalCode;
 	}
-		
+
+	
 	public Address(Address address) 
 	{
 		this.address1 = address.address1;
@@ -33,7 +35,7 @@ public class Address
 		this.postalCode = address.postalCode;
 	}
 	
-
+	// Setters and Getters for the Address class
 	public String getAddress1() 
 	{
 		return address1;
@@ -81,7 +83,7 @@ public class Address
 		this.postalCode = postalCode;
 	}
 
-
+	// To String Method for the address Class
 	@Override
 	public String toString() 
 	{
