@@ -20,6 +20,8 @@ public class Client {
 	protected ObjectInputStream objIss;
 	private String action;
 
+	
+        // Constructor for Client class
 	public Client() {
 		createConnection();
 		configureStreams();
