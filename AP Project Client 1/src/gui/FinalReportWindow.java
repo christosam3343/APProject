@@ -1,4 +1,5 @@
 package gui;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -12,15 +13,16 @@ import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public class FinalReportWindow extends JFrame implements Serializable{
-    /**
-	 * 
-	 */
+// FinalReportWindow class inheriting Serializable
+public class FinalReportWindow extends JFrame implements Serializable
+{
 	private static final long serialVersionUID = 1L;
 	// Declare text Fields for access by the clear button action
     private JTextField payIdField, staffIdField, startDateField, endDateField, contractorSalaryField, driverSalaryField, preparedByField;
 
-    public FinalReportWindow() {
+   	// Constructor for FinalReportWindow
+	public FinalReportWindow() 
+	{
         super("Final Report Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
@@ -37,7 +39,6 @@ public class FinalReportWindow extends JFrame implements Serializable{
         // Set background color to a light blue - skyBlue
         getContentPane().setBackground(skyBlue);
 
-        
         
         // Initialize text Fields
         payIdField = new JTextField();
@@ -78,14 +79,13 @@ public class FinalReportWindow extends JFrame implements Serializable{
         add(preparedByField);
 
       
-        
-
-//        add(getByID);
-        pack(); // Adjusts window size to fit all cWomponents
-        setVisible(true);
+        pack(); // Adjusts window size to fit all components
+        setVisible(true); // Set window visible
     }
 
-    public static void main(String[] args) {
+    // Main method to start the FinalReportWindow
+    public static void main(String[] args) 
+    {
         new FinalReportWindow();
     }
 }
