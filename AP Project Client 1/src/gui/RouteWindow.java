@@ -1,4 +1,5 @@
 package gui;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -14,23 +15,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 
-public class RouteWindow extends JFrame implements Serializable{
-    /**
-	 * 
-	 */
+// RouteWindow class extending JFrame and implementing Serializable
+public class RouteWindow extends JFrame implements Serializable
+	    // Serial version UID for serialization
+{
 	private static final long serialVersionUID = 1L;
 	// Declare text fields for access by the clear button action
     private JTextField routeNameField, sourceField, destinationField, rateField;
+	// Logger for logging messages
     private final Logger logger = LogManager.getLogger(RouteWindow.class);
 
 
-    public RouteWindow() {
+        // Constructor for RouteWindow
+	public RouteWindow() 
+	{
         super("Route Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
         setLayout(new GridLayout(7, 2)); // Adjust grid layout for buttons
         
-     // Define custom colors
+     	// Define custom colors
         Color skyBlue = new Color(135, 206, 235);
         Color steelBlue = new Color(70, 130, 180);
         Color Red = new Color(255, 0, 0);
@@ -70,14 +74,19 @@ public class RouteWindow extends JFrame implements Serializable{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Handle submission logic here
-            	RouteRates obj1 = new RouteRates();//Imported from generalinfo 	
+		// Logging and validation
+            	// Creating RouteRates object
+            	RouteRates obj1 = new RouteRates(); //Imported from generalinfo 	
             	Client client = new Client();
-            	
+
+		// Getting input from text fields
             	String routeName = routeNameField.getText();
             	String source = sourceField.getText();
             	String destination = destinationField.getText();
             	String rate1 = rateField.getText();
-            	
+		    
+            	// Validating input fields
+                // Display error messages if input is invalid
             	if (!routeName.matches("[A-Z]-[A-Z]")) {
             	    JOptionPane.showMessageDialog(null, "Please Enter a Valid Route name in the format 'A-B'", "Message", JOptionPane.INFORMATION_MESSAGE);
             	    logger.info("User entered an invalid route name: " + routeName);
@@ -100,16 +109,18 @@ public class RouteWindow extends JFrame implements Serializable{
                 }
             	
             	
-            	
+            	// Set data to RouteRates object
             	obj1.setrouteName(routeNameField.getText());
             	obj1.setSource(sourceField.getText());
             	obj1.setDestination(destinationField.getText());
             	double rate = Double.parseDouble(rateField.getText());
             	obj1.setRate(rate);
             	
-            	client.sendAction("Add Route");
+            	// Sending data to the server
+		client.sendAction("Add Route");
             	client.sendRouteRates(obj1);
-            	
+	
+            	// Check if addition was successful
             	boolean added = client.addedSuccessful();
             	if(added) {
             		JOptionPane.showMessageDialog(null, "Route added Successful", "Message", JOptionPane.INFORMATION_MESSAGE);
@@ -118,12 +129,13 @@ public class RouteWindow extends JFrame implements Serializable{
             		JOptionPane.showMessageDialog(null, "Route was not added Successful", "Error", JOptionPane.ERROR_MESSAGE);
             	}
             	
-            	client.closeConnection();
+            	client.closeConnection(); // Close Connection
             }
-            private boolean parseBoolean(String text) {
+            private boolean parseBoolean(String text) 
+		{
 				// TODO Auto-generated method stub
 				return false;
-            }
+                }
         });
 
         // Create clear button
@@ -142,7 +154,7 @@ public class RouteWindow extends JFrame implements Serializable{
             }
         });
         
-      //Retrieve 1
+        // Create retrieve button
         JButton getByID = new JButton("Retrieve");
         getByID.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         getByID.setForeground(Color.WHITE); // Set text color to white
@@ -165,7 +177,7 @@ public class RouteWindow extends JFrame implements Serializable{
             }
         });
         
-      //Delete
+        // Create delete button
         JButton deleteButton = new JButton("Delete");
         deleteButton.setBackground(Red); // Set button color to a darker blue - steelBlue
         deleteButton.setForeground(Color.WHITE); // Set text color to white
@@ -173,8 +185,8 @@ public class RouteWindow extends JFrame implements Serializable{
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Clear all text fields
-               
+        	 // Delete route and clear text fields
+
                 String routeName  =  routeNameField.getText() ;
                 Client client = new Client();
                 client.sendAction("Delete Route");
@@ -189,7 +201,7 @@ public class RouteWindow extends JFrame implements Serializable{
             }
         });
         
-      //Update
+	// Create update button
         JButton updateButton = new JButton("Update");
         updateButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         updateButton.setForeground(Color.WHITE); // Set text color to white
@@ -219,9 +231,7 @@ public class RouteWindow extends JFrame implements Serializable{
            		JOptionPane.showMessageDialog(null, "Route and Rates was not added Successful", "Error", JOptionPane.ERROR_MESSAGE);
            	}
                
-
-//               JOptionPane.showMessageDialog(null, "Submission Successful!");
-               client.closeConnection();
+               client.closeConnection(); // Close Connection
            }
 
 			
@@ -236,10 +246,12 @@ public class RouteWindow extends JFrame implements Serializable{
         add(deleteButton);
 
         pack(); // Adjusts window size to fit all components
-        setVisible(true);
+        setVisible(true); // Set window visibility
     }
 
-    public static void main(String[] args) {
-        new RouteWindow();
+        // Main method
+	public static void main(String[] args) 
+	{
+        new RouteWindow(); // Create an instance of RouteWindow
     }
 }
