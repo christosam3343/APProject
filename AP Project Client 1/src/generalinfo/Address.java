@@ -26,7 +26,7 @@ public class Address
 		this.postalCode = postalCode;
 	}
 
-	
+	// Copy constructor for Address class
 	public Address(Address address) 
 	{
 		this.address1 = address.address1;
