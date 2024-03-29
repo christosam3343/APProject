@@ -8,12 +8,17 @@ import javax.swing.border.LineBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class LoginFrame extends JFrame implements ActionListener {
+// class LoginFrame extends JFrame and implements ActionListener interface
+public class LoginFrame extends JFrame implements ActionListener 
+{
+    // Declaration of Variables
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
 
-    public LoginFrame() {
+    // Constructor for LoginFrame
+    public LoginFrame() 
+    {
         setTitle("Login Form");
         setSize(320, 180);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,17 +33,17 @@ public class LoginFrame extends JFrame implements ActionListener {
         Color royalBlue = new Color(65, 105, 225);
         Color navyBlue = new Color(0, 0, 128);
 
-     // Set background color to a light blue - skyBlue
+        // Set background color to a light blue - skyBlue
         getContentPane().setBackground(skyBlue);
+
+        // Create a JPanel for holding components and set it to be transparent
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.setOpaque(false); // Make panel transparent
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(4, 4, 4, 4); // External padding of components
-        
-//        JPanel panel = new JPanel();
-//        panel.setLayout(new GridLayout(3, 2));
 
+        // Create labels for username field
         JLabel userLabel = new JLabel("Username:");
         userLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         usernameField = new JTextField(15);
@@ -46,6 +51,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         usernameField.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
         usernameField.setPreferredSize(new Dimension(usernameField.getWidth(), 30)); // Increase field height
         
+        // Create labels for password field
         JLabel passLabel = new JLabel("Password:");
         passLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         passwordField = new JPasswordField(15);
@@ -53,13 +59,14 @@ public class LoginFrame extends JFrame implements ActionListener {
         passwordField.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
         passwordField.setPreferredSize(new Dimension(passwordField.getWidth(), 30)); // Increase field height
 
+        // Create login button
         JButton loginButton = new JButton("Login");
         loginButton.setFont(new Font("Roboto", Font.BOLD, 14));
         loginButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         loginButton.setForeground(Color.WHITE); // Set text color to white
         loginButton.addActionListener(this);
         
-     // Add a hover effect to change the button's color when the mouse is over it
+        // Add a hover effect to change the button's color when the mouse is over it
         loginButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -72,7 +79,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
         });
 
-     // Add components to the panel with GridBagConstraints
+        // Add components to the panel with GridBagConstraints
         gbc.gridx = 0;
         gbc.gridy = 0;
         panel.add(userLabel, gbc);
@@ -94,11 +101,12 @@ public class LoginFrame extends JFrame implements ActionListener {
         gbc.gridy = 2;
         panel.add(loginButton, gbc);
 
-
+        // Add panel to the frame and center the frame
         add(panel);
         setLocationRelativeTo(null); // Center the frame
     }
 
+    // Action performed method for handling button click events
     @Override
     public void actionPerformed(ActionEvent e) {
         String enteredUsername = usernameField.getText();
@@ -111,6 +119,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         String validSuperAdminUsername = "superadmin";
         String validSuperAdminPassword = "superadmin";
         
+        // Check if entered credentials match valid credentials
         if (enteredUsername.equals(validAdminUsername) && new String(enteredPassword).equals(validAdminPassword)) {
             JOptionPane.showMessageDialog(this, "Admin Login successful!");
          // Open the new window (MainAppFrame) on successful login
@@ -120,7 +129,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
         } else if (enteredUsername.equals(validSuperAdminUsername) && new String(enteredPassword).equals(validSuperAdminPassword)){
         	JOptionPane.showMessageDialog(this, "SuperAdmin Login successful!");
-            // Open the new window (MainAppFrame) on successful login
+               // Open the new window (MainAppFrame) on successful login
                MainAppFrame mainAppFrame = new MainAppFrame(3);
                mainAppFrame.setVisible(true);
                dispose(); // Close the login window
@@ -130,7 +139,9 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
+    // Main method to launch the application
+    public static void main(String[] args) 
+    {
         SwingUtilities.invokeLater(() -> new LoginFrame().setVisible(true));
     }
 }
