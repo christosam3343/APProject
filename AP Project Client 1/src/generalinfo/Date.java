@@ -2,6 +2,7 @@ package generalinfo;
 
 public class Date 
 {
+	// Declaration of Variables
 	private int staffDobDay;
 	private int staffDobMonth;
 	private int staffDobYear;
@@ -12,7 +13,7 @@ public class Date
 	private int endMonth;
 	private int endYear;
 		
-		
+	// Default Constructor for Date Class	
 	public Date() 
 	{	
 		staffDobDay=0;
@@ -26,7 +27,7 @@ public class Date
 		endYear = 0;
 	}
 
-
+	// Primary Constructor for Date Class
 	public Date(int staffDobDay, int staffDobMonth, int staffDobYear) 
 	{
 		this.staffDobDay = staffDobDay;
@@ -39,7 +40,8 @@ public class Date
 		this.endMonth = endMonth;
 		this.endYear = endYear;
 	}
-		
+
+        // Copy Constructor for Date Class
 	public Date(Date date) 
 	{
 		staffDobDay= date.staffDobDay;
@@ -53,6 +55,7 @@ public class Date
 		endYear = date.endYear;
 	}
 
+	// Setters and Getters for Date class
 	public int getstaffDobDay() 
 	{
 		return staffDobDay;
@@ -148,6 +151,7 @@ public class Date
 	}
 
 
+        // toString method to convert Date object to string
 	@Override
 	public String toString() {
 		return "Date [staffDobDay=" + staffDobDay + ", staffDobMonth=" + staffDobMonth + ", staffDobYear="
