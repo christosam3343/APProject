@@ -2,11 +2,10 @@ package generalinfo;
 
 import java.io.Serializable;
 
+// Customer class inheriting from the Serializable class
 public class Customer implements Serializable 
 {
-	/**
-	 * 
-	 */
+        // Serial Version UID for serialization
 	private static final long serialVersionUID = 1L;
 	private int CustId;
 	private String company;
@@ -20,6 +19,7 @@ public class Customer implements Serializable
 	private float custBalance;
 	private boolean custStatus;
 		
+		// Default Constructor for Customer class
 		public Customer() 
 		{
 			super();
@@ -35,7 +35,8 @@ public class Customer implements Serializable
 			this.custBalance = 0.00f;
 			this.custStatus = false;
 		}
-		
+
+		// Primary Constructor for the Customer class
 		public Customer(int custId, String company, String contactPerson, String custAddress1, String custAddress2, String custPostOffice, String custParish, String custTelephone, String custEmail,float custBalance, boolean custStatus) 
 		{
 			super();
@@ -52,7 +53,7 @@ public class Customer implements Serializable
 			this.custStatus = custStatus;
 		}
 		
-		
+		// Setters and Getters for the Customer class
 		public float getCustBalance() {
 			return custBalance;
 		}
@@ -158,7 +159,7 @@ public class Customer implements Serializable
 			this.custStatus = custStatus;
 		}
 		
-		
+                // Display method to output customer information
 		public void Display() {
 			System.out.println( "Staff: " +
 	                "\nCustomerID: " + CustId +
