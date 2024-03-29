@@ -7,6 +7,7 @@ public class Customer implements Serializable
 {
         // Serial Version UID for serialization
 	private static final long serialVersionUID = 1L;
+	// Declaration of Variables
 	private int CustId;
 	private String company;
 	private String contactPerson;
