@@ -1,7 +1,9 @@
 package generalinfo;
 import java.util.*;
 
-public class PayRoll {
+public class PayRoll 
+{
+	// Declaration of variables
 	private int payID;
 	private int staffID;
 	private int startDay;
@@ -15,6 +17,7 @@ public class PayRoll {
 	private float salaryDriver;
 	private String preparedBy;
 	
+	// Primary Constructor for PayRoll class
 	public PayRoll(int payID, int staffID, int startDay, int startMonth, int startYear, int endDay, int endMonth,
 					int endYear, float salaryAdmin, float salaryMaintenance, float salaryDriver, String preparedBy) {
 		this.payID = payID;
@@ -31,6 +34,7 @@ public class PayRoll {
 		this.preparedBy = preparedBy;
 	}
 	
+	// Default Constructor for PayRoll class
 	public PayRoll() {
 		staffID = 0;
 		payID = 0;
@@ -46,6 +50,7 @@ public class PayRoll {
 		preparedBy = "";
 	}
 
+	// Settters and getters for PayRoll Class
 	public int getPayID() {
 		return payID;
 	}
@@ -141,7 +146,9 @@ public class PayRoll {
 	public void setPreparedBy(String preparedBy) {
 		this.preparedBy = preparedBy;
 	}
+	
 
+        // toString method to represent PayRoll object as a string
 	@Override
 	public String toString() {
 		return "PayRoll [payID=" + payID + ", staffID=" + staffID + ", startDay=" + startDay + ", startMonth="
@@ -149,7 +156,8 @@ public class PayRoll {
 				+ ", endYear=" + endYear + ", salaryAdmin=" + salaryAdmin + ", salaryMaintenance=" + salaryMaintenance
 				+ ", salaryDriver=" + salaryDriver + ", preparedBy=" + preparedBy + "]";
 	}
-	
+
+	// Method to calculate payroll for administrative staff
 	public void payrollAdmins() {
 		Scanner obj1 = new Scanner(System.in);
 		System.out.println("Enter your ID Number: ");
@@ -159,7 +167,8 @@ public class PayRoll {
 			System.out.println("Your salary is: "+salaryAdmin);
 		}
 	}
-	
+
+	// Method to calculate payroll for maintenance staff
 	public void payrollMaintenance() {
 		Scanner obj2 = new Scanner(System.in);
 		System.out.println("Enter your ID Number: ");
@@ -169,7 +178,8 @@ public class PayRoll {
 			System.out.println("Your salary is: "+salaryMaintenance);
 		}
 	}
-	
+
+	// Method to calculate payroll for drivers
 	public void payrollDriver() {
 		Scanner obj3 = new Scanner(System.in);
 		System.out.println("Enter your ID Number: ");
@@ -177,7 +187,6 @@ public class PayRoll {
 		if (read1 > 15 && read1 < 40) {
 			
 		}
-	}
-	
+	}	
 	
 }
