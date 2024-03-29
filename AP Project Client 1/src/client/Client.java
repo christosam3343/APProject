@@ -13,6 +13,7 @@ import generalinfo.RouteRates;
 import generalinfo.Staff;
 import generalinfo.TripOrder;
 
+
 public class Client {
 	private final Logger logger = LogManager.getLogger(Client.class);
 	private Socket connectionSockett;
@@ -28,6 +29,7 @@ public class Client {
 		// receiveResponse();
 	}
 
+	// Method to create a socket connection
 	private void createConnection() {
 		try {
 			connectionSockett = new Socket("127.0.0.1", 8888);
@@ -37,6 +39,7 @@ public class Client {
 		}
 	}
 
+	// Method to configure input and output streams
 	private void configureStreams() {
 		try {
 			objOss = new ObjectOutputStream(connectionSockett.getOutputStream());
@@ -52,6 +55,7 @@ public class Client {
 		}
 	}
 
+        // Method to close the connection
 	public void closeConnection() {
 
 		try {
@@ -64,6 +68,7 @@ public class Client {
 		}
 	}
 
+        // Method to send an action to the server
 	public void sendAction(String action) {
 		this.action = action;
 		try {
@@ -73,7 +78,8 @@ public class Client {
 			logger.error("Error: " + e.getMessage());
 		}
 	}
-
+	
+	// Method to send staff information to the server
 	public void sendStaff(Staff staffObj) {
 		try {
 			objOss.writeObject(staffObj);
