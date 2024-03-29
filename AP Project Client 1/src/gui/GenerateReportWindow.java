@@ -1,4 +1,5 @@
 package gui;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -13,16 +14,16 @@ import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public class GenerateReportWindow extends JFrame implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	// Declare text Fields for access by the clear button action
+// GenerateReportWindow class inheriting Serializable
+public class GenerateReportWindow extends JFrame implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+    // Declare text Fields for access by the clear button action
     private JTextField startDateField, endDateField, earningsField, totalNumOfOrdersField;
     private JComboBox<String> driverNameDropdown;
 
-    public GenerateReportWindow() {
+        // Constructor for GenerateReportWindow
+	public GenerateReportWindow() {
         super("Generate Report Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
@@ -44,8 +45,7 @@ public class GenerateReportWindow extends JFrame implements Serializable{
         driverNameDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	// Handle submission logic here
-//            	JComboBox<String> cb = (JComboBox<String>)e.getSource();
+            	// Handle submission logic here     
                 String rName = (String) driverNameDropdown.getSelectedItem();
                 
                 for(RouteRates r: driverNameDropdown) {
@@ -62,10 +62,7 @@ public class GenerateReportWindow extends JFrame implements Serializable{
         startDateField = new JTextField();
         endDateField = new JTextField();
 
-        
-        
-        
-        
+
         // Add labels and text Fields to the form
         add(new JLabel("Driver Name"));
         add(driverNameField);
@@ -76,7 +73,7 @@ public class GenerateReportWindow extends JFrame implements Serializable{
         add(new JLabel("End Date"));
         add(endDateField);
     
-      //Retrieve 1
+        // Create a button to retrieve based on ID
         JButton getByID = new JButton("Generate Report");
         getByID.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         getByID.setForeground(Color.WHITE); // Set text color to white
@@ -87,26 +84,21 @@ public class GenerateReportWindow extends JFrame implements Serializable{
             	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
             	GenerateReports obj1 = new GenerateReports();
             	
-//            	int staffID = Integer.parseInt(staffIdField.getText());//Not sure
-//            	Client client = new Client();
-//            	
-            	client.sendAction("Find Staff");//Not sure
+       		client.sendAction("Find Staff");//Not sure
             	client.sendStaffId(staffID);//Not sure
             	obj1 = (GenerateReports) client.receiveResponse();
-//            	
-//            	driverNameField.setText(obj1.getDriverName());
-//            	startDateField.setText(inputFormat.format(obj1.getStartDate()));
-//            	endDateField.setText(inputFormat.format(obj1.getEndDate()));
             }
         });
-        
 
+	// add ID retrieval button
         add(getByID);
-        pack(); // Adjusts window size to fit all cWomponents
-        setVisible(true);
+        pack(); // Adjusts window size to fit all components
+        setVisible(true); // Set window visible
     }
 
-    public static void main(String[] args) {
+   	// Main method to start the GenerateReportWindow
+	public static void main(String[] args) 
+	{
         new GenerateReportWindow();
     }
 }
