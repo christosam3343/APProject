@@ -122,7 +122,7 @@ public class CustomerWindow extends JFrame {
                 String telephone = telephoneField.getText();
                 String email = emailField.getText();
                 String balance1 = balanceField.getText();
-                int booleanCheck;
+//                int booleanCheck;
                 
                 try {
                 	
@@ -135,21 +135,21 @@ public class CustomerWindow extends JFrame {
                 	return;
                 }
                 if(!(company.matches("[A-Za-z].*"))) {
-                	JOptionPane.showMessageDialog(null, "Please Enter A Company name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Company name", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	logger.info("User entered the invalid first name");
                 	return;
                 }
                 if(!(contactPerson.matches("[A-Za-z].*"))) {
-                	JOptionPane.showMessageDialog(null, "Please Enter A Contact Person name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Contact Person name", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	
                 	return;
                 }
                 if(address1.isEmpty()) {
-             	   JOptionPane.showMessageDialog(null, "Please Enter an Address1", "Message", JOptionPane.INFORMATION_MESSAGE);
+             	   JOptionPane.showMessageDialog(null, "Please Enter an Valid Address1", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	return;
                 }
                 if(address2.isEmpty()) {
-             	   JOptionPane.showMessageDialog(null, "Please Enter an Address2", "Message", JOptionPane.INFORMATION_MESSAGE);
+             	   JOptionPane.showMessageDialog(null, "Please Enter an Valid Address2", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	return;
                 }
                 if(!(post.matches("[A-Za-z].*"))) {
@@ -175,7 +175,7 @@ public class CustomerWindow extends JFrame {
                 	return;
                 }
                 if(!(telephone.matches("\\d.*"))) {
-                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Salary", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Telephone Number", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	logger.info("User entered the invalid Salary");
                 	return;
                 }
@@ -190,16 +190,17 @@ public class CustomerWindow extends JFrame {
                     return;
                 }
                 try {
-                	booleanCheck  = Integer.parseInt(statusField.getText());
-                	
-                	if (booleanCheck != 1 || booleanCheck != 0 ) {
-                     	JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
-                     	return;
-                     }
-                }
-                catch(NumberFormatException err){
-                	logger.error("Error: " + err.getMessage());
-                	return;
+                    String booleanString = statusField.getText(); // Assuming statusField is a JTextField or similar
+                    boolean booleanValue = Boolean.parseBoolean(booleanString);
+                    int intValue = booleanValue ? 1 : 0; // Convert boolean to int (true -> 1, false -> 0)
+
+                    if (intValue != 1 && intValue != 0) {
+                        JOptionPane.showMessageDialog(null, "Please Enter 'true' or 'false'", "Message", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                } catch (NumberFormatException err) {
+                    logger.error("Error: " + err.getMessage());
+                    return;
                 }
               
                 

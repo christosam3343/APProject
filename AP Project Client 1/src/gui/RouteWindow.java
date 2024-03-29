@@ -2,6 +2,9 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import client.Client;
 import generalinfo.Customer;
 import generalinfo.RouteRates;
@@ -18,6 +21,8 @@ public class RouteWindow extends JFrame implements Serializable{
 	private static final long serialVersionUID = 1L;
 	// Declare text fields for access by the clear button action
     private JTextField routeNameField, sourceField, destinationField, rateField;
+    private final Logger logger = LogManager.getLogger(RouteWindow.class);
+
 
     public RouteWindow() {
         super("Route Window");
@@ -67,6 +72,34 @@ public class RouteWindow extends JFrame implements Serializable{
                 // Handle submission logic here
             	RouteRates obj1 = new RouteRates();//Imported from generalinfo 	
             	Client client = new Client();
+            	
+            	String routeName = routeNameField.getText();
+            	String source = sourceField.getText();
+            	String destination = destinationField.getText();
+            	String rate1 = rateField.getText();
+            	
+            	if (!routeName.matches("[A-Z]-[A-Z]")) {
+            	    JOptionPane.showMessageDialog(null, "Please Enter a Valid Route name in the format 'A-B'", "Message", JOptionPane.INFORMATION_MESSAGE);
+            	    logger.info("User entered an invalid route name: " + routeName);
+            	    return;
+            	}
+            	if(!(source.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Source Address", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid Source Address");
+                	return;
+                }
+            	if(!(destination.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Destination Address", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid Destination Address");
+                	return;
+                }
+            	if (!(rate1.matches("\\d+(\\.\\d+)?"))) {
+                    JOptionPane.showMessageDialog(null, "Please Enter A Valid Rate", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    logger.info("User entered an rate");
+                    return;
+                }
+            	
+            	
             	
             	obj1.setrouteName(routeNameField.getText());
             	obj1.setSource(sourceField.getText());

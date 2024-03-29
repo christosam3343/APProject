@@ -1,18 +1,30 @@
 package gui;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
+import client.Client;
+import generalinfo.GenerateReports;
+import generalinfo.Staff;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
-public class GenerateReportWindow extends JFrame {
-    // Declare text Fields for access by the clear button action
-    private JTextField invoiceNoField, companyField, sourceAddressField, destinationAddressField, rateField, driverField, billedByField;
+public class GenerateReportWindow extends JFrame implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// Declare text Fields for access by the clear button action
+    private JTextField driverNameField, startDateField, endDateField, earningsField, totalNumOfOrdersField;
 
     public GenerateReportWindow() {
         super("Generate Report Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
-        setLayout(new GridLayout(7, 2)); // Adjust grid layout for buttons
+        setLayout(new GridLayout(4, 2)); // Adjust grid layout for buttons
         
         // Define custom colors
         Color skyBlue = new Color(135, 206, 235);
@@ -26,37 +38,47 @@ public class GenerateReportWindow extends JFrame {
         getContentPane().setBackground(skyBlue);
 
         // Initialize text Fields
-        invoiceNoField = new JTextField();
-        companyField = new JTextField();
-        sourceAddressField = new JTextField();
-        destinationAddressField = new JTextField();
-        rateField = new JTextField();
-        driverField = new JTextField();
-        billedByField = new JTextField();
+        driverNameField = new JTextField();
+        startDateField = new JTextField();
+        endDateField = new JTextField();
 
         // Add labels and text Fields to the form
-        add(new JLabel("Invoice No"));
-        add(invoiceNoField);
+        add(new JLabel("Driver Name"));
+        add(driverNameField);
 
-        add(new JLabel("Company"));
-        add(companyField);
+        add(new JLabel("Start Date"));
+        add(startDateField);
 
-        add(new JLabel("Source Address"));
-        add(sourceAddressField);
-
-        add(new JLabel("Destination Address"));
-        add(destinationAddressField);
-
-        add(new JLabel("Rate"));
-        add(rateField);
-
-        add(new JLabel("Driver"));
-        add(driverField);
-        
-        add(new JLabel("Billed By"));
-        add(billedByField);       
+        add(new JLabel("End Date"));
+        add(endDateField);
     
-        pack(); // Adjusts window size to fit all components
+      //Retrieve 1
+        JButton getByID = new JButton("Generate Report");
+        getByID.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+        getByID.setForeground(Color.WHITE); // Set text color to white
+        getByID.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
+        getByID.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            	GenerateReports obj1 = new GenerateReports();
+            	
+            	int staffID = Integer.parseInt(staffIdField.getText());//Not sure
+            	Client client = new Client();
+            	
+            	client.sendAction("Find Staff");//Not sure
+            	client.sendStaffId(staffID);//Not sure
+            	obj1 = (GenerateReports) client.receiveResponse();
+            	
+            	driverNameField.setText(obj1.getDriverName());
+            	startDateField.setText(inputFormat.format(obj1.getStartDate()));
+            	endDateField.setText(inputFormat.format(obj1.getEndDate()));
+            }
+        });
+        
+
+        add(getByID);
+        pack(); // Adjusts window size to fit all cWomponents
         setVisible(true);
     }
 

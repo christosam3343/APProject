@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TripOrderWindow extends JFrame{
     /**
@@ -146,10 +148,56 @@ public class TripOrderWindow extends JFrame{
             	TripOrder obj1 = new TripOrder();//Imported from generalinfo 	
             	Client client = new Client();
             	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-            	
+            	// Regular expression pattern for the date format yyyy-MM-dd
+            	String pattern = "\\d{4}-\\d{2}-\\d{2}";
+            	// Compile the pattern into a regular expression
+                Pattern regex = Pattern.compile(pattern);
+            
+                
+            	String invoice = invoiceNoField.getText();
+            	String company = companyField.getText();
             	String startDate = startDateField.getText();
             	String endDate = endDateField.getText();
-            
+            	String driver = driverField.getText();
+            	String billed = billedByField.getText();
+
+            	if(!(invoice.matches("\\d.*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Invoice Number", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid Invoice Number");
+                	return;
+                }
+            	if(!(company.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Company name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid Company name");
+                	return;
+                }
+            	// Create a Matcher object to match the pattern against the input string
+                Matcher matcher = regex.matcher(startDate);
+            	if(!(matcher.matches())) {
+        			JOptionPane.showMessageDialog(null, "Please Enter in format yyyy-MM-dd", "Message", JOptionPane.INFORMATION_MESSAGE);
+        			return;
+        		}
+            	// Create a Matcher object to match the pattern against the input string
+                Matcher matcher1 = regex.matcher(endDate);
+            	if(!(matcher1.matches())) {
+        			JOptionPane.showMessageDialog(null, "Please Enter in format yyyy-MM-dd", "Message", JOptionPane.INFORMATION_MESSAGE);
+        			return;
+        		}
+            	if(!(driver.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Driver name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid Driver name");
+                	return;
+                }
+            	if(!(billed.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Billed By name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid Billed By");
+                	return;
+                }
+            	
+            	
+            	
+            	
+            	
             	//Send to server
             	// Added
             

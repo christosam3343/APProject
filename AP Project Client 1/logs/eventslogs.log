@@ -18,3 +18,11 @@
 [ERROR] 2024-03-29 02:26:48.186 [AWT-EventQueue-0] Client - End of file reached: null
 [ERROR] 2024-03-29 02:43:23.860 [AWT-EventQueue-0] Client - End of file reached: null
 [ERROR] 2024-03-29 02:47:16.878 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 08:42:56.869 [AWT-EventQueue-0] CustomerWindow - User entered the invalid id: For input string: "sdasd"
+[ERROR] 2024-03-29 08:45:47.734 [AWT-EventQueue-0] CustomerWindow - Error: For input string: ""
+[ERROR] 2024-03-29 08:45:50.504 [AWT-EventQueue-0] CustomerWindow - Error: For input string: ""
+[ERROR] 2024-03-29 08:53:44.959 [AWT-EventQueue-0] CustomerWindow - User entered the invalid id: For input string: ""
+[ERROR] 2024-03-29 08:54:04.526 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 08:54:09.791 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 09:24:33.029 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 09:44:34.751 [AWT-EventQueue-0] Client - End of file reached: null

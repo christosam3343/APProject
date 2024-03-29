@@ -166,12 +166,12 @@ public class StaffWindow extends JFrame {
                 }
                 
                 if(!(fname.matches("[A-Za-z].*"))) {
-                	JOptionPane.showMessageDialog(null, "Please Enter A First name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid First name", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	logger.info("User entered the invalid first name");
                 	return;
                 }
                 if(!(lname.matches("[A-Za-z].*"))) {
-                	JOptionPane.showMessageDialog(null, "Please Enter A Last name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Last name", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	
                 	return;
                 }
@@ -182,11 +182,11 @@ public class StaffWindow extends JFrame {
         			return;
         		}
                if(address1.isEmpty()) {
-            	   JOptionPane.showMessageDialog(null, "Please Enter an Address1", "Message", JOptionPane.INFORMATION_MESSAGE);
+            	   JOptionPane.showMessageDialog(null, "Please Enter an Valid Address1", "Message", JOptionPane.INFORMATION_MESSAGE);
                	return;
                }
                if(address2.isEmpty()) {
-            	   JOptionPane.showMessageDialog(null, "Please Enter an Address2", "Message", JOptionPane.INFORMATION_MESSAGE);
+            	   JOptionPane.showMessageDialog(null, "Please Enter an Valid Address2", "Message", JOptionPane.INFORMATION_MESSAGE);
                	return;
                }
                 if(!(post.matches("[A-Za-z].*"))) {
@@ -244,7 +244,7 @@ public class StaffWindow extends JFrame {
                 	return;
                 }
                 if(!(position.matches("[A-Za-z].*"))) {
-                	JOptionPane.showMessageDialog(null, "Please Enter A Position", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Position", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	return;
                 }
                            
