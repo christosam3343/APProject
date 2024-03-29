@@ -1,18 +1,21 @@
 package generalinfo;
 
+// Contractor Class inheriting from the Staff class
 class Contractor extends Staff {
+    // Declaration of Variables
     private int tripsMade;
     private double earningsPerTrip;
     private boolean isAvailable;
 
-    public Contractor(int staffID, String staffFirstName, String staffLastName, Date staffDob, String staffAddress1, String staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail, String staffPosition, boolean staffStatus, int tripsMade, double earningsPerTrip, boolean isAvailable) {
-        super();
+    	// Primary constructor of Staff class implementation and Constructor class 
+	public Contractor(int staffID, String staffFirstName, String staffLastName, Date staffDob, String staffAddress1, String staffAddress2, String staffPostOffice, String staffParish, String staffTelephone, String staffEmail, String staffPosition, boolean staffStatus, int tripsMade, double earningsPerTrip, boolean isAvailable) {
+        super(); // Superclass Inheritance
         this.tripsMade = tripsMade;
         this.earningsPerTrip = earningsPerTrip;
         this.isAvailable = isAvailable;
     }
 
-
+    // Setters and Getters for Constructor class
     public int getTripsMade() {
 		return tripsMade;
 	}
@@ -33,7 +36,6 @@ class Contractor extends Staff {
 	}
 
 
-
 	public boolean isAvailable() {
 		return isAvailable;
 	}
@@ -42,10 +44,12 @@ class Contractor extends Staff {
 		this.isAvailable = isAvailable;
 	}
 
+	// Method to increment tripsMade by 1
 	public void addTrip() {
         tripsMade++;
     }
 
+    // Method to calculate total earnings based on trips made and earnings per trip
     public double calculateEarnings() {
         return tripsMade * earningsPerTrip;
     }
