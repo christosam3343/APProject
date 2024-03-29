@@ -3,12 +3,12 @@ package generalinfo;
 import java.io.Serializable;
 import java.util.Date;
 
+// TripOrder class inheriting from Serializable class
 public class TripOrder implements Serializable
 {
-	/**
-	 * 
-	 */
+	// Unique identifier for serialization
 	private static final long serialVersionUID = 1L;
+	// Declaration of Variables
 	private String invoiceNo;
 	private String routeName;
 	private String company;
@@ -17,14 +17,16 @@ public class TripOrder implements Serializable
 	private Float rate;
 	private Date startDate;
 	private Date endDate;
-    private String driver;
+    	private String driver;
 	private String billedBy;
 	
-	public TripOrder() {
+	// Default Constructor for TripOrder class
+	public TripOrder() 
+	{
 		
 	}
 
-	    
+	// Primary Constructor for TripOrder class
 	public TripOrder(String invoiceNo, String routeName, String company, String sourceAddress, String destinationAddress, Float rate, Date startDate, Date endDate, String driver, String billedBy) 
 	{
 	    this.invoiceNo = invoiceNo;
@@ -39,7 +41,7 @@ public class TripOrder implements Serializable
 	    this.billedBy = billedBy;
 	 }
 
-	    //Getters
+	    // Getters and Setters for TripOrder class
 	    public String getInvoiceNo() 
 	    {
 	        return invoiceNo;
@@ -70,16 +72,16 @@ public class TripOrder implements Serializable
 	        return rate;
 	    }
 	    
-	    public Date getStartDate() {
-			return startDate;
-		}
+	    public Date getStartDate() 
+	    {
+		return startDate;
+	    }
 
+	   public Date getEndDate() 
+	   {
+		return endDate;
+           }
 
-		public Date getEndDate() {
-			return endDate;
-		}
-
-		
 	    public String getDriver() 
 	    {
 	        return driver;
@@ -95,7 +97,6 @@ public class TripOrder implements Serializable
 	        return routeName;
 	    }
 
-	    // Setters
 	    public void setInvoiceNo(String invoiceNo) 
 	    {
 	        this.invoiceNo = invoiceNo;
@@ -126,13 +127,15 @@ public class TripOrder implements Serializable
 	        this.rate = rate;
 	    }
 
-		public void setStartDate(Date startDate) {
-			this.startDate = startDate;
-		}
+	    public void setStartDate(Date startDate) 
+	    {
+	        this.startDate = startDate;
+	    }
 		
-		public void setEndDate(Date endDate) {
-			this.endDate = endDate;
-		}
+	    public void setEndDate(Date endDate) 
+	    {
+		this.endDate = endDate;
+	    }
 
 	    public void setDriver(String driver) 
 	    {
@@ -144,8 +147,7 @@ public class TripOrder implements Serializable
 	        this.billedBy = billedBy;
 	    }
 	
-
-	    
+	    // Method to display information about the trip order 
 	    public void Display()
 	    {
 	    	System.out.print("TripOrder: InvoiceNo: " + getInvoiceNo()+"\nCompany: " +
