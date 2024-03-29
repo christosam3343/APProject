@@ -37,7 +37,9 @@ public class Server {
 	private ObjectOutputStream objOs;
 	private ObjectInputStream objIs;
 	private final Logger logger = LogManager.getLogger(Server.class);
-
+	private int clientCount = 0;
+	
+	
 	public Server() {
 		createConnection();
 		DBConnectorFactory.getDatabaseConnection();
@@ -85,10 +87,12 @@ public class Server {
 
 				// socket object to receive incoming connectedClient requests
 				connectedClient = serverSocket.accept();
-
-				String clientConnected = "Client connected: " + connectedClient.getInetAddress().getHostAddress() +
+				clientCount++;
+				
+				String clientConnected = "Client connected number "+clientCount+" "+ connectedClient.getInetAddress().getHostAddress() +
 						" @ " + localDateTime.format(dateTimeFormatter);
-
+				
+				
 				logger.info(clientConnected);
 
 				// Displaying that new client is connected to server
@@ -328,14 +332,14 @@ public class Server {
 	public boolean addTripOrder(TripOrder tripOrder) {
 
 		boolean saved = false;
-
-		String sql = "INSERT INTO orders (`invoiceNo`, `routeName`, `company`, `sourceAddress`, `destinationAddress`,"
-				+ "`rate`, `driver`, `billedBy`)"
-				+ "VALUES (? , ?, ?, ?, ?, ?, ?, ?)";
-
-		try {
+		
+		String sql = "INSERT INTO orders (invoiceNo, routeName, company, sourceAddress, destinationAddress,"
+				+ "rate,startDate, endDate,  driver, billedBy)"
+				+ "VALUES (? , ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				
+		try {		
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
-
+			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, tripOrder.getInvoiceNo());
 			statement.setString(2, tripOrder.getRouteName());
@@ -343,76 +347,87 @@ public class Server {
 			statement.setString(4, tripOrder.getSourceAddress());
 			statement.setString(5, tripOrder.getDestinationAddress());
 			statement.setFloat(6, tripOrder.getRate());
-			statement.setString(7, tripOrder.getDriver());
-			statement.setString(8, tripOrder.getBilledBy());
-
+			statement.setDate(7, new java.sql.Date(tripOrder.getStartDate().getTime()));
+			statement.setDate(8, new java.sql.Date(tripOrder.getEndDate().getTime()));
+			statement.setString(9, tripOrder.getDriver());
+			statement.setString(10, tripOrder.getBilledBy());
+			
+			
+		
+			
+			
 			if ((statement.executeUpdate() == 1)) {
-				saved = true;
-				System.out.print("SAVED STAFF");
+					saved = true; 
+					System.out.print("SAVED STAFF");
 			}
-
+				
 		} catch (SQLException e) {
-			logger.error("SQLException: " + e.getMessage());
-		}
-		return saved; // Return true to client if successful
+				
+				e.printStackTrace();
+			}
+		return saved; //Return true to client if successful
 	}
-
-	public TripOrder findTripOrder(String invoiceNo) {
+    
+    public TripOrder findTripOrder(String invoiceNo) {
 		TripOrder tripOrder = new TripOrder();
 		String sql = "Select * from orders WHERE invoiceNo ='" + invoiceNo + "'";
 		try {
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
 			PreparedStatement statement = connection.prepareStatement(sql);
-
-			result = statement.executeQuery(sql);
+			
+			result = statement.executeQuery(sql); 
 			if (result.next()) {
 				tripOrder.setInvoiceNo(result.getString(1));
 				tripOrder.setRouteName(result.getString(2));
-				tripOrder.setCompany(result.getString(3));
+				tripOrder.setCompany(result.getString(3)); 
 				tripOrder.setSourceAddress(result.getString(4));
 				tripOrder.setDestinationAddress(result.getString(5));
 				tripOrder.setRate(result.getFloat(6));
-				tripOrder.setDriver(result.getString(7));
-				tripOrder.setBilledBy(result.getString(8));
-
+				tripOrder.setStartDate(new java.util.Date(result.getDate(7).getTime()));
+				tripOrder.setEndDate(new java.util.Date(result.getDate(8).getTime()));
+				tripOrder.setDriver(result.getString(9));
+				tripOrder.setBilledBy(result.getString(10));
+			
 			}
 		} catch (SQLException e) {
-			logger.error("SQLException: " + e.getMessage());
+			
+			e.printStackTrace();
 		}
-
-		return tripOrder;
+		
+		return tripOrder;	
 	}
-
-	public void deleteTripOrder(String invoiceNo) {
-		String sql = "DELETE from orders" + " WHERE invoiceNo=" + "'" + invoiceNo + "'";
+    
+    public void deleteTripOrder(String invoiceNo)  {
+		String sql = "DELETE from orders"+" WHERE invoiceNo="+"'"+invoiceNo+"'";
 		Statement ex = null;
 		try {
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.executeUpdate(sql);
 		} catch (SQLException e) {
-			logger.error("SQLException: " + e.getMessage());
+			
+			e.printStackTrace();
 		}
 	}
+    
+ public void updateTripOrder(TripOrder tripOrder) {
+		
+		String sql = "UPDATE orders SET invoiceNo = '"+ tripOrder.getInvoiceNo()+"',routeName = '"+tripOrder.getRouteName()+"',"
+					+ "company ='"+tripOrder.getCompany()+"', sourceAddress = '"+tripOrder.getSourceAddress()+"', destinationAddress = '"
+					+ tripOrder.getDestinationAddress()+ "',rate = '"+ tripOrder.getRate()+"',startDate = '"+ tripOrder.getStartDate()+"',endDate ='"+
+					tripOrder.getEndDate()+"', driver = '"+tripOrder.getDriver()+"',billedBy = '"+ tripOrder.getBilledBy()+"'"+" WHERE invoiceNo = '"+ tripOrder.getInvoiceNo()+"'";
+		
 
-	public void updateTripOrder(TripOrder tripOrder) {
-
-		String sql = "UPDATE orders SET invoiceNo = '" + tripOrder.getInvoiceNo() + "',routeName = '"
-				+ tripOrder.getRouteName() + "',"
-				+ "company ='" + tripOrder.getCompany() + "', sourceAddress = '" + tripOrder.getSourceAddress()
-				+ "', destinationAddress = '"
-				+ tripOrder.getDestinationAddress() + "',rate = '" + tripOrder.getRate() + "', driver = '"
-				+ tripOrder.getDriver()
-				+ "',billedBy = '" + tripOrder.getBilledBy() + "'" + " WHERE invoiceNo = '" + tripOrder.getInvoiceNo()
-				+ "'";
-
+		
 		try {
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
 			PreparedStatement statement = connection.prepareStatement(sql);
-
+			statement.setDate(1,  new java.sql.Date(tripOrder.getStartDate().getTime()));
+			statement.setDate(1,  new java.sql.Date(tripOrder.getEndDate().getTime()));
 			statement.executeUpdate(sql);
 		} catch (SQLException e) {
-			logger.error("SQLException: " + e.getMessage());
+			
+			e.printStackTrace();
 		}
 	}
 

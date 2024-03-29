@@ -41,3 +41,54 @@
 [INFO ] 2024-03-28 23:46:06.265 [main] Server - Client connected: 127.0.0.1 @ 2024-45-28
 [INFO ] 2024-03-28 23:46:19.297 [main] Server - Client connected: 127.0.0.1 @ 2024-46-28
 [INFO ] 2024-03-28 23:48:09.207 [main] Server - Client connected: 127.0.0.1 @ 2024-46-28
+[INFO ] 2024-03-29 00:41:38.684 [main] Server - Sever is running
+[INFO ] 2024-03-29 00:41:55.181 [main] Server - Client connected: 127.0.0.1 @ 2024-41-29
+[INFO ] 2024-03-29 00:54:36.860 [main] Server - Client connected: 127.0.0.1 @ 2024-41-29
+[INFO ] 2024-03-29 01:16:43.209 [main] Server - Client connected: 127.0.0.1 @ 2024-54-29
+[INFO ] 2024-03-29 01:19:39.934 [main] Server - Client connected: 127.0.0.1 @ 2024-16-29
+[INFO ] 2024-03-29 01:28:54.353 [main] Server - Sever is running
+[INFO ] 2024-03-29 01:29:13.282 [main] Server - Client connected: 127.0.0.1 @ 2024-28-29
+[INFO ] 2024-03-29 01:29:24.596 [main] Server - Client connected: 127.0.0.1 @ 2024-29-29
+[INFO ] 2024-03-29 01:30:15.805 [main] Server - Client connected: 127.0.0.1 @ 2024-29-29
+[INFO ] 2024-03-29 01:30:21.350 [main] Server - Client connected: 127.0.0.1 @ 2024-30-29
+[INFO ] 2024-03-29 01:30:26.430 [main] Server - Client connected: 127.0.0.1 @ 2024-30-29
+[ERROR] 2024-03-29 01:30:29.216 [Thread-1] Server - EOFException: null
+[ERROR] 2024-03-29 01:30:29.216 [Thread-2] Server - EOFException: null
+[ERROR] 2024-03-29 01:30:29.216 [Thread-0] Server - EOFException: null
+[ERROR] 2024-03-29 01:30:29.216 [Thread-3] Server - EOFException: null
+[ERROR] 2024-03-29 01:30:29.216 [Thread-4] Server - EOFException: null
+[INFO ] 2024-03-29 01:30:30.637 [main] Server - Client connected: 127.0.0.1 @ 2024-30-29
+[ERROR] 2024-03-29 01:30:32.828 [Thread-5] Server - IOException: Connection reset
+[INFO ] 2024-03-29 02:08:08.842 [main] Server - Sever is running
+[INFO ] 2024-03-29 02:08:33.683 [main] Server - Client connected: 127.0.0.1 @ 2024-08-29
+[INFO ] 2024-03-29 02:09:08.872 [main] Server - Client connected: 127.0.0.1 @ 2024-08-29
+[INFO ] 2024-03-29 02:13:55.812 [main] Server - Sever is running
+[INFO ] 2024-03-29 02:14:11.042 [main] Server - Client connected: 127.0.0.1 @ 2024-13-29
+[INFO ] 2024-03-29 02:14:50.788 [main] Server - Client connected: 127.0.0.1 @ 2024-14-29
+[INFO ] 2024-03-29 02:17:11.881 [main] Server - Sever is running
+[INFO ] 2024-03-29 02:17:27.088 [main] Server - Client connected: 127.0.0.1 @ 2024-17-29
+[INFO ] 2024-03-29 02:17:49.098 [main] Server - Client connected: 127.0.0.1 @ 2024-17-29
+[INFO ] 2024-03-29 02:18:23.857 [main] Server - Client connected: 127.0.0.1 @ 2024-17-29
+[INFO ] 2024-03-29 02:23:27.195 [main] Server - Sever is running
+[INFO ] 2024-03-29 02:23:40.624 [main] Server - Client connected: 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 02:24:07.572 [main] Server - Client connected: 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 02:24:18.037 [main] Server - Client connected: 127.0.0.1 @ 2024-24-29
+[INFO ] 2024-03-29 02:24:36.021 [main] Server - Client connected: 127.0.0.1 @ 2024-24-29
+[INFO ] 2024-03-29 02:24:41.837 [main] Server - Client connected: 127.0.0.1 @ 2024-24-29
+[INFO ] 2024-03-29 02:24:54.166 [main] Server - Client connected: 127.0.0.1 @ 2024-24-29
+[INFO ] 2024-03-29 02:25:06.839 [main] Server - Client connected: 127.0.0.1 @ 2024-24-29
+[INFO ] 2024-03-29 02:26:14.068 [main] Server - Sever is running
+[INFO ] 2024-03-29 02:26:29.315 [main] Server - Client connected: 127.0.0.1 @ 2024-26-29
+[INFO ] 2024-03-29 02:26:42.255 [main] Server - Client connected: 127.0.0.1 @ 2024-26-29
+[INFO ] 2024-03-29 02:26:48.161 [main] Server - Client connected: 127.0.0.1 @ 2024-26-29
+[INFO ] 2024-03-29 02:36:52.152 [main] Server - Sever is running
+[INFO ] 2024-03-29 02:37:44.875 [main] Server - Client connected: Number 1:127.0.0.1 @ 2024-36-29
+[INFO ] 2024-03-29 02:41:36.147 [main] Server - Sever is running
+[INFO ] 2024-03-29 02:41:57.173 [main] Server - Client connected number 1 127.0.0.1 @ 2024-41-29
+[INFO ] 2024-03-29 02:42:29.994 [main] Server - Client connected number 2 127.0.0.1 @ 2024-41-29
+[INFO ] 2024-03-29 02:43:14.165 [main] Server - Client connected number 3 127.0.0.1 @ 2024-42-29
+[INFO ] 2024-03-29 02:43:23.822 [main] Server - Client connected number 4 127.0.0.1 @ 2024-43-29
+[INFO ] 2024-03-29 02:46:22.560 [main] Server - Sever is running
+[INFO ] 2024-03-29 02:46:57.340 [main] Server - Client connected number 1 127.0.0.1 @ 2024-46-29
+[INFO ] 2024-03-29 02:47:09.203 [main] Server - Client connected number 2 127.0.0.1 @ 2024-46-29
+[INFO ] 2024-03-29 02:47:16.843 [main] Server - Client connected number 3 127.0.0.1 @ 2024-47-29

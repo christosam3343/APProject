@@ -1,4 +1,4 @@
-package server;
+/*package server;
 
 
 import org.apache.logging.log4j.LogManager;
@@ -145,4 +145,4 @@ class ClientHandler implements Runnable {
             closeConnections();
         }
     }
-}
+}*/
