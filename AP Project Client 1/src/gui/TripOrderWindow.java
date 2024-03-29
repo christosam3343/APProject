@@ -30,8 +30,10 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// TripOrderWindow class inherits JFrame
 public class TripOrderWindow extends JFrame
 {
+	// Unique Serialization UID
 	private static final long serialVersionUID = 1L;
 	// Declare text fields for access by the clear button action
 	private final Logger logger = LogManager.getLogger(TripOrderWindow.class);
@@ -39,7 +41,8 @@ public class TripOrderWindow extends JFrame
     private JComboBox<String> routeNameDropdown;
     private RouteRates[] routeList = {};
 
-    public TripOrderWindow() {
+    	// Constructor for the TripOrderWindow class
+	public TripOrderWindow() {
         super("Trip Order Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
@@ -95,7 +98,7 @@ public class TripOrderWindow extends JFrame
                 
                 for(RouteRates r: routeList) {
                 	if(r.getrouteName().equals(rName)) {
-                		// populate the fields
+                		// Populate the fields
                 		sourceAddressField.setText(r.getSource());
                 		destinationAddressField.setText(r.getDestination());
                 		rateField.setText("" + r.getRate());
@@ -155,7 +158,7 @@ public class TripOrderWindow extends JFrame
             	// Compile the pattern into a regular expression
                 Pattern regex = Pattern.compile(pattern);
             
-                
+        	// Get input values
             	String invoice = invoiceNoField.getText();
             	String company = companyField.getText();
             	String startDate = startDateField.getText();
@@ -163,7 +166,8 @@ public class TripOrderWindow extends JFrame
             	String driver = driverField.getText();
             	String billed = billedByField.getText();
 
-            	if(!(invoice.matches("\\d.*"))) {
+            	// Validating input
+		if(!(invoice.matches("\\d.*"))) {
                 	JOptionPane.showMessageDialog(null, "Please Enter A Valid Invoice Number", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	logger.info("User entered the invalid Invoice Number");
                 	return;
@@ -197,8 +201,7 @@ public class TripOrderWindow extends JFrame
                 }
             	
             	
-            	//Send to server
-            	// Added
+            	// Populate TripOrder object
             	obj1.setInvoiceNo(invoiceNoField.getText());
             	obj1.setRouteName((String) routeNameDropdown.getSelectedItem());
             	obj1.setCompany(companyField.getText());
@@ -226,13 +229,16 @@ public class TripOrderWindow extends JFrame
             	obj1.setDriver(driverField.getText());
             	obj1.setBilledBy(billedByField.getText());
             	
-            	generateInvoice(obj1);
+            	// Generate invoice
+		generateInvoice(obj1);
             	            	
-            	client.sendAction("Add Trip Order");
+            	// Send TripOrder to server
+		client.sendAction("Add Trip Order");
             	client.sendTripOrder(obj1);
             	boolean added = client.addedSuccessful();
             	
-            	if(added) {
+            	// Show results
+		if(added) {
             		JOptionPane.showMessageDialog(null, "Trip Order added Successful", "Message", JOptionPane.INFORMATION_MESSAGE);
             	}
             	else {
@@ -269,7 +275,8 @@ public class TripOrderWindow extends JFrame
         });
 
 	    
-        JButton getByID = new JButton("Retrieve");
+        // Create retrieve button
+	JButton getByID = new JButton("Retrieve");
         getByID.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         getByID.setForeground(Color.WHITE); // Set text color to white
         getByID.setBorder(new LineBorder(inputFieldBorderColor, 2)); // Set a contrasting border
@@ -285,7 +292,8 @@ public class TripOrderWindow extends JFrame
             	client.sendRouteName(invoiceNo);
             	obj1 = (TripOrder) client.receiveResponse();
               
-            	invoiceNoField.setText(obj1.getInvoiceNo());
+            	// Populate fields with retrieved data
+		invoiceNoField.setText(obj1.getInvoiceNo());
             	routeNameDropdown.setSelectedItem(obj1.getRouteName());
             	companyField.setText(obj1.getCompany());
             	sourceAddressField.setText(obj1.getSourceAddress());
@@ -298,7 +306,7 @@ public class TripOrderWindow extends JFrame
             }
         });
         
-        //Delete
+        // Create delete button
         JButton deleteButton = new JButton("Delete");
         deleteButton.setBackground(Red); // Set button color to a darker blue - steelBlue
         deleteButton.setForeground(Color.WHITE); // Set text color to white
@@ -328,7 +336,7 @@ public class TripOrderWindow extends JFrame
             }
         });
         
-        //Update
+        // Create update button
         JButton updateButton = new JButton("Update");
         updateButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         updateButton.setForeground(Color.WHITE); // Set text color to white
@@ -340,12 +348,12 @@ public class TripOrderWindow extends JFrame
            	 	Client client = new Client();
            	           	
            	
-            obj1.setInvoiceNo(invoiceNoField.getText());       
+            // Populate TripOrder object with updated data
+	    obj1.setInvoiceNo(invoiceNoField.getText());       
             obj1.setRouteName((String) routeNameDropdown.getSelectedItem());
             obj1.setCompany(companyField.getText());
             obj1.setSourceAddress(sourceAddressField.getText());
             obj1.setDestinationAddress(destinationAddressField.getText());
-//            obj1.setRate(rateField.getText());
             obj1.setDriver(driverField.getText());
             obj1.setBilledBy(billedByField.getText());
             
@@ -371,12 +379,14 @@ public class TripOrderWindow extends JFrame
         		return;
         	}
            	
-           	client.sendAction("Update Trip Order");
+           	// Send updated TripOrder to server
+		client.sendAction("Update Trip Order");
            	client.sendTripOrder(obj1);
            	
            	boolean added = client.addedSuccessful();
            	
-           	if(added) {
+           	// Show updated results
+		if(added) {
            		JOptionPane.showMessageDialog(null, "Trip Order added Updated Successful", "Message", JOptionPane.INFORMATION_MESSAGE);
            	}
            	else {
@@ -394,7 +404,8 @@ public class TripOrderWindow extends JFrame
 			
        });
         
-        add(addButton);
+        // Add buttons to the form
+	add(addButton);
         add(updateButton);
         add(getByID);
         add(clearButton);
@@ -404,16 +415,18 @@ public class TripOrderWindow extends JFrame
         setVisible(true); // Set window visibility
     }
     
-    void getRouteRates() 
+        // Method to retrieve route rates
+	void getRouteRates() 
 	{
-    	Client client = new Client();
-    	client.sendAction("Get Routes");
-    	routeList = (RouteRates[])client.receiveResponse();
-        System.out.println(routeList);
+    		Client client = new Client();
+    		client.sendAction("Get Routes");
+    		routeList = (RouteRates[])client.receiveResponse();
+        	System.out.println(routeList);
         }
 
 	
-    public void generateInvoice(TripOrder obj2) {
+        // Method to generate invoice
+	public void generateInvoice(TripOrder obj2) {
     	String invoiceCreation = "E:\\Notes & Lectures\\Year 4\\SEM 8\\APProject-main\\invoice.pdf";
     	Document obj1 = new Document();
     	try {
@@ -450,8 +463,9 @@ public class TripOrderWindow extends JFrame
 		}
     }
     
-    public static void main(String[] args) 
+        // Main method
+	public static void main(String[] args) 
 	{
-        new TripOrderWindow();
+       		new TripOrderWindow(); // Create new instance of TripOrder Window
 	} 
 }
