@@ -1,4 +1,5 @@
 package gui;
+
 import javax.swing.*;
 import java.util.regex.*;
 import javax.swing.border.LineBorder;
@@ -17,35 +18,38 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class StaffWindow extends JFrame {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	// Declare text fields for access by the clear button action
+// StaffWindow class extending JFrame
+public class StaffWindow extends JFrame 
+{
+    // Serial version UID for serialization
+    private static final long serialVersionUID = 1L;
+    // Declare text fields for access by the clear button action
     private JTextField 
     	staffIdField, 
     	firstNameField, 
     	lastNameField, 
     	dobField, 
-		address1Field, 
-		address2Field, 
-		postOfficeField,
-		parishField, 
-		telephoneField, 
-		emailField, 
-		positionField, 
-		statusField,
-		salaryField;
+	address1Field, 
+	address2Field, 
+	postOfficeField,
+	parishField, 
+	telephoneField, 
+	emailField, 
+	positionField, 
+	statusField,
+	salaryField;
+	
+    // Logger for logging messages
     private final Logger logger = LogManager.getLogger(StaffWindow.class);
     
-    public StaffWindow() {
+        // Constructor for StaffWindow
+	public StaffWindow() {
         super("Staff Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
         setLayout(new GridLayout(16, 2)); // Adjust grid layout for buttons
         
-     // Define custom colors
+        // Define custom colors
         Color skyBlue = new Color(135, 206, 235);
         Color steelBlue = new Color(70, 130, 180);
         Color Red = new Color(255, 0, 0);
@@ -72,6 +76,7 @@ public class StaffWindow extends JFrame {
         positionField = new JTextField(10);
         statusField = new JTextField(10);
         salaryField = new JTextField(10);
+	    
         // Add labels and text fields to the form
         add(new JLabel("Staff ID"));
         add(staffIdField);
@@ -113,7 +118,6 @@ public class StaffWindow extends JFrame {
         add(new JLabel("Salary"));
         add(salaryField);
 
-        //Create
         // Create submit button
         JButton addButton = new JButton("Add");
         addButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
@@ -123,7 +127,7 @@ public class StaffWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
             	// Check the Inputs
-            	Staff obj1 = new Staff();//Imported from generalinfo
+            	Staff obj1 = new Staff(); //Imported from generalinfo
             	Client client = new Client();
             	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
             	// Regular expression pattern for the date format yyyy-MM-dd
@@ -138,7 +142,6 @@ public class StaffWindow extends JFrame {
                         "St. Elizabeth", "Manchester", "Clarendon", "St. Catherine"
                 };
                 
-            	
             	int staffID;
                 String fname = firstNameField.getText();
                 String lname = lastNameField.getText(); 
@@ -212,33 +215,7 @@ public class StaffWindow extends JFrame {
                 	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Parish", "Message", JOptionPane.INFORMATION_MESSAGE);
                 	return;
                 }
-//                try {
-//           
-//                	int tele = Integer.parseInt(telephone);          
-//                	System.out.print(tele);
-//                }
-//                catch(NumberFormatException err){
-//                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Phone Number", "Message", JOptionPane.INFORMATION_MESSAGE);
-//                	err.printStackTrace();
-//                	return;
-//                }catch(Exception e1 ) {
-//            		JOptionPane.showMessageDialog(null, "Universal", "Message", JOptionPane.INFORMATION_MESSAGE);
-//            		e1.printStackTrace();
-//            		return;
-//            	}
-//                int length = telephone.length();
-            	// Check if the length is either 10 or 7 digits
-//                if(!telephone.matches("\\\\d+")) {
-//                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Phone Number", "Message", JOptionPane.INFORMATION_MESSAGE);
-//                }
-////                if (!(telephone.length() == 7 || telephone.length() == 10)) {
-////            		JOptionPane.showMessageDialog(null, "Please Enter A Vaild Phone Number", "Message", JOptionPane.INFORMATION_MESSAGE);
-////                } 
-//                if (!(telephone.length() == 7) || !(telephone.length() == 10)) {
-//                	JOptionPane.showMessageDialog(null, "Please Enter 10 or 7 Digits", "Message", JOptionPane.INFORMATION_MESSAGE);
-//                	return;
-//                }
-                
+
                 String emailPattern = "^[A-Za-z][A-Za-z0-9_]*@[A-Za-z]+\\.com$";
                 if(!(email.matches(emailPattern))) {
                 	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Email", "Message", JOptionPane.INFORMATION_MESSAGE);
@@ -249,23 +226,6 @@ public class StaffWindow extends JFrame {
                 	return;
                 }
                            
-                       
-//                try {
-//                	booleanCheck  = Integer.parseInt(statusField.getText());
-//                	if(!status.matches("[0-1]")) {
-//                		JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
-//                     	return;
-//                	}
-//                	
-////                	if (booleanCheck != 1 && booleanCheck != 0 ) {
-////                     	JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
-////                     	return;
-////                     }
-//                }
-//                catch(NumberFormatException err){
-//                	logger.error("Error: " + err.getMessage());
-//                	return;
-//                }
                 String statusVailder = statusField.getText();
                 if (!statusVailder.equals("0") && !statusVailder.equals("1")) {
                     JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
@@ -296,8 +256,6 @@ public class StaffWindow extends JFrame {
             	obj1.setstaffEmail(emailField.getText());
             	obj1.setstaffPosition(positionField.getText());
             	
-//            	boolean status = parseBoolean(statusField.getText()); // convert text to boolean
-//            	if(sta)
             	obj1.setstaffStatus(1);
             	obj1.setstaffSalary(Float.parseFloat(salaryField.getText()));
           
@@ -314,8 +272,6 @@ public class StaffWindow extends JFrame {
             		JOptionPane.showMessageDialog(null, "Staff was not added Successful", "Error", JOptionPane.ERROR_MESSAGE);
             	}
                 
-
-//                JOptionPane.showMessageDialog(null, "Submission Successful!");
                 client.closeConnection();
             }
         });
@@ -343,8 +299,8 @@ public class StaffWindow extends JFrame {
                 statusField.setText("");
             }
         });
-        //Update
-        //Retrieve 1
+
+        //Retrieval of staff by ID
         JButton getByID = new JButton("Retrieve");
         getByID.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         getByID.setForeground(Color.WHITE); // Set text color to white
@@ -377,8 +333,7 @@ public class StaffWindow extends JFrame {
             }
         });
 
-        //Retrieve all
-        //Delete
+        // Create a delete button
         JButton deleteButton = new JButton("Delete");
         deleteButton.setBackground(Red); // Set button color to a darker blue - steelBlue
         deleteButton.setForeground(Color.WHITE); // Set text color to white
@@ -408,29 +363,11 @@ public class StaffWindow extends JFrame {
             
                 
                 JOptionPane.showMessageDialog(staffIdField, this, "Staff member deleted successfully!", getDefaultCloseOperation());
-              /*
-                try {
-                	int num_id= Integer.parseInt(id);
-                	System.out.println("Deleted user #"+num_id);
-                	staffIdField.setText("");
-                }catch (NumberFormatException err) {
-                	JOptionPane.showMessageDialog(staffIdField, this, "Please Enter a vaild Id", getDefaultCloseOperation());
-                	System.out.println("Number Format ERROR");
-                	staffIdField.setText("");
-                }catch(Exception err) {
-            		err.getMessage();
-            	}
-            	
-            	//Send to server
-            	// ID
-            	// Deleted */
-            	
-            	// clearButton.action(null, deleteButton)
             }
         });
         
         
-      //Update
+        // Create an Update button
         JButton updateButton = new JButton("Update");
         updateButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         updateButton.setForeground(Color.WHITE); // Set text color to white
@@ -453,13 +390,11 @@ public class StaffWindow extends JFrame {
            	try{
 
            		obj1.setstaffDob(inputFormat.parse(dateOfBirth));
-           		
            	}
            	catch(Exception e1 ) {
            		logger.error("Error: " + e1.getMessage());
            	}
            	
-      
            	obj1.setstaffAddress1(address1Field.getText());
            	obj1.setstaffAddress2(address2Field.getText());
            	obj1.setstaffPostOffice(postOfficeField.getText());
@@ -484,8 +419,6 @@ public class StaffWindow extends JFrame {
            		JOptionPane.showMessageDialog(null, "Staff was not added Successful", "Error", JOptionPane.ERROR_MESSAGE);
            	}
                
-
-//               JOptionPane.showMessageDialog(null, "Submission Successful!");
                client.closeConnection();
            }
 
@@ -505,10 +438,12 @@ public class StaffWindow extends JFrame {
         add(deleteButton);
 
         pack(); // Adjusts window size to fit all components
-        setVisible(true);
+        setVisible(true); // Set window visibility
     }
 
-    public static void main(String[] args) {
-        new StaffWindow();
-    }
+    	// Main method
+	public static void main(String[] args) 
+	{
+        new StaffWindow(); // Create an instance of StaffWindow
+        }
 }
