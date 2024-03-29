@@ -443,7 +443,7 @@ public class Server {
 				route.setrouteName(result.getString(1));
 				route.setSource(result.getString(2));
 				route.setDestination(result.getString(3));
-				route.setRate(result.getDouble(4));
+				route.setRate(result.getFloat(4));
 				
 				routes.add(route);
 			}
@@ -454,6 +454,93 @@ public class Server {
 		
 		return routes.toArray(new RouteRates[routes.size()]);	
 	}
+ 	
+ 	 public boolean addRouteRate(RouteRates routerate) {
+
+ 		boolean saved = false;
+ 		
+ 		String sql = "INSERT INTO routerates (`routeName`,`sourceAddress`, `destinationAddress`,"
+ 				+ "`rate`)"
+ 				+ "VALUES (? , ?, ?, ?)";
+ 				
+ 		try {		
+ 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+ 			
+ 			PreparedStatement statement = connection.prepareStatement(sql);
+ 
+ 			statement.setString(1, routerate.getrouteName());
+ 			
+ 			statement.setString(2, routerate.getSource());
+ 			statement.setString(3, routerate.getDestination());
+ 			statement.setFloat(4, routerate.getRate());
+ 			
+ 			
+ 		
+ 			
+ 			
+ 			if ((statement.executeUpdate() == 1)) {
+ 					saved = true; 
+ 					System.out.print("SAVED STAFF");
+ 			}
+ 				
+ 		} catch (SQLException e) {
+ 				
+ 				e.printStackTrace();
+ 			}
+ 		return saved; //Return true to client if successful
+ 	}
+ 	public RouteRates findRouteRates(String routeName) {
+		RouteRates routerates = new RouteRates();
+		String sql = "Select * from routerates WHERE routeName ='" + routeName + "'";
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+			PreparedStatement statement = connection.prepareStatement(sql);
+			
+			result = statement.executeQuery(sql); 
+			if (result.next()) {
+				
+				routerates.setrouteName(result.getString(1));
+				routerates.setSource(result.getString(2));
+				routerates.setDestination(result.getString(3));
+				routerates.setRate(result.getFloat(4));
+			
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return routerates;	
+	}
+ 	
+ 	public void deleteRoute(String routeName)  {
+		String sql = "DELETE from routerates"+" WHERE routeName="+"'"+routeName+"'";
+		Statement ex = null;
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+ 	 public void updateRoute(RouteRates routeRate) {
+ 		
+ 		String sql = "UPDATE routerates SET source = '"+routeRate.getSource()+"', destination = '"
+ 					+ routeRate.getDestination()+"',rate = '"+ routeRate.getRate()+"'"+" WHERE routeName = '"+ routeRate.getrouteName()+"'";
+ 		
+ 		try {
+ 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jhtdatabase", "root", "");
+ 			PreparedStatement statement = connection.prepareStatement(sql);
+ 		
+ 			statement.executeUpdate(sql);
+ 		} catch (SQLException e) {
+ 			
+ 			e.printStackTrace();
+ 		}
+ 	}
+    
     
   //Class for handling client requests
   class ClientHandler implements Runnable {
@@ -464,6 +551,7 @@ public class Server {
           Staff staff;
           Customer customer;
           TripOrder tripOrder;
+          RouteRates routeRate;
           configureStreams();
           
           try {
@@ -530,6 +618,24 @@ public class Server {
             	  RouteRates[] routes = getRoutes();
                   objOs.writeObject(routes);
               }
+              if (action.equals("Add Route")) {
+                  routeRate = (RouteRates) objIs.readObject();
+                  addRouteRate(routeRate);
+              }
+              if (action.equals("Find Route and Rates")) {
+                  String routeName = (String) objIs.readObject();
+                  routeRate = findRouteRates(routeName);
+                  objOs.writeObject(routeRate);
+              }
+              if (action.equals("Delete Route")) {
+                  String routeName = (String) objIs.readObject();
+                   deleteRoute(routeName);
+              }
+              if (action.equals("Update Route")) {
+            	  routeRate = (RouteRates) objIs.readObject();
+                  updateRoute(routeRate);
+              }
+              
           } catch (EOFException e) {
 //              logger.error("EOFException: " + e.getMessage());
               e.printStackTrace();

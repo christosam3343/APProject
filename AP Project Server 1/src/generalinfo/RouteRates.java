@@ -10,16 +10,16 @@ public class RouteRates implements Serializable{
 	private String routeName;
 	private String source;
 	private String destination;
-	private double rate;
+	private Float rate;
 	
 	public RouteRates() {
 		routeName = "";
 		source = "";
 		destination = "";
-		rate = 0.00;
+		rate = 0.0f;
 	}
 	
-	public RouteRates(String routeName, String source, String destination, double rate) {
+	public RouteRates(String routeName, String source, String destination, Float rate) {
 		super();
 		this.routeName = routeName;
 		this.source = source;
@@ -51,11 +51,11 @@ public class RouteRates implements Serializable{
 		this.destination = destination;
 	}
 
-	public double getRate() {
+	public Float getRate() {
 		return rate;
 	}
 
-	public void setRate(double rate) {
+	public void setRate(Float rate) {
 		this.rate = rate;
 	}
 
