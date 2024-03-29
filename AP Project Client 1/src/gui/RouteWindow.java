@@ -150,7 +150,7 @@ public class RouteWindow extends JFrame implements Serializable{
             float rate = Float.parseFloat(rateField.getText()); // convert text to float
            	obj1.setRate(rate); 
             
-           	client.sendAction("Update Route and Rates");
+           	client.sendAction("Update Route");
            	client.sendRouteRates(obj1);
            	
            	boolean added = client.addedSuccessful();
