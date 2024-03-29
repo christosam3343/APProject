@@ -2,12 +2,16 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import client.Client;
 import generalinfo.Customer;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 public class CustomerWindow extends JFrame {
 	
@@ -17,7 +21,7 @@ public class CustomerWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// Declare text fields for access by the clear button action
     private JTextField custIdField, companyField, contactPersonField, address1Field, address2Field, postOfficeField, parishField, telephoneField, emailField, balanceField, statusField;
-    
+    private final Logger logger = LogManager.getLogger(CustomerWindow.class);
 
     public CustomerWindow() {
         super("Customer Window");
@@ -97,6 +101,109 @@ public class CustomerWindow extends JFrame {
             	Customer obj1 = new Customer();//Imported from generalinfo 	
             	Client client = new Client();
             
+            	
+            	String pattern = "\\d{4}-\\d{2}-\\d{2}";
+
+                // Compile the pattern into a regular expression
+                Pattern regex = Pattern.compile(pattern);
+
+                String[] parishes = {
+                        "Kingston", "St. Andrew", "St. Thomas", "Portland", "St. Mary",
+                        "St. Ann", "Trelawny", "St. James", "Hanover", "Westmoreland",
+                        "St. Elizabeth", "Manchester", "Clarendon", "St. Catherine"
+                };
+                int custId;
+                String company = companyField.getText();
+                String contactPerson = contactPersonField.getText();
+                String address1 = address1Field.getText();
+                String address2 = address2Field.getText();
+                String post = postOfficeField.getText();
+                String parish = parishField.getText();
+                String telephone = telephoneField.getText();
+                String email = emailField.getText();
+                String balance1 = balanceField.getText();
+                int booleanCheck;
+                
+                try {
+                	
+                	custId = Integer.parseInt(custIdField.getText());
+                	
+                }
+                catch(NumberFormatException err){
+                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Id", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.error("User entered the invalid id: " + err.getMessage());
+                	return;
+                }
+                if(!(company.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Company name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid first name");
+                	return;
+                }
+                if(!(contactPerson.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Contact Person name", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	
+                	return;
+                }
+                if(address1.isEmpty()) {
+             	   JOptionPane.showMessageDialog(null, "Please Enter an Address1", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+                if(address2.isEmpty()) {
+             	   JOptionPane.showMessageDialog(null, "Please Enter an Address2", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+                if(!(post.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Postoffice", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+                // Flag to track if the string is found
+                boolean found = false;
+                
+                // Iterate through the array to search for the string
+                for (String parish_ : parishes) {
+                    if (parish_.equals(parish)) {
+                        found = true;
+                        break; // Exit the loop once the string is found
+                    }
+                }
+                if (!found) {
+                	JOptionPane.showMessageDialog(null, "Please Enter a Vaild Parish", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                } 
+                if(!(parish.matches("[A-Za-z].*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Parish", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+                if(!(telephone.matches("\\d.*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Salary", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid Salary");
+                	return;
+                }
+                String emailPattern = "^[A-Za-z][A-Za-z0-9_]*@[A-Za-z]+\\.com$";
+                if(!(email.matches(emailPattern))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Vaild Email", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	return;
+                }
+                if (!(balance1.matches("\\d+(\\.\\d+)?"))) {
+                    JOptionPane.showMessageDialog(null, "Please Enter A Valid Balance", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    logger.info("User entered an invalid Balance");
+                    return;
+                }
+                try {
+                	booleanCheck  = Integer.parseInt(statusField.getText());
+                	
+                	if (booleanCheck != 1 || booleanCheck != 0 ) {
+                     	JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
+                     	return;
+                     }
+                }
+                catch(NumberFormatException err){
+                	logger.error("Error: " + err.getMessage());
+                	return;
+                }
+              
+                
+                
             	//Send to server
             	// Added
             
@@ -109,6 +216,7 @@ public class CustomerWindow extends JFrame {
             	obj1.setCustPostOffice(postOfficeField.getText());
             	obj1.setCustParish(parishField.getText());
             	obj1.setCustTelephone(telephoneField.getText());
+            	obj1.setCustEmail(emailField.getText());
             	obj1.setCustEmail(emailField.getText());
 
             	float balance = Float.parseFloat(balanceField.getText());

@@ -1,6 +1,7 @@
 package generalinfo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class TripOrder implements Serializable
 {
@@ -14,6 +15,8 @@ public class TripOrder implements Serializable
 	private String sourceAddress;
 	private String destinationAddress;
 	private Float rate;
+	private Date startDate;
+	private Date endDate;
     private String driver;
 	private String billedBy;
 	
@@ -22,7 +25,7 @@ public class TripOrder implements Serializable
 	}
 
 	    
-	public TripOrder(String invoiceNo, String routeName, String company, String sourceAddress, String destinationAddress, Float rate, String driver, String billedBy) 
+	public TripOrder(String invoiceNo, String routeName, String company, String sourceAddress, String destinationAddress, Float rate, Date startDate, Date endDate, String driver, String billedBy) 
 	{
 	    this.invoiceNo = invoiceNo;
 	    this.routeName = routeName;
@@ -30,6 +33,8 @@ public class TripOrder implements Serializable
 	    this.sourceAddress = sourceAddress;
 	    this.destinationAddress = destinationAddress;
 	    this.rate = rate;
+	    this.startDate = startDate;
+	    this.endDate = endDate;
 	    this.driver = driver;
 	    this.billedBy = billedBy;
 	 }
@@ -64,7 +69,17 @@ public class TripOrder implements Serializable
 	    {
 	        return rate;
 	    }
+	    
+	    public Date getStartDate() {
+			return startDate;
+		}
 
+
+		public Date getEndDate() {
+			return endDate;
+		}
+
+		
 	    public String getDriver() 
 	    {
 	        return driver;
@@ -111,6 +126,14 @@ public class TripOrder implements Serializable
 	        this.rate = rate;
 	    }
 
+		public void setStartDate(Date startDate) {
+			this.startDate = startDate;
+		}
+		
+		public void setEndDate(Date endDate) {
+			this.endDate = endDate;
+		}
+
 	    public void setDriver(String driver) 
 	    {
 	        this.driver = driver;
@@ -123,20 +146,11 @@ public class TripOrder implements Serializable
 	
 
 	    
-	    public void Display() 
+	    public void Display()
 	    {
 	    	System.out.print("TripOrder: InvoiceNo: " + getInvoiceNo()+"\nCompany: " +
 	    					getCompany()+"\nSource Address: "+ getSourceAddress()+""
-	    					+ "\nDestination Address: "+ getDestinationAddress()+ 
-	    					"\nRate: "+ getRate()+"\nDriver: " + getDriver() +"\nBilled By: " + getBilledBy());
+	    					+ "\nDestination Address: "+ getDestinationAddress()+
+	    					"\nRate: "+ getRate()+"\nstartDate: "+ getStartDate()+"\nendDate: " + getEndDate()+ "\nDriver: " + getDriver() + "\nBilled By: " + getBilledBy());
 	    }
-
-
-		@Override
-		public String toString() {
-			return "TripOrder [invoiceNo=" + invoiceNo + ", routeName=" + routeName + ", company=" + company
-					+ ", sourceAddress=" + sourceAddress + ", destinationAddress=" + destinationAddress + ", rate="
-					+ rate + ", driver=" + driver + ", billedBy=" + billedBy + "]";
-		}
-	    
 }

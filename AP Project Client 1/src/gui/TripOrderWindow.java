@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 public class TripOrderWindow extends JFrame{
     /**
@@ -22,7 +23,7 @@ public class TripOrderWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 	// Declare text fields for access by the clear button action
 	private final Logger logger = LogManager.getLogger(TripOrderWindow.class);
-    private JTextField invoiceNoField, companyField, sourceAddressField, destinationAddressField, rateField, driverField, billedByField;
+    private JTextField invoiceNoField, companyField, sourceAddressField, destinationAddressField, rateField, startDateField, endDateField, driverField, billedByField;
     private JComboBox<String> routeNameDropdown;
     private RouteRates[] routeList = {};
 
@@ -30,7 +31,7 @@ public class TripOrderWindow extends JFrame{
         super("Trip Order Window");
         setSize(1000, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
-        setLayout(new GridLayout(11, 2)); // Adjust grid layout for buttons
+        setLayout(new GridLayout(13, 2)); // Adjust grid layout for buttons
         
         // Define custom colors
         Color skyBlue = new Color(135, 206, 235);
@@ -59,6 +60,7 @@ public class TripOrderWindow extends JFrame{
         // Set background color to a light blue - skyBlue
         getContentPane().setBackground(skyBlue);
 
+        
         // Initialize text fields
         invoiceNoField = new JTextField(10);
         companyField = new JTextField(10);
@@ -68,6 +70,8 @@ public class TripOrderWindow extends JFrame{
         destinationAddressField.setEditable(false);
         rateField = new JTextField(10);
         rateField.setEditable(false);
+        startDateField = new JTextField(10); 
+        endDateField = new JTextField(10);
         driverField = new JTextField(10);
         billedByField = new JTextField(10);
         routeNameDropdown = new JComboBox<String>(routeStrings);
@@ -116,6 +120,12 @@ public class TripOrderWindow extends JFrame{
 
         add(new JLabel("Rate"));
         add(rateField);
+        
+        add(new JLabel("Start Date"));
+        add(startDateField);
+        
+        add(new JLabel("End Date"));
+        add(endDateField);
 
         add(new JLabel("Driver"));
         add(driverField);
@@ -135,6 +145,10 @@ public class TripOrderWindow extends JFrame{
             	
             	TripOrder obj1 = new TripOrder();//Imported from generalinfo 	
             	Client client = new Client();
+            	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            	
+            	String startDate = startDateField.getText();
+            	String endDate = endDateField.getText();
             
             	//Send to server
             	// Added
@@ -146,6 +160,23 @@ public class TripOrderWindow extends JFrame{
             	obj1.setDestinationAddress(destinationAddressField.getText());
             	float rate = Float.parseFloat(rateField.getText());
             	obj1.setRate(rate);
+            	
+            	try{            		
+            		obj1.setStartDate(inputFormat.parse(startDate));
+            	}
+            	catch(Exception e1 ) {
+            		logger.error("Error: " + e1.getMessage());
+            		return;
+            	}
+            	
+            	try{            		
+            		obj1.setEndDate(inputFormat.parse(endDate));
+            	}
+            	catch(Exception e1 ) {
+            		logger.error("Error: " + e1.getMessage());
+            		return;
+            	}
+            	
             	obj1.setDriver(driverField.getText());
             	obj1.setBilledBy(billedByField.getText());
 
@@ -183,6 +214,8 @@ public class TripOrderWindow extends JFrame{
             	sourceAddressField.setText("");
             	destinationAddressField.setText("");
             	rateField.setText("");
+            	startDateField.setText("");
+            	endDateField.setText("");
             	driverField.setText("");
             	billedByField.setText("");
             }
@@ -197,6 +230,7 @@ public class TripOrderWindow extends JFrame{
         getByID.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
             	TripOrder obj1 = new TripOrder();
             	
             	String invoiceNo = invoiceNoField.getText();
@@ -211,6 +245,8 @@ public class TripOrderWindow extends JFrame{
             	sourceAddressField.setText(obj1.getSourceAddress());
             	destinationAddressField.setText(obj1.getDestinationAddress());
             	rateField.setText(String.valueOf(obj1.getRate()));
+            	startDateField.setText(inputFormat.format(obj1.getStartDate()));
+            	endDateField.setText(inputFormat.format(obj1.getEndDate()));
             	driverField.setText(obj1.getDriver());
             	billedByField.setText(obj1.getBilledBy());
             }
@@ -236,6 +272,8 @@ public class TripOrderWindow extends JFrame{
                 sourceAddressField.setText("");
                 destinationAddressField.setText("");
                 rateField.setText("");
+            	startDateField.setText("");
+            	endDateField.setText("");
                 driverField.setText("");
                 billedByField.setText("");
                 
@@ -268,7 +306,24 @@ public class TripOrderWindow extends JFrame{
             float rate = Float.parseFloat(rateField.getText()); // convert text to float
            	obj1.setRate(rate);         
                   	
-         
+           	SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+           	String startDate = startDateField.getText();
+           	String endDate = endDateField.getText();
+           	try{            		
+        		obj1.setStartDate(inputFormat.parse(startDate));
+        	}
+        	catch(Exception e1 ) {
+        		logger.error("Error: " + e1.getMessage());
+        		return;
+        	}
+        	
+        	try{            		
+        		obj1.setEndDate(inputFormat.parse(endDate));
+        	}
+        	catch(Exception e1 ) {
+        		logger.error("Error: " + e1.getMessage());
+        		return;
+        	}
            	
            	client.sendAction("Update Trip Order");
            	client.sendTripOrder(obj1);

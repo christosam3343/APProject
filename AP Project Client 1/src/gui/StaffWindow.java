@@ -151,6 +151,7 @@ public class StaffWindow extends JFrame {
                 String email = emailField.getText(); 
                 String position = positionField.getText();
                 String status =  statusField.getText();
+                String salary =  salaryField.getText();
                 int booleanCheck;
                
                 try {
@@ -255,10 +256,14 @@ public class StaffWindow extends JFrame {
                      	JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
                      	return;
                      }
-                	
                 }
                 catch(NumberFormatException err){
                 	logger.error("Error: " + err.getMessage());
+                	return;
+                }
+                if(!(salary.matches("\\d.*"))) {
+                	JOptionPane.showMessageDialog(null, "Please Enter A Valid Salary", "Message", JOptionPane.INFORMATION_MESSAGE);
+                	logger.info("User entered the invalid Salary");
                 	return;
                 }
                 
