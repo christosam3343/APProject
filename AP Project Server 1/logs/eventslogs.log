@@ -92,3 +92,92 @@
 [INFO ] 2024-03-29 02:46:57.340 [main] Server - Client connected number 1 127.0.0.1 @ 2024-46-29
 [INFO ] 2024-03-29 02:47:09.203 [main] Server - Client connected number 2 127.0.0.1 @ 2024-46-29
 [INFO ] 2024-03-29 02:47:16.843 [main] Server - Client connected number 3 127.0.0.1 @ 2024-47-29
+[INFO ] 2024-03-29 08:42:32.085 [main] Server - Sever is running
+[INFO ] 2024-03-29 08:42:54.608 [main] Server - Client connected number 1 127.0.0.1 @ 2024-42-29
+[INFO ] 2024-03-29 08:43:21.177 [main] Server - Client connected number 2 127.0.0.1 @ 2024-42-29
+[INFO ] 2024-03-29 08:43:45.659 [main] Server - Client connected number 3 127.0.0.1 @ 2024-43-29
+[INFO ] 2024-03-29 08:43:52.700 [main] Server - Client connected number 4 127.0.0.1 @ 2024-43-29
+[INFO ] 2024-03-29 08:43:57.516 [main] Server - Client connected number 5 127.0.0.1 @ 2024-43-29
+[INFO ] 2024-03-29 08:44:06.268 [main] Server - Client connected number 6 127.0.0.1 @ 2024-43-29
+[INFO ] 2024-03-29 08:44:12.643 [main] Server - Client connected number 7 127.0.0.1 @ 2024-44-29
+[ERROR] 2024-03-29 08:44:54.265 [Thread-1] Server - EOFException: null
+[ERROR] 2024-03-29 08:44:54.265 [Thread-0] Server - EOFException: null
+[ERROR] 2024-03-29 08:44:54.265 [Thread-2] Server - EOFException: null
+[ERROR] 2024-03-29 08:44:54.265 [Thread-6] Server - EOFException: null
+[ERROR] 2024-03-29 08:44:54.265 [Thread-5] Server - EOFException: null
+[ERROR] 2024-03-29 08:44:54.265 [Thread-4] Server - EOFException: null
+[ERROR] 2024-03-29 08:44:54.265 [Thread-3] Server - EOFException: null
+[INFO ] 2024-03-29 08:44:57.595 [main] Server - Client connected number 8 127.0.0.1 @ 2024-44-29
+[INFO ] 2024-03-29 08:45:19.955 [main] Server - Client connected number 9 127.0.0.1 @ 2024-44-29
+[INFO ] 2024-03-29 08:45:25.334 [main] Server - Client connected number 10 127.0.0.1 @ 2024-45-29
+[INFO ] 2024-03-29 08:45:28.214 [main] Server - Client connected number 11 127.0.0.1 @ 2024-45-29
+[INFO ] 2024-03-29 08:45:31.941 [main] Server - Client connected number 12 127.0.0.1 @ 2024-45-29
+[INFO ] 2024-03-29 08:45:40.350 [main] Server - Client connected number 13 127.0.0.1 @ 2024-45-29
+[INFO ] 2024-03-29 08:45:43.136 [main] Server - Client connected number 14 127.0.0.1 @ 2024-45-29
+[INFO ] 2024-03-29 08:45:47.719 [main] Server - Client connected number 15 127.0.0.1 @ 2024-45-29
+[INFO ] 2024-03-29 08:45:50.502 [main] Server - Client connected number 16 127.0.0.1 @ 2024-45-29
+[ERROR] 2024-03-29 08:45:58.301 [Thread-9] Server - IOException: Connection reset
+[ERROR] 2024-03-29 08:45:58.301 [Thread-11] Server - IOException: Connection reset
+[ERROR] 2024-03-29 08:45:58.301 [Thread-10] Server - IOException: Connection reset
+[ERROR] 2024-03-29 08:45:58.302 [Thread-8] Server - IOException: Connection reset
+[ERROR] 2024-03-29 08:45:58.301 [Thread-12] Server - IOException: Connection reset
+[ERROR] 2024-03-29 08:45:58.302 [Thread-14] Server - IOException: Connection reset
+[ERROR] 2024-03-29 08:45:58.302 [Thread-15] Server - IOException: Connection reset
+[ERROR] 2024-03-29 08:45:58.302 [Thread-13] Server - IOException: Connection reset
+[INFO ] 2024-03-29 08:53:43.737 [main] Server - Client connected number 17 127.0.0.1 @ 2024-45-29
+[INFO ] 2024-03-29 08:54:04.485 [main] Server - Client connected number 18 127.0.0.1 @ 2024-53-29
+[INFO ] 2024-03-29 08:54:09.765 [main] Server - Client connected number 19 127.0.0.1 @ 2024-54-29
+[ERROR] 2024-03-29 08:54:09.790 [Thread-18] Server - SQLException: Duplicate entry '1' for key 'PRIMARY'
+[ERROR] 2024-03-29 08:54:48.524 [Thread-16] Server - IOException: Connection reset
+[ERROR] 2024-03-29 08:54:48.850 [Thread-7] Server - IOException: Connection reset
+[INFO ] 2024-03-29 08:58:32.331 [main] Server - Client connected number 20 127.0.0.1 @ 2024-54-29
+[INFO ] 2024-03-29 09:04:38.462 [main] Server - Client connected number 21 127.0.0.1 @ 2024-58-29
+[INFO ] 2024-03-29 09:23:05.700 [main] Server - Client connected number 22 127.0.0.1 @ 2024-04-29
+[INFO ] 2024-03-29 09:23:08.768 [main] Server - Client connected number 23 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 09:23:12.348 [main] Server - Client connected number 24 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 09:23:16.109 [main] Server - Client connected number 25 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 09:23:20.070 [main] Server - Client connected number 26 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 09:23:23.429 [main] Server - Client connected number 27 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 09:23:35.989 [main] Server - Client connected number 28 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 09:23:40.958 [main] Server - Client connected number 29 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 09:23:48.255 [main] Server - Client connected number 30 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 09:24:01.454 [main] Server - Client connected number 31 127.0.0.1 @ 2024-23-29
+[INFO ] 2024-03-29 09:24:04.790 [main] Server - Client connected number 32 127.0.0.1 @ 2024-24-29
+[INFO ] 2024-03-29 09:24:32.952 [main] Server - Client connected number 33 127.0.0.1 @ 2024-24-29
+[ERROR] 2024-03-29 09:25:14.383 [Thread-22] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:25:14.383 [Thread-28] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:25:14.383 [Thread-27] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:25:14.383 [Thread-24] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:25:14.384 [Thread-30] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:25:14.384 [Thread-23] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:25:14.384 [Thread-25] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:25:14.385 [Thread-29] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:25:14.385 [Thread-31] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:25:14.385 [Thread-26] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:26:01.114 [main] Server - IOException: Address already in use: bind
+[INFO ] 2024-03-29 09:26:01.376 [main] Server - Sever is running
+[INFO ] 2024-03-29 09:41:43.314 [main] Server - Client connected number 34 127.0.0.1 @ 2024-24-29
+[INFO ] 2024-03-29 09:41:46.919 [main] Server - Client connected number 35 127.0.0.1 @ 2024-41-29
+[INFO ] 2024-03-29 09:41:51.518 [main] Server - Client connected number 36 127.0.0.1 @ 2024-41-29
+[INFO ] 2024-03-29 09:41:59.983 [main] Server - Client connected number 37 127.0.0.1 @ 2024-41-29
+[INFO ] 2024-03-29 09:42:07.096 [main] Server - Client connected number 38 127.0.0.1 @ 2024-41-29
+[INFO ] 2024-03-29 09:42:16.800 [main] Server - Client connected number 39 127.0.0.1 @ 2024-42-29
+[INFO ] 2024-03-29 09:42:22.720 [main] Server - Client connected number 40 127.0.0.1 @ 2024-42-29
+[INFO ] 2024-03-29 09:42:28.239 [main] Server - Client connected number 41 127.0.0.1 @ 2024-42-29
+[INFO ] 2024-03-29 09:44:06.065 [main] Server - Client connected number 42 127.0.0.1 @ 2024-42-29
+[ERROR] 2024-03-29 09:44:09.491 [Thread-33] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:44:09.491 [Thread-34] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:44:09.491 [Thread-36] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:44:09.491 [Thread-38] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:44:09.491 [Thread-39] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:44:09.491 [Thread-40] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:44:09.491 [Thread-35] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:44:09.491 [Thread-37] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:44:09.491 [Thread-41] Server - IOException: Connection reset
+[INFO ] 2024-03-29 09:44:21.158 [main] Server - Client connected number 43 127.0.0.1 @ 2024-44-29
+[INFO ] 2024-03-29 09:44:30.499 [main] Server - Client connected number 44 127.0.0.1 @ 2024-44-29
+[INFO ] 2024-03-29 09:44:34.731 [main] Server - Client connected number 45 127.0.0.1 @ 2024-44-29
+[INFO ] 2024-03-29 09:44:47.179 [main] Server - Client connected number 46 127.0.0.1 @ 2024-44-29
+[ERROR] 2024-03-29 09:44:57.458 [Thread-42] Server - IOException: Connection reset
+[ERROR] 2024-03-29 09:44:57.458 [Thread-43] Server - IOException: Connection reset
+[INFO ] 2024-03-29 10:26:26.734 [main] Server - Client connected number 47 127.0.0.1 @ 2024-44-29
