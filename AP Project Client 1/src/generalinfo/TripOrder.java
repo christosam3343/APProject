@@ -23,8 +23,17 @@ public class TripOrder implements Serializable
 	// Default Constructor for TripOrder class
 	public TripOrder() 
 	{
-		
-	}
+	   this.invoiceNo = "";
+           this.routeName = "";
+           this.company = "";
+    	   this.sourceAddress = "";
+           this.destinationAddress = "";
+           this.rate = 0.0;
+           this.startDate = "";
+           this.endDate = "";
+           this.driver = "";
+           this.billedBy = "";
+ 	}
 
 	// Primary Constructor for TripOrder class
 	public TripOrder(String invoiceNo, String routeName, String company, String sourceAddress, String destinationAddress, Float rate, Date startDate, Date endDate, String driver, String billedBy) 
