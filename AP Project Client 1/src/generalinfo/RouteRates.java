@@ -2,23 +2,25 @@ package generalinfo;
 
 import java.io.Serializable;
 
-public class RouteRates implements Serializable {
-	/**
-	 * 
-	 */
+// RouteRates class inheriting from Serializable
+public class RouteRates implements Serializable 
+{
+	// Declaration of variables
 	private static final long serialVersionUID = 1L;
 	private String routeName;
 	private String source;
 	private String destination;
 	private double rate;
 	
+	// Default Constructor for RouteRates class
 	public RouteRates() {
 		routeName = "";
 		source = "";
 		destination = "";
 		rate = 465.00;
 	}
-	
+
+	// Primary Constructor for RouteRates class
 	public RouteRates(String routeName, String source, String destination, double rate) {
 		super();
 		this.routeName = routeName;
@@ -27,6 +29,7 @@ public class RouteRates implements Serializable {
 		this.rate = rate;
 	}
 
+	// Setters and getters for RouteRates class
 	public String getrouteName() {
 		return routeName;
 	}
@@ -59,14 +62,13 @@ public class RouteRates implements Serializable {
 		this.rate = rate;
 	}
 
+	// Method to display route information
 	public void Display() 
 	{
 		System.out.println("Route Name: " + routeName + 
 				" \nSource: " + source + 
 				" \nDestination: " + destination + 
 				" \nRate: " + rate);
-	}
-
-	
+	}	
 
 }
