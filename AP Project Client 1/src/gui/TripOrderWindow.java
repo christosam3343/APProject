@@ -1,4 +1,5 @@
 package gui;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -29,10 +30,8 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TripOrderWindow extends JFrame{
-    /**
-	 * 
-	 */
+public class TripOrderWindow extends JFrame
+{
 	private static final long serialVersionUID = 1L;
 	// Declare text fields for access by the clear button action
 	private final Logger logger = LogManager.getLogger(TripOrderWindow.class);
@@ -92,7 +91,6 @@ public class TripOrderWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
             	// Handle submission logic here
-//            	JComboBox<String> cb = (JComboBox<String>)e.getSource();
                 String rName = (String) routeNameDropdown.getSelectedItem();
                 
                 for(RouteRates r: routeList) {
@@ -106,20 +104,13 @@ public class TripOrderWindow extends JFrame{
                 }
             }
         });
-        
-        // populate default dropdown options
-//        if(routeList.length > 0) {
-//        	sourceAddressField.setText(routeList[0].getSource());
-//    		destinationAddressField.setText(routeList[0].getDestination());
-//    		rateField.setText("" + routeList[0].getRate());
-//        }
 
+	    
         // Add labels and text fields to the form
         add(new JLabel("Invoice No"));
         add(invoiceNoField);
         
         add(new JLabel("Route Name"));
-//        add(routeNamefield);
         add(routeNameDropdown);
 
         add(new JLabel("Company"));
@@ -206,12 +197,8 @@ public class TripOrderWindow extends JFrame{
                 }
             	
             	
-            	
-            	
-            	
             	//Send to server
             	// Added
-            
             	obj1.setInvoiceNo(invoiceNoField.getText());
             	obj1.setRouteName((String) routeNameDropdown.getSelectedItem());
             	obj1.setCompany(companyField.getText());
@@ -219,9 +206,6 @@ public class TripOrderWindow extends JFrame{
             	obj1.setDestinationAddress(destinationAddressField.getText());
             	float rate = Float.parseFloat(rateField.getText());
             	obj1.setRate(rate);
-            	
-            	
-            	
             	
             	
             	try{            		
@@ -263,7 +247,7 @@ public class TripOrderWindow extends JFrame{
 			}
         });
         
-     // Create clear button
+        // Create clear button
         JButton clearButton = new JButton("Clear");
         clearButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         clearButton.setForeground(Color.WHITE); // Set text color to white
@@ -283,9 +267,8 @@ public class TripOrderWindow extends JFrame{
             	billedByField.setText("");
             }
         });
-        
-      //Update
-        //Retrieve 1
+
+	    
         JButton getByID = new JButton("Retrieve");
         getByID.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         getByID.setForeground(Color.WHITE); // Set text color to white
@@ -315,7 +298,7 @@ public class TripOrderWindow extends JFrame{
             }
         });
         
-      //Delete
+        //Delete
         JButton deleteButton = new JButton("Delete");
         deleteButton.setBackground(Red); // Set button color to a darker blue - steelBlue
         deleteButton.setForeground(Color.WHITE); // Set text color to white
@@ -345,7 +328,7 @@ public class TripOrderWindow extends JFrame{
             }
         });
         
-      //Update
+        //Update
         JButton updateButton = new JButton("Update");
         updateButton.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
         updateButton.setForeground(Color.WHITE); // Set text color to white
@@ -401,7 +384,6 @@ public class TripOrderWindow extends JFrame{
            	}
                
 
-//               JOptionPane.showMessageDialog(null, "Submission Successful!");
                client.closeConnection();
            }
 
@@ -419,18 +401,18 @@ public class TripOrderWindow extends JFrame{
         add(deleteButton);
         
         pack(); // Adjusts window size to fit all components
-        setVisible(true);
+        setVisible(true); // Set window visibility
     }
     
-    void getRouteRates() {
+    void getRouteRates() 
+	{
     	Client client = new Client();
     	client.sendAction("Get Routes");
     	routeList = (RouteRates[])client.receiveResponse();
         System.out.println(routeList);
-    }
+        }
 
-    
-    
+	
     public void generateInvoice(TripOrder obj2) {
     	String invoiceCreation = "E:\\Notes & Lectures\\Year 4\\SEM 8\\APProject-main\\invoice.pdf";
     	Document obj1 = new Document();
@@ -468,7 +450,8 @@ public class TripOrderWindow extends JFrame{
 		}
     }
     
-//    public static void main(String[] args) {
-//        new TripOrderWindow();
-//    } 
+    public static void main(String[] args) 
+	{
+        new TripOrderWindow();
+	} 
 }
