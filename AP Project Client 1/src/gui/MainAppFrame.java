@@ -69,18 +69,18 @@ public class MainAppFrame extends JFrame {
         	buttonPanel.add(staffButton);
         }
         
-     // Create the "Customer" button
-        JButton calculatePayroll = new JButton("Calculate Payroll");
-        calculatePayroll.setBounds(41, 115, 107, 21);
-        calculatePayroll.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
-        calculatePayroll.setForeground(Color.WHITE); // Set text color to white
-        calculatePayroll.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	calculatePayroll(); // Open the customer window
-            }
-        });
-        buttonPanel.add(calculatePayroll);
+//     // Create the "Customer" button
+//        JButton calculatePayroll = new JButton("Calculate Payroll");
+//        calculatePayroll.setBounds(41, 115, 107, 21);
+//        calculatePayroll.setBackground(steelBlue); // Set button color to a darker blue - steelBlue
+//        calculatePayroll.setForeground(Color.WHITE); // Set text color to white
+//        calculatePayroll.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//            	calculatePayroll(); // Open the customer window
+//            }
+//        });
+//        buttonPanel.add(calculatePayroll);
         
         if(admin_check == 3 || admin_check == 1) {
         // Create the "Customer" button

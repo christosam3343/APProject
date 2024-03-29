@@ -26,3 +26,21 @@
 [ERROR] 2024-03-29 08:54:09.791 [AWT-EventQueue-0] Client - End of file reached: null
 [ERROR] 2024-03-29 09:24:33.029 [AWT-EventQueue-0] Client - End of file reached: null
 [ERROR] 2024-03-29 09:44:34.751 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 11:17:18.415 [AWT-EventQueue-0] Client - Error: Connection refused: connect
+[ERROR] 2024-03-29 11:17:18.418 [AWT-EventQueue-0] TripOrderWindow - Error: Cannot invoke "java.net.Socket.getOutputStream()" because "this.connectionSockett" is null
+[ERROR] 2024-03-29 11:17:45.628 [AWT-EventQueue-0] Client - Error: Connection refused: connect
+[ERROR] 2024-03-29 11:17:45.630 [AWT-EventQueue-0] TripOrderWindow - Error: Cannot invoke "java.net.Socket.getOutputStream()" because "this.connectionSockett" is null
+[ERROR] 2024-03-29 12:30:21.288 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 12:30:37.477 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 12:33:30.447 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 12:39:50.539 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 12:42:07.808 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 12:42:30.244 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 12:42:50.211 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 12:45:18.569 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 12:45:28.325 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 12:45:36.286 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 13:44:36.118 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 13:47:10.806 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 13:55:50.322 [AWT-EventQueue-0] Client - End of file reached: null
+[ERROR] 2024-03-29 14:17:46.244 [AWT-EventQueue-0] Client - End of file reached: null

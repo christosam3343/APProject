@@ -28,9 +28,9 @@ public class TripOrder implements Serializable
            this.company = "";
     	   this.sourceAddress = "";
            this.destinationAddress = "";
-           this.rate = 0.0;
-           this.startDate = "";
-           this.endDate = "";
+           this.rate = 0.0f;
+           this.startDate = new Date();
+           this.endDate = new Date();
            this.driver = "";
            this.billedBy = "";
  	}

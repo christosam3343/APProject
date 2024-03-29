@@ -11,7 +11,7 @@ public class FinalReport
 	float driverSalary;
 	String preparedBy;
 	
-	// Default Consturcotr for FinalReport class
+	// Default Constructor for FinalReport class
 	public FinalReport()
 	{
 		super();

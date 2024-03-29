@@ -15,14 +15,14 @@ import generalinfo.TripOrder;
 
 
 public class Client {
-	private final Logger logger = LogManager.getLogger(Client.class); // Logger for logging messages
-	private Socket connectionSockett; // Socket for connection
-	protected ObjectOutputStream objOss; // ObjectOutputStream for sending objects over the network
-	protected ObjectInputStream objIss; // ObjectInputStream for receiving objects over the network
+	private final Logger logger = LogManager.getLogger(Client.class);
+	private Socket connectionSockett;
+	protected ObjectOutputStream objOss;
+	protected ObjectInputStream objIss;
 	private String action;
 
 	
-        // Constructor for Client class
+    // Constructor for Client class
 	public Client() {
 		createConnection();
 		configureStreams();
@@ -55,7 +55,7 @@ public class Client {
 		}
 	}
 
-        // Method to close the connection
+    // Method to close the connection
 	public void closeConnection() {
 
 		try {
@@ -68,7 +68,7 @@ public class Client {
 		}
 	}
 
-        // Method to send an action to the server
+    // Method to send an action to the server
 	public void sendAction(String action) {
 		this.action = action;
 		try {
@@ -89,7 +89,7 @@ public class Client {
 		}
 	}
 	
-        // Method to send staff ID to the server
+    // Method to send staff ID to the server
 	public void sendStaffId(int staffId) {
 		try {
 			objOss.writeObject(staffId);

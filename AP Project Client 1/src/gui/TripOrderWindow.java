@@ -2,8 +2,15 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import generalinfo.Date;
+import java.util.*;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.itextpdf.text.*;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import client.Client;
 import generalinfo.Customer;
@@ -13,7 +20,11 @@ import generalinfo.TripOrder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -209,6 +220,10 @@ public class TripOrderWindow extends JFrame{
             	float rate = Float.parseFloat(rateField.getText());
             	obj1.setRate(rate);
             	
+            	
+            	
+            	
+            	
             	try{            		
             		obj1.setStartDate(inputFormat.parse(startDate));
             	}
@@ -224,10 +239,10 @@ public class TripOrderWindow extends JFrame{
             		logger.error("Error: " + e1.getMessage());
             		return;
             	}
-            	
             	obj1.setDriver(driverField.getText());
             	obj1.setBilledBy(billedByField.getText());
-
+            	
+            	generateInvoice(obj1);
             	            	
             	client.sendAction("Add Trip Order");
             	client.sendTripOrder(obj1);
@@ -414,7 +429,46 @@ public class TripOrderWindow extends JFrame{
         System.out.println(routeList);
     }
 
-    public static void main(String[] args) {
-        new TripOrderWindow();
+    
+    
+    public void generateInvoice(TripOrder obj2) {
+    	String invoiceCreation = "E:\\Notes & Lectures\\Year 4\\SEM 8\\APProject-main\\invoice.pdf";
+    	Document obj1 = new Document();
+    	try {
+			PdfWriter.getInstance(obj1, new FileOutputStream(invoiceCreation));
+			
+			obj1.open();
+			
+			Paragraph para = new Paragraph("ODERINVOICE \nInvoiceNo: " + obj2.getInvoiceNo()+"\nRoute Name: "
+					+ ""+ obj2.getRouteName()+"\nCompany: " + obj2.getCompany()+"\nSource Address: "+ obj2.getSourceAddress()+""
+					+ "\nDestination Address: "+ obj2.getDestinationAddress()+"\nRate: "+ obj2.getRate()+"\nstartDate: "+
+					obj2.getStartDate()+"\nendDate: " + obj2.getEndDate()+ "\nDriver: " + obj2.getDriver() + "\nBilled By: " 
+					+ obj2.getBilledBy());
+			
+			obj1.add(para);
+			
+			try {
+				obj1.add(Image.getInstance("E:\\Notes & Lectures\\Year 4\\SEM 8\\APProject-main\\truckpic.jpg"));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			obj1.close();
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			
+			e.printStackTrace();
+		}
     }
+    
+//    public static void main(String[] args) {
+//        new TripOrderWindow();
+//    } 
 }

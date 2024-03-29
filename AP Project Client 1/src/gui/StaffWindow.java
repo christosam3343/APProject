@@ -2,6 +2,8 @@ package gui;
 import javax.swing.*;
 import java.util.regex.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -70,7 +72,6 @@ public class StaffWindow extends JFrame {
         positionField = new JTextField(10);
         statusField = new JTextField(10);
         salaryField = new JTextField(10);
-
         // Add labels and text fields to the form
         add(new JLabel("Staff ID"));
         add(staffIdField);
@@ -249,17 +250,27 @@ public class StaffWindow extends JFrame {
                 }
                            
                        
-                try {
-                	booleanCheck  = Integer.parseInt(statusField.getText());
-                	
-                	if (booleanCheck != 1 || booleanCheck != 0 ) {
-                     	JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
-                     	return;
-                     }
-                }
-                catch(NumberFormatException err){
-                	logger.error("Error: " + err.getMessage());
-                	return;
+//                try {
+//                	booleanCheck  = Integer.parseInt(statusField.getText());
+//                	if(!status.matches("[0-1]")) {
+//                		JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
+//                     	return;
+//                	}
+//                	
+////                	if (booleanCheck != 1 && booleanCheck != 0 ) {
+////                     	JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
+////                     	return;
+////                     }
+//                }
+//                catch(NumberFormatException err){
+//                	logger.error("Error: " + err.getMessage());
+//                	return;
+//                }
+                String statusVailder = statusField.getText();
+                if (!statusVailder.equals("0") && !statusVailder.equals("1")) {
+                    JOptionPane.showMessageDialog(null, "Please Enter 1 or 0 for True or False", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    statusField.setText("");
+                    return;
                 }
                 if(!(salary.matches("\\d.*"))) {
                 	JOptionPane.showMessageDialog(null, "Please Enter A Valid Salary", "Message", JOptionPane.INFORMATION_MESSAGE);
@@ -287,7 +298,7 @@ public class StaffWindow extends JFrame {
             	
 //            	boolean status = parseBoolean(statusField.getText()); // convert text to boolean
 //            	if(sta)
-            	obj1.setstaffStatus(Integer.parseInt(statusField.getText()));
+            	obj1.setstaffStatus(1);
             	obj1.setstaffSalary(Float.parseFloat(salaryField.getText()));
           
             	
